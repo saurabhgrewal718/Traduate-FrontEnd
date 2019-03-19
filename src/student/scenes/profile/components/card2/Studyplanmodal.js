@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Tabs,Input,Modal,Avatar, Button,Tooltip } from 'antd';
+import { Tabs,Input,Modal,Avatar, Button } from 'antd';
 import { Select } from 'antd';
-import './Science.css';
 import { Radio } from 'antd';
 
 const RadioButton = Radio.Button;
@@ -25,7 +24,7 @@ function handleFocus() {
 const { TextArea } = Input;
 
 
-class Askquestionmodal extends Component {
+class Studyplanmodal extends Component {
   state = { visible: false }
 
   showModal = () => {
@@ -50,7 +49,7 @@ class Askquestionmodal extends Component {
   render() {
     return (
             <div>
-              <Button onClick={this.showModal} style={{borderRadius:"25px",backgroundColor:"#343d46",color:"white"}}>Ask Question</Button>
+              <Button onClick={this.showModal} style={{borderRadius:"25px",backgroundColor:"#343d46",color:"white"}}>Study Plan</Button>
               <Modal
                 style={{top:50}}
                 title={         <div className="dailylistitem">
@@ -73,8 +72,8 @@ class Askquestionmodal extends Component {
                 onOk={this.handleOk}
                 onCancel={this.handleCancel}
                 footer={[
-                  <Button key="back" onClick={this.handleCancel} style={{borderRadius:"25px"}}>Cancel</Button>,
-                  <Button key="submit" type="primary" style={{borderRadius:"25px",backgroundColor:"#343d46",color:"white"}} onClick={this.handleOk}>
+                  <Button key="back" onClick={this.handleCancel}>Cancel</Button>,
+                  <Button key="submit" type="primary" onClick={this.handleOk}>
                      Ask Question
                   </Button>,
                   <Avatar style={{position:"relative",float:"left"}} src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" />,
@@ -149,23 +148,19 @@ class Askquestionmodal extends Component {
                                <div>
                                  <div>
                                    <RadioGroup defaultValue="b" size="large">
-                                     <div style={{position:"relative",float:"left",marginTop:20}}>
+                                     <div style={{position:"relative",float:"left"}}>
                                          <RadioButton style={{width:80,height:1,borderColor:"rgba(255, 0, 0, 0)"}} value="b">
                                              <div style={{position:"relative",float:"left"}}>
-                                                 <Tooltip title="Ask Teacher Directly">
-                                                    <span><i class="fas fa-user-friends" style={{fontSize:40,paddingLeft:25}}></i></span>
-                                                    <b><p style={{paddingTop:10,paddingLeft:2}}>Community</p></b>
-                                                 </Tooltip>
+                                                 <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/d360e756534229.59b23e4d35886.png" alt="Avatar" style={{width:"80px",height:"80px",borderRadius: "50%"}}/>
+                                                 <b><p style={{paddingTop:10,paddingLeft:2}}>Community</p></b>
                                              </div>
                                          </RadioButton>
                                      </div>
-                                     <div style={{marginLeft:80,position:"relative",float:"left",marginTop:20}}>
+                                     <div style={{marginLeft:80,position:"relative",float:"left"}}>
                                          <RadioButton style={{width:80,height:1,borderColor:"rgba(255, 0, 0, 0)"}} value="c">
                                              <div style={{position:"relative",float:"left"}}>
-                                                 <Tooltip title="Ask Teacher Directly">
-                                                   <span><i class="fas fa-chalkboard-teacher" style={{fontSize:40,paddingLeft:25,}}></i></span>
-                                                   <b><p style={{paddingTop:10,paddingLeft:24}}>Teacher</p></b>
-                                                 </Tooltip>
+                                                 <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/54eb1256534229.59b2492202982.png" alt="Avatar" style={{width:"80px",height:"80px",borderRadius: "50%"}}/>
+                                                 <b><p style={{paddingTop:10,paddingLeft:14}}>Teacher</p></b>
                                              </div>
                                          </RadioButton>
                                      </div>
@@ -173,7 +168,7 @@ class Askquestionmodal extends Component {
                                  </div>
                                </div>
 
-                              <div style={{marginTop:100,marginLeft:30}}>
+                              <div style={{marginTop:130,marginLeft:30}}>
                                   <p> * Choose Whome You Want to Ask ?</p>
                               </div>
 
@@ -191,4 +186,4 @@ class Askquestionmodal extends Component {
   }
 }
 
-export default Askquestionmodal;
+export default Studyplanmodal;

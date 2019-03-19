@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Tabs,Input,Modal,Avatar, Popconfirm, Icon,Button,message } from 'antd';
 import { Select } from 'antd';
 import './Doubts.css';
+import Flipbook from './Flipbook';
 
 const Option = Select.Option;
 
@@ -111,7 +112,9 @@ class Watchanswermodal extends Component {
                       <div style={{ display:"flex"}}>
                          <div style={{ margin:"auto" }}>
                              <div style={{position:"relative",float:"left"}}>
-                               <TextArea style={{width:1100,fontSize:20}} placeholder="Write an Answer that kills every doubt..." autosize={{ minRows: 3, maxRows: 4 }} />
+                               <div style={{width:1100,fontSize:20}}>
+                                 <Flipbook/>
+                               </div>
                              </div>
                          </div>
                       </div>

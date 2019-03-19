@@ -4,7 +4,7 @@ import { Tabs, Button } from 'antd';
 import Doubts from './components/Doubts';
 
 const TabPane = Tabs.TabPane;
-const operations = <Button>Friends</Button>;
+const operations = <b><p style={{paddingLeft:20}}>19 January 2019<i class="fa fa-calendar" aria-hidden="true" style={{color:"black",paddingLeft:10}}></i></p></b>;
 const {Content} = Layout;
 
 class Card1 extends Component {

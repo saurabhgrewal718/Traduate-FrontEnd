@@ -44,7 +44,7 @@ class Message extends Component {
         <div className="card2">
           <div className="container2">
                <div className="container21">
-                  <div className="container211"><b><p>Topics Trending</p></b></div>
+                  <div className="container211"><b><p>Cheered by!</p></b></div>
                   <div className="container212"><b><i className="fa fa-bolt" aria-hidden="true"></i></b></div>
                </div>
 
@@ -53,46 +53,44 @@ class Message extends Component {
                        <div className="top1">
                          <Avatar src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" />
                        </div>
-                       <div className="top2">
-                          <p>Ankit Sharma Ankit </p>
+                       <div className="top1">
+                         <Avatar src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" />
                        </div>
-                       <div style={{position:"relative",float:"right"}}>
-                         <Button style={{borderRadius:25}}><i className="fa fa-check" aria-hidden="true"></i></Button>
+                       <div className="top1">
+                         <Avatar src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" />
+                       </div>
+                       <div className="top1">
+                         <Avatar src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" />
+                       </div>
+                       <div className="top1">
+                         <Avatar src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" />
+                       </div>
+                       <div className="top1">
+                         <Avatar src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" />
                        </div>
                    </div>
+
                    <div className="dailylistitem">
                        <div className="top1">
                          <Avatar src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" />
                        </div>
-                       <div className="top2">
-                          <p>Ankit Sharma Ankit </p>
-                       </div>
-                       <div style={{position:"relative",float:"right"}}>
-                         <Button style={{borderRadius:25}}><i className="fa fa-check" aria-hidden="true"></i></Button>
-                       </div>
-                   </div>
-                   <div className="dailylistitem">
                        <div className="top1">
                          <Avatar src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" />
                        </div>
-                       <div className="top2">
-                          <p>Ankit Sharma Ankit </p>
-                       </div>
-                       <div style={{position:"relative",float:"right"}}>
-                         <Button style={{borderRadius:25}}><i className="fa fa-check" aria-hidden="true"></i></Button>
-                       </div>
-                   </div>
-                   <div className="dailylistitem">
                        <div className="top1">
                          <Avatar src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" />
                        </div>
-                       <div className="top2">
-                          <p>Ankit Sharma Ankit </p>
+                       <div className="top1">
+                         <Avatar src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" />
                        </div>
-                       <div style={{position:"relative",float:"right"}}>
-                         <Button style={{borderRadius:25}}><i className="fa fa-check" aria-hidden="true"></i></Button>
+                       <div className="top1">
+                         <Avatar src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" />
+                       </div>
+                       <div className="top1">
+                         <Avatar src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" />
                        </div>
                    </div>
+
 
               </div>
 

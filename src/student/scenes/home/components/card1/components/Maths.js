@@ -4,7 +4,7 @@ import { Avatar,Button,Tooltip } from 'antd';
 import Answermodal from './Answermodal';
 
 
-class Science extends Component {
+class Maths extends Component {
   render() {
     return (
         <div>
@@ -40,9 +40,7 @@ class Science extends Component {
               <div className="bottom">
                  <div className="bottom1"><Answermodal/></div>
                  <div className="bottom1">
-                     <Tooltip title="Too tuff ? Mark a doubt!">
-                       <span><Button>Mark Doubt</Button></span>
-                     </Tooltip>
+                      <Button>Mark Doubt</Button>
                  </div>
                  <div className="bottom2"><Avatar src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/9222b568654569.5b6446bfab4b2.jpg" style={{height:20,width:20}}/></div>
                  <div className="bottom2"><Avatar src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/9222b568654569.5b6446bfab4b2.jpg" style={{height:20,width:20}}/></div>
@@ -55,10 +53,11 @@ class Science extends Component {
             </div>
           </div>
 
+
         </div>
 
     );
   }
 }
 
-export default Science;
+export default Maths;

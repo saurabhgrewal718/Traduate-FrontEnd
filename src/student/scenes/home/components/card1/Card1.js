@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Layout } from 'antd';
 import { Tabs, Button } from 'antd';
 import Science from './components/Science';
+import English from './components/English';
+import Maths from './components/Maths';
 import Askquestionmodal from './components/Askquestionmodal';
 
 const TabPane = Tabs.TabPane;
@@ -16,8 +18,8 @@ class Card1 extends Component {
               <Content style={{ padding: '0 20px' }}>
                 <Tabs tabBarExtraContent={<Askquestionmodal/>}>
                   <TabPane tab="Science" key="1"><Science/></TabPane>
-                  <TabPane tab="Maths" key="2">Content of tab 2</TabPane>
-                  <TabPane tab="English" key="3">Content of tab 3</TabPane>
+                  <TabPane tab="Maths" key="2"><Maths/></TabPane>
+                  <TabPane tab="English" key="3"><English/></TabPane>
                 </Tabs>
               </Content>
             </Layout>

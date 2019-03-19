@@ -4,9 +4,9 @@ import { Layout } from 'antd';
 import { Tabs, Button,Tooltip } from 'antd';
 import { Avatar } from 'antd';
 import Card1 from './components/card1/Card1'
+import Challengesdivider from './components/card1/components/Challengesdivider';
 
 const TabPane = Tabs.TabPane;
-const operations = <Button>Ask Question</Button>;
 const {Content} = Layout;
 
 class Home extends Component {
@@ -43,7 +43,7 @@ class Home extends Component {
                     <div style={{position:"relative",paddingLeft:20,float:"left",width:"30%"}}>
                       <div>
                           <Tooltip placement="right" title="View Challenges!">
-                            <span><Button style={{borderRadius:25,borderColor:"black",marginTop:5}}><i className="fas fa-hands-helping"></i></Button></span>
+                            <span><Challengesdivider/></span>
                           </Tooltip>
                       </div>
                       <div style={{marginTop:15}}>

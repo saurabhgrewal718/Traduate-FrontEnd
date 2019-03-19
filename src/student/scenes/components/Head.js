@@ -11,10 +11,10 @@ class Head extends Component {
           <div className="container">
             <div className="container-right">
               <ul className="navbar-right">
-                <li><Link to="/home">Home</Link></li>
-                <li><Link to="/profile">Profile</Link></li>
-                <li><Link to="/message">Message</Link></li>
-               <li><Link to="/extra"><i className="fa fa-bolt"></i></Link></li>
+                <li style={{paddingRight:15}}><Link to="/home"><b>Home</b></Link></li>
+                <li style={{paddingRight:15}}><Link to="/profile"><b>Read bytes</b></Link></li>
+                <li style={{paddingRight:15}}><Link to="/message"><b>Message</b></Link></li>
+                <li ><Link to="/extra"><b><i className="fa fa-bolt"></i></b></Link></li>
               </ul>
             </div>
 

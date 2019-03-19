@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Layout } from 'antd';
-import { Tabs, Button,Avatar,Icon } from 'antd';
+import { Tabs, Button,Avatar,Icon,Tooltip } from 'antd';
 import './Doubts.css';
 import { Popconfirm, message } from 'antd';
 import Watchanswermodal from './Watchanswermodal';
@@ -33,14 +33,7 @@ class Topics extends Component {
   render() {
     return (
       <div>
-        <div style={{display:"flex"}}>
-           <div style={{margin:"auto"}}>
-              <b><p style={{paddingLeft:20}}>19 January 2019<i class="fa fa-calendar" aria-hidden="true" style={{color:"black",paddingLeft:10}}></i></p></b>
-           </div>
-        </div>
-
-
-        <div className="carddoubt">
+        <div className="carddoubtread">
           <div className="containerdoubt">
             <div className="top">
                <div className="top2">
@@ -53,9 +46,9 @@ class Topics extends Component {
                   <b><p style={{color:"#CD853F"}}>(Topic Name is great powers)</p></b>
                </div>
                <div className="top3">
-                   <Popconfirm title="Add to Physics Book?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No" icon={<Icon type="book" />}>
-                     <a style={{color:"#000000"}}><i className="fa fa-book"></i></a>
-                   </Popconfirm>
+                   <Tooltip placement="top" title="Marked on !">
+                     <span><b><p style={{color:"black"}}>19/03/2019</p></b></span>
+                   </Tooltip>
                </div>
            </div>
 
@@ -74,7 +67,7 @@ class Topics extends Component {
         </div>
 
 
-          <div className="carddoubt">
+          <div className="carddoubtread">
             <div className="containerdoubt">
               <div className="top">
                  <div className="top2">
@@ -87,9 +80,9 @@ class Topics extends Component {
                     <b><p style={{color:"#CD853F"}}>(Topic Name is great powers)</p></b>
                  </div>
                  <div className="top3">
-                     <Popconfirm title="Add to Physics Book?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No" icon={<Icon type="book" />}>
-                       <a style={{color:"#000000"}}><i className="fa fa-book"></i></a>
-                     </Popconfirm>
+                     <Tooltip placement="top" title="Marked on !">
+                       <span><b><p style={{color:"black"}}>19/03/2019</p></b></span>
+                     </Tooltip>
                  </div>
              </div>
 
@@ -108,7 +101,7 @@ class Topics extends Component {
           </div>
 
 
-          <div className="carddoubt">
+          <div className="carddoubtread">
             <div className="containerdoubt">
               <div className="top">
                  <div className="top2">
@@ -121,9 +114,9 @@ class Topics extends Component {
                     <b><p style={{color:"#CD853F"}}>(Topic Name is great powers)</p></b>
                  </div>
                  <div className="top3">
-                     <Popconfirm title="Add to Physics Book?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No" icon={<Icon type="book" />}>
-                       <a style={{color:"#000000"}}><i className="fa fa-book"></i></a>
-                     </Popconfirm>
+                     <Tooltip placement="top" title="Marked on !">
+                       <span><b><p style={{color:"black"}}>19/03/2019</p></b></span>
+                     </Tooltip>
                  </div>
              </div>
 
@@ -155,9 +148,9 @@ class Topics extends Component {
                     <b><p style={{color:"#CD853F"}}>(Topic Name is great powers)</p></b>
                  </div>
                  <div className="top3">
-                     <Popconfirm title="Add to Physics Book?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No" icon={<Icon type="book" />}>
-                       <a style={{color:"#000000"}}><i className="fa fa-book"></i></a>
-                     </Popconfirm>
+                     <Tooltip placement="top" title="Marked on !">
+                       <span><b><p style={{color:"black"}}>19/03/2019</p></b></span>
+                     </Tooltip>
                  </div>
              </div>
 
