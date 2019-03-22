@@ -152,7 +152,7 @@ class Askquestionmodal extends Component {
                                      <div style={{position:"relative",float:"left",marginTop:20}}>
                                          <RadioButton style={{width:80,height:1,borderColor:"rgba(255, 0, 0, 0)"}} value="b">
                                              <div style={{position:"relative",float:"left"}}>
-                                                 <Tooltip title="Ask Teacher Directly">
+                                                 <Tooltip title="Ask Community Its free!">
                                                     <span><i class="fas fa-user-friends" style={{fontSize:40,paddingLeft:25}}></i></span>
                                                     <b><p style={{paddingTop:10,paddingLeft:2}}>Community</p></b>
                                                  </Tooltip>

@@ -12,8 +12,18 @@ class Flipbook extends Component {
 
               <Layout className="layout">
                 <Content style={{ padding: '0 0px' }}>
-                  <div style={{ background: 'white', padding: 24, minHeight: 400 }}>
-                    The answer goes here !
+                  <div style={{ background: 'white', padding: 24, height: 400,width:"100%",overflow: "hidden" }}>
+                      <div class="scrollbar" id="style-1">
+                         <div class="force-overflow">
+                           <div style={{display:"flex"}}>
+                              <div style={{margin:"auto",paddingLeft:"20px",paddingRight:"20px"}}>
+                                 The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !
+                                 The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !
+                                 The answer goes here ! The nswer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !
+                              </div>
+                            </div>
+                         </div>
+                      </div>
                   </div>
                 </Content>
               </Layout>

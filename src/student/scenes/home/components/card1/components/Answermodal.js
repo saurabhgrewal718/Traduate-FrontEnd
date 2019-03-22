@@ -100,8 +100,8 @@ class Answermodal extends Component {
                 onOk={this.handleOk}
                 onCancel={this.handleCancel}
                 footer={[
-                  <Button key="back" onClick={this.handleCancel}>Cancel</Button>,
-                  <Button key="submit" type="primary" onClick={this.handleOk}>
+                  <Button key="back" onClick={this.handleCancel} style={{borderRadius:"25px"}}>Cancel</Button>,
+                  <Button key="submit" type="primary" style={{borderRadius:"25px",backgroundColor:"#343d46",color:"white"}} onClick={this.handleOk}>
                      Submit Answer
                   </Button>,
                   <Avatar style={{position:"relative",float:"left"}} src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" />,
@@ -124,7 +124,7 @@ class Answermodal extends Component {
                          </div>
                       </div>
 
-                      <div style={{width:"100%",paddingTop:30}}>
+                      <div style={{width:"100%",marginTop:50}}>
                         <div style={{ display:"flex"}}>
                            <div style={{ margin:"auto" }}>
                              <div style={{position:"relative",float:"left"}}>
@@ -137,9 +137,9 @@ class Answermodal extends Component {
                              </div>
                              <div style={{position:"relative",float:"left",paddingLeft:80}}>
                                  <Tooltip title="Link Additional Reads Or Notes">
-                                   <span><i class="fas fa-paperclip" style={{fontSize:40,paddingLeft:35}}></i></span>
+                                   <span><i class="fas fa-paperclip" style={{fontSize:40,paddingLeft:35,color:"#ff3b3b"}}></i></span>
                                  </Tooltip>
-                                 <b><p style={{paddingTop:10,paddingLeft:0}}>Additional Reads</p></b>
+                                 <b><p style={{paddingTop:10,paddingLeft:0,color:"#ff3b3b"}}>Additional Reads</p></b>
                              </div>
                              <div style={{position:"relative",float:"left",paddingLeft:80}}>
                                  <Tooltip title="Write Answers Directly Onscreen!">

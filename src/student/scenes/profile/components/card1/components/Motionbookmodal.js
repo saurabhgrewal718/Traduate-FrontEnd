@@ -33,7 +33,7 @@ class Motionbookmodal extends React.Component {
         </Button>
         <Modal
           title={<div style={{display:"flex"}}><div style={{margin:"auto"}}><b style={{}}>This is the motionbook</b></div></div>}
-          style={{ top: 0 }}
+          style={{ top: 0}}
           width="100%"
           visible={this.state.visible}
           onOk={this.handleOk}
