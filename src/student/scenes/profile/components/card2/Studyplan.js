@@ -13,7 +13,7 @@ class Studyplan extends Component {
       <div>
                <div className="container21">
                   <div className="container211"><b><p>Weekly Goals (till 19/8/19)</p></b></div>
-                  <div className="container212"><b><i class="fa fa-bolt" aria-hidden="true"></i></b></div>
+                  <div className="container212"><b><i className="fa fa-bolt" aria-hidden="true"></i></b></div>
                </div>
 
                <div className="container22">

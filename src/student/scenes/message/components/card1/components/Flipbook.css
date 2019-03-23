@@ -35,7 +35,7 @@
 {
 	margin-left: 10px;
 	float: left;
-	height: 530px;
+	height: auto;
 	width: 99%;
 	overflow-y: scroll;
   overflow-x: hidden;
@@ -45,7 +45,7 @@
 
 .force-overflow
 {
-	min-height: 530px;
+	min-height: auto;
 }
 
 

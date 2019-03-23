@@ -5,7 +5,7 @@ import Doubts from './components/Doubts';
 import { Badge } from 'antd';
 
 const TabPane = Tabs.TabPane;
-const operations = <b><p style={{paddingLeft:20}}>19 January 2019<i class="fa fa-calendar" aria-hidden="true" style={{color:"black",paddingLeft:10}}></i></p></b>;
+const operations = <b><p style={{paddingLeft:20}}>19 January 2019<i className="fa fa-calendar" aria-hidden="true" style={{color:"black",paddingLeft:10}}></i></p></b>;
 const {Content} = Layout;
 
 class Card1 extends Component {

@@ -39,12 +39,12 @@ class Reportcontainer extends React.Component {
                 tabPosition="left"
                 style={{ height: "auto" }}
               >
-                <TabPane tab={<span><i class="fas fa-atom"></i> Physics</span>} key="1"><Reports/></TabPane>
-                <TabPane tab={<span><i class="fas fa-flask"></i> Chemistry</span>} key="2">Content of tab 2</TabPane>
-                <TabPane tab={<span><i class="fas fa-sort-numeric-up"></i> Maths</span>} key="3">Content of tab 3</TabPane>
-                <TabPane tab={<span><i class="fas fa-closed-captioning"></i> English</span>} key="4">Content of tab 4</TabPane>
-                <TabPane tab={<span><i class="fas fa-closed-captioning" style={{marginTop:25}}></i> English</span>} key="5">Content of tab 4</TabPane>
-                <TabPane tab={<span><i class="fas fa-closed-captioning"></i> Users</span>} key="6">Content of tab 4</TabPane>
+                <TabPane tab={<span><i className="fas fa-atom"></i> Physics</span>} key="1"><Reports/></TabPane>
+                <TabPane tab={<span><i className="fas fa-flask"></i> Chemistry</span>} key="2">Content of tab 2</TabPane>
+                <TabPane tab={<span><i className="fas fa-sort-numeric-up"></i> Maths</span>} key="3">Content of tab 3</TabPane>
+                <TabPane tab={<span><i className="fas fa-closed-captioning"></i> English</span>} key="4">Content of tab 4</TabPane>
+                <TabPane tab={<span><i className="fas fa-closed-captioning" style={{marginTop:25}}></i> English</span>} key="5">Content of tab 4</TabPane>
+                <TabPane tab={<span><i className="fas fa-closed-captioning"></i> Users</span>} key="6">Content of tab 4</TabPane>
               </Tabs>
           </div>
 

@@ -32,6 +32,7 @@ class Askquestionmodal extends Component {
     this.setState({
       visible: true,
     });
+
   }
 
   handleOk = (e) => {
@@ -39,6 +40,7 @@ class Askquestionmodal extends Component {
     this.setState({
       visible: false,
     });
+
   }
 
   handleCancel = (e) => {
@@ -136,7 +138,7 @@ class Askquestionmodal extends Component {
                                >
                                  <Option value="1">Gravitation</Option>
                                  <Option value="2">Fluid mechanics</Option>
-                                 <Option value="3">Newton's laws of motion</Option>
+                                 <Option value="3">Newtons laws of motion</Option>
                                </Select>
                              </div>
                          </div>
@@ -153,7 +155,7 @@ class Askquestionmodal extends Component {
                                          <RadioButton style={{width:80,height:1,borderColor:"rgba(255, 0, 0, 0)"}} value="b">
                                              <div style={{position:"relative",float:"left"}}>
                                                  <Tooltip title="Ask Community Its free!">
-                                                    <span><i class="fas fa-user-friends" style={{fontSize:40,paddingLeft:25}}></i></span>
+                                                    <span><i className="fas fa-user-friends" style={{fontSize:40,paddingLeft:25}}></i></span>
                                                     <b><p style={{paddingTop:10,paddingLeft:2}}>Community</p></b>
                                                  </Tooltip>
                                              </div>
@@ -163,7 +165,7 @@ class Askquestionmodal extends Component {
                                          <RadioButton style={{width:80,height:1,borderColor:"rgba(255, 0, 0, 0)"}} value="c">
                                              <div style={{position:"relative",float:"left"}}>
                                                  <Tooltip title="Ask Teacher Directly">
-                                                   <span><i class="fas fa-chalkboard-teacher" style={{fontSize:40,paddingLeft:25,}}></i></span>
+                                                   <span><i className="fas fa-chalkboard-teacher" style={{fontSize:40,paddingLeft:25,}}></i></span>
                                                    <b><p style={{paddingTop:10,paddingLeft:24}}>Teacher</p></b>
                                                  </Tooltip>
                                              </div>

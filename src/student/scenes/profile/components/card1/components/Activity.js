@@ -17,10 +17,10 @@ class Activity extends Component {
             tabPosition="right"
             style={{ height: "auto" }}
           >
-            <TabPane tab={<span><i class="fas fa-atom"></i> Physics</span>} key="1"><Topics/></TabPane>
-            <TabPane tab={<span><i class="fas fa-flask"></i> Chemistry</span>} key="2">Content of tab 2</TabPane>
-            <TabPane tab={<span><i class="fas fa-sort-numeric-up"></i> Maths</span>} key="3">Content of tab 3</TabPane>
-            <TabPane tab={<span><i class="fas fa-closed-captioning"></i> English</span>} key="4">Content of tab 4</TabPane>
+            <TabPane tab={<span><i className="fas fa-atom"></i> Physics</span>} key="1"><Topics/></TabPane>
+            <TabPane tab={<span><i className="fas fa-flask"></i> Chemistry</span>} key="2">Content of tab 2</TabPane>
+            <TabPane tab={<span><i className="fas fa-sort-numeric-up"></i> Maths</span>} key="3">Content of tab 3</TabPane>
+            <TabPane tab={<span><i className="fas fa-closed-captioning"></i> English</span>} key="4">Content of tab 4</TabPane>
           </Tabs>
         </div>
       </div>

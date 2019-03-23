@@ -32,8 +32,8 @@ class Doubtquestion extends Component {
     return (
       <div>
 
-              <div class="scrollbar2" id="style-1">
-                 <div class="force-overflow">
+              <div className="scrollbar2" id="style-1">
+                 <div className="force-overflow">
 
                           <div className="carddoubtread">
                             <div className="containerdoubt">
