@@ -129,24 +129,25 @@ class Answermodal extends Component {
                            <div style={{ margin:"auto" }}>
                              <div style={{position:"relative",float:"left"}}>
                                  <Upload {...props}>
-                                    <Tooltip title="Upload Your Answer File">
-                                      <span><i class="fas fa-cloud-upload-alt" style={{fontSize:40,paddingLeft:25}}></i></span>
+                                    <Tooltip title="Upload images of Answer!">
+                                      <span><i className="fas fa-cloud-upload-alt" style={{fontSize:40,paddingLeft:25}}></i></span>
                                     </Tooltip>
                                      <b><p style={{paddingTop:10,paddingLeft:0}}>Upload Answer</p></b>
                                  </Upload>
                              </div>
                              <div style={{position:"relative",float:"left",paddingLeft:80}}>
                                  <Tooltip title="Link Additional Reads Or Notes">
-                                   <span><i class="fas fa-paperclip" style={{fontSize:40,paddingLeft:35,color:"#ff3b3b"}}></i></span>
+                                   <span><i className="fas fa-paperclip" style={{fontSize:40,paddingLeft:35,color:"#ff3b3b"}}></i></span>
                                  </Tooltip>
                                  <b><p style={{paddingTop:10,paddingLeft:0,color:"#ff3b3b"}}>Additional Reads</p></b>
                              </div>
-                             <div style={{position:"relative",float:"left",paddingLeft:80}}>
+{/*                             <div style={{position:"relative",float:"left",paddingLeft:80}}>
                                  <Tooltip title="Write Answers Directly Onscreen!">
-                                   <span><i class="far fa-edit" style={{fontSize:40,paddingLeft:30}}></i></span>
+                                   <span><i className="far fa-edit" style={{fontSize:40,paddingLeft:30}}></i></span>
                                  </Tooltip>
                                  <b><p style={{paddingTop:10,paddingLeft:14}}>Use Board</p></b>
                              </div>
+*/}
                            </div>
                         </div>
                       </div>

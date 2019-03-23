@@ -33,8 +33,8 @@ class Bookread extends React.Component {
               <div style={{display:"flex"}}>
                  <div style={{margin:"auto"}}>
 
-                   <div class="scrollbar1" id="style-1">
-                      <div class="force-overflow">
+                   <div className="scrollbar1" id="style-1">
+                      <div className="force-overflow">
                         <div style={{display:"flex"}}>
                            <div style={{margin:"auto",paddingLeft:"20px",paddingRight:"20px"}}>
 

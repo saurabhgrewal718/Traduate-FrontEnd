@@ -40,10 +40,10 @@ class Motionbookmodal extends React.Component {
           onCancel={this.handleCancel}
           footer={[
             <Button key="back" onClick={this.handleCancel} style={{borderRadius:"25px",backgroundColor:"#ff3b3b	",color:"white",width:150}}>
-               <i class="far fa-sad-cry" style={{paddingRight:10,color:"white"}}></i>I Hated This !
+               <i className="far fa-sad-cry" style={{paddingRight:10,color:"white"}}></i>I Hated This !
             </Button>,
             <Button key="submit" style={{borderRadius:"25px",backgroundColor:"#00a91c",color:"white",width:150}} onClick={this.handleOk}>
-               <i class="fas fa-grin-hearts" style={{paddingRight:10,color:"white"}}></i>I Loved This !
+               <i className="fas fa-grin-hearts" style={{paddingRight:10,color:"white"}}></i>I Loved This !
             </Button>,
             <Avatar style={{position:"relative",float:"left"}} src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" />,
             <Avatar style={{position:"relative",float:"left"}} src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" />,

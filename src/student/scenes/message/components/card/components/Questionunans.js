@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { Drawer, Avatar,Button,Progress } from 'antd';
+import Oneunans from './Oneunans'
+import { Tabs} from 'antd';
+
+const TabPane = Tabs.TabPane;
 
 class Questionunans extends React.Component {
   state = { visible: false };
@@ -19,54 +23,44 @@ class Questionunans extends React.Component {
   render() {
     return (
       <div>
-        <Button onClick={this.showDrawer} style={{borderRadius:25,marginTop:"-15px",borderColor:"black",zIndex:1}}><i style={{color:"#FF0000"}} class="fas fa-question"></i></Button>
+        <Button onClick={this.showDrawer} style={{borderRadius:25,marginTop:"-15px",borderColor:"black",zIndex:1}}><i style={{color:"#FF0000"}} className="fas fa-question"></i></Button>
         <Drawer
-          title={<div style={{display:"flex"}}><div style={{margin:"auto"}}><b>Be Ready for the Challenges !</b></div></div>}
+          title={<div style={{display:"flex"}}><div style={{margin:"auto"}}><b>Questions Unanswered !</b></div></div>}
           placement="bottom"
-          height="450px"
+          height="530px"
           closable={false}
           onClose={this.onClose}
           visible={this.state.visible}
         >
 
+               <Tabs
+                 defaultActiveKey="1"
+                 tabPosition="right"
+                 style={{ height: "auto" }}
+               >
+                 <TabPane tab={<span><i className="fas fa-atom"></i> Physics</span>} key="1">
 
-        <div class="scrollbar3" id="style-1">
-           <div class="force-overflow">
-                <div style={{width:"100%",height:"170px",backgroundColor:"green"}}>
-                    <div style={{display:"flex"}}>
-                       <div style={{margin:"auto"}}>
+                 <div className="scrollbar1" id="style-1">
+                    <div className="force-overflow">
 
+                       <div style={{width:"100%",height:"350px",backgroundColor:"white"}}>
+                           <div style={{display:"flex"}}>
+                              <div style={{margin:"auto"}}>
 
-                              <div style={{display:"flex"}}>
-                                 <div style={{margin:"auto",paddingLeft:"20px",paddingRight:"20px"}}>
+                                  <Oneunans/>
 
-                                     <div style={{height:"auto",postion:"relative",width:"100%"}}>
+                             </div>
+                         </div>
+                       </div>
 
-                                       <div style={{position:"relative",float:"left"}}>
-                                           <div className="containertop">
-                                              <div className="containertop1" style={{marginLeft:90}}>
-                                                 <img src="https://cdn.dribbble.com/users/1787356/screenshots/4903899/__111.jpg" alt="Avatar" style={{width:"80px",height:"80px",borderRadius: "50%"}}/>
-                                              </div>
-                                              <div style={{marginTop:90}}>
-                                                 <p>The amaing effects of gravity in space</p>
-                                              </div>
-                                             <Progress percent={50} size="small" />
-                                           </div>
-                                       </div>
+                   </div>
+                </div>
 
-                                    </div>
-
-
-                                 </div>
-                               </div>
-
-                      </div>
-                  </div>
-              </div>
-
-            </div>
-         </div>
-
+                 </TabPane>
+                 <TabPane tab={<span><i className="fas fa-flask"></i> Chemistry</span>} key="2">Content of tab 2</TabPane>
+                 <TabPane tab={<span><i className="fas fa-sort-numeric-up"></i> Maths</span>} key="3">Content of tab 3</TabPane>
+                 <TabPane tab={<span><i className="fas fa-closed-captioning"></i> English</span>} key="4">Content of tab 4</TabPane>
+               </Tabs>
 
 
         </Drawer>
