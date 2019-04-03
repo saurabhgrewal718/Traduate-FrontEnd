@@ -5,6 +5,12 @@ import { Radio } from 'antd';
 import { Transfer } from 'antd';
 import moment from 'moment';
 import { DatePicker } from 'antd';
+import { Checkbox, Row, Col } from 'antd';
+
+function onChange(checkedValues) {
+  console.log('checked = ', checkedValues);
+}
+
 
 const { MonthPicker, RangePicker } = DatePicker;
 
@@ -124,7 +130,34 @@ class Studyplanmodal extends Component {
                  ]}
                 >
 
-                
+                <div style={{height:300,width:"100%",position:"relative"}}>
+                    <div style={{height:300,width:"50%",position:"relative",float:"left"}}>
+                        <Checkbox.Group style={{ width: '50%' }} onChange={onChange}>
+                          <Row>
+                            <Col span={24}><Checkbox value="A">A</Checkbox></Col>
+                            <Col span={24}><Checkbox value="B">B</Checkbox></Col>
+                            <Col span={24}><Checkbox value="C">C</Checkbox></Col>
+                            <Col span={24}><Checkbox value="D">D</Checkbox></Col>
+                            <Col span={24}><Checkbox value="E">E</Checkbox></Col>
+                          </Row>
+                        </Checkbox.Group>
+                    </div>
+
+                    <div style={{height:300,width:"50%",position:"relative",float:"right"}}>
+                        <Checkbox.Group style={{ width: '50%' }} onChange={onChange}>
+                          <Row><b>This is chapter number</b></Row>
+                          <Row>
+                            <Col span={24}><Checkbox value="A">The challemging way of the things that change </Checkbox></Col>
+                            <Col span={24}><Checkbox value="B">The challemging way of the things that change </Checkbox></Col>
+                            <Col span={24}><Checkbox value="C">The challemging way of the things that change </Checkbox></Col>
+                            <Col span={24}><Checkbox value="D">The challemging way of the things that change </Checkbox></Col>
+                            <Col span={24}><Checkbox value="E">The challemging way of the things that change </Checkbox></Col>
+                          </Row>
+                        </Checkbox.Group>
+                    </div>
+                </div>
+
+
 
                 </Modal>
               </div>

@@ -38,7 +38,7 @@ class Questionunans extends React.Component {
                  tabPosition="right"
                  style={{ height: "auto" }}
                >
-                 <TabPane tab={<span><i className="fas fa-atom"></i> Physics</span>} key="1">
+                 <TabPane tab={<span><i className="fas fa-atom"></i> Doubts</span>} key="1">
 
                  <div className="scrollbar1" id="style-1">
                     <div className="force-overflow">
@@ -57,9 +57,25 @@ class Questionunans extends React.Component {
                 </div>
 
                  </TabPane>
-                 <TabPane tab={<span><i className="fas fa-flask"></i> Chemistry</span>} key="2">Content of tab 2</TabPane>
-                 <TabPane tab={<span><i className="fas fa-sort-numeric-up"></i> Maths</span>} key="3">Content of tab 3</TabPane>
-                 <TabPane tab={<span><i className="fas fa-closed-captioning"></i> English</span>} key="4">Content of tab 4</TabPane>
+                 <TabPane tab={<span><i className="fas fa-flask"></i> Community</span>} key="2">
+
+                 <div className="scrollbar1" id="style-1">
+                    <div className="force-overflow">
+
+                       <div style={{width:"100%",height:"350px",backgroundColor:"white"}}>
+                           <div style={{display:"flex"}}>
+                              <div style={{margin:"auto"}}>
+
+                                  <Oneunans/>
+
+                             </div>
+                         </div>
+                       </div>
+
+                   </div>
+                </div>
+
+                 </TabPane>
                </Tabs>
 
 

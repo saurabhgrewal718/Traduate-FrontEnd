@@ -15,10 +15,7 @@ class Topics extends Component {
       <div className="cardtopic">
         <div className="containertopic">
           <div className="top">
-             <div className="top2">
-                <b><p>English</p></b>
-             </div>
-             <div className="top4">
+             <div className="top4" style={{paddingLeft:0}}>
                 <b style={{color:"#FF7F50"}}><p>Chapter 23</p></b>
              </div>
              <div className="top3">

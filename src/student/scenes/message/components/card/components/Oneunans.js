@@ -19,10 +19,10 @@ class Oneunans extends React.Component {
 
                                <div style={{display:"flex"}}>
                                   <div style={{margin:"auto"}}>
-                                      <div style={{position:"relative",float:"right"}}>
+{/*                                      <div style={{position:"relative",float:"right"}}>
                                           <Button style={{borderRadius:25}}><i style={{color:"#FD6A02"}} class="fas fa-fire"></i></Button>
-                                      </div>
-                                      <div style={{position:"relative",float:"right",marginRight:40}}>
+                                      </div> */}
+                                      <div style={{position:"relative"}}>
                                           <Button style={{borderRadius:25}}><i style={{color:"#FC6600"}} class="fas fa-chalkboard-teacher"></i></Button>
                                       </div>
                                   </div>
@@ -53,10 +53,7 @@ class Oneunans extends React.Component {
 
                                <div style={{display:"flex"}}>
                                   <div style={{margin:"auto"}}>
-                                      <div style={{position:"relative",float:"right"}}>
-                                          <Button style={{borderRadius:25}}><i style={{color:"#FD6A02"}} class="fas fa-fire"></i></Button>
-                                      </div>
-                                      <div style={{position:"relative",float:"right",marginRight:40}}>
+                                      <div >
                                           <Button style={{borderRadius:25}}><i style={{color:"#FC6600"}} class="fas fa-chalkboard-teacher"></i></Button>
                                       </div>
                                   </div>
@@ -87,10 +84,7 @@ class Oneunans extends React.Component {
 
                                <div style={{display:"flex"}}>
                                   <div style={{margin:"auto"}}>
-                                      <div style={{position:"relative",float:"right"}}>
-                                          <Button style={{borderRadius:25}}><i style={{color:"#FD6A02"}} class="fas fa-fire"></i></Button>
-                                      </div>
-                                      <div style={{position:"relative",float:"right",marginRight:40}}>
+                                      <div >
                                           <Button style={{borderRadius:25}}><i style={{color:"#FC6600"}} class="fas fa-chalkboard-teacher"></i></Button>
                                       </div>
                                   </div>

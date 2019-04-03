@@ -12,9 +12,9 @@ class Head extends Component {
             <div className="container-right">
               <ul className="navbar-right">
                 <li style={{paddingRight:15}}><Link to="/home"><b>Home</b></Link></li>
-                <li style={{paddingRight:15}}><Link to="/profile"><b>Read bytes</b></Link></li>
+{/*                <li style={{paddingRight:15}}><Link to="/profile"><b>Read bytes</b></Link></li> */}
                 <li style={{paddingRight:15}}><Link to="/message"><b>Message</b></Link></li>
-                <li ><Link to="/extra"><b><i className="fa fa-bolt"></i></b></Link></li>
+                <li ><Link to="/extra"><b><i className="fas fa-power-off" style={{color:"#fd0054"}}></i></b></Link></li>
               </ul>
             </div>
 

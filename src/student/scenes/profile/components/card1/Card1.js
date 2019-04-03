@@ -15,8 +15,7 @@ class Card1 extends Component {
             <Layout className="layout">
               <Content style={{ padding: '0 20px' }}>
                 <Tabs tabBarExtraContent={operations}>
-                  <TabPane tab="Topics Covered" key="1"><Topics/></TabPane>
-                  <TabPane tab="Activity" key="2"><Activity/></TabPane>
+                  <TabPane tab="Topics" key="2"><Activity/></TabPane>
                 </Tabs>
               </Content>
             </Layout>

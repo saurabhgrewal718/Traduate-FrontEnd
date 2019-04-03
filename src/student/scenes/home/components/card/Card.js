@@ -37,7 +37,7 @@ class Card extends Component {
                     </div>
 
                     <div style={{position:"relative",paddingLeft:20,paddingTop:10,float:"left",width:"30%"}}>
-                      <div>
+                      <div style={{display:"none"}}>
                           <Tooltip placement="right" title="Challenges!">
                             <span><Challengesdivider/></span>
                           </Tooltip>

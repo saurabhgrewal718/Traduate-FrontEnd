@@ -40,8 +40,8 @@ class Reports extends React.Component {
   render(){
     return(
       <div>
-        
-        <div style={{position:"relative",float:"left",height:550,width:600}}>
+        <div style={{display:"flex"}}><div style={{margin:"auto"}}>
+        <div style={{height:550,width:600}}>
             <Line
               options={{
                 responsive:true
@@ -49,14 +49,7 @@ class Reports extends React.Component {
               data={this.state.data}
             />
         </div>
-        <div style={{position:"relative",float:"right",height:550,width:600}}>
-            <Line
-              options={{
-                responsive:true
-              }}
-              data={this.state.data1}
-            />
-        </div>
+        </div></div>
       </div>
 
     );
