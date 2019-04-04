@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Tabs,Input,Modal,Avatar, Button,Tooltip,Form } from 'antd';
 import { Select } from 'antd';
 import { Radio } from 'antd';
+import {Link} from 'react-router-dom';
 
 const { Option } = Select;
 const RadioButton = Radio.Button;
@@ -145,9 +146,9 @@ class Item extends Component {
 
                             <div style={{display:"flex"}}><div style={{margin:"auto"}}>
                               <div >
-                                  <Button type="primary" htmlType="submit" style={{borderRadius:"25px",backgroundColor:"#343d46",color:"white",marginTop:30}} onClick={this.handleOk}>
-                                     Next 
-                                  </Button>
+                                  <Link to="/setup/last"><Button type="primary" htmlType="submit" style={{borderRadius:"25px",backgroundColor:"#343d46",color:"white",marginTop:30}} onClick={this.handleOk}>
+                                     Next
+                                  </Button></Link>
                               </div>
                             </div></div>
 

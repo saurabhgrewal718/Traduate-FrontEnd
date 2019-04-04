@@ -10,12 +10,11 @@ class Baserouter extends Component{
    return(
     <div>
       <Switch>
-         <Route path='/signin' component={Home}/>
          <Route exact path='/profile' component={Profile}/>
          <Route exact path='/message' component={Message}/>
          <Route exact path='/extra' component={Home}/>
          <Route exact path='/' component={Home}/>
-         <Redirect to="/"/>;
+         <Redirect to="/"/>
       </Switch>
      </div>
    );

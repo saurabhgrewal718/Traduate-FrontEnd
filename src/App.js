@@ -9,21 +9,20 @@ import Preferences from './student/scenes/signup/components/Preferences'
 import Allteacherroutes from './teacher/router/Allteacherroutes';
 import Teachersignup1 from './teacher/scenes/signup/components/Teachersignup1'
 import Teachersignup2 from './teacher/scenes/signup/components/Teachersignup2'
+import Allroutes from './student/router/Allroutes';
 import { connect } from "react-redux";
 import { Skeleton } from 'antd';
 
 
 class App extends Component {
 
-
   render() {
     return (
       <div >
-         <Allhomeroutes/>
+         <Allroutes/>
       </div>
     );
   }
 }
-
 
 export default App;

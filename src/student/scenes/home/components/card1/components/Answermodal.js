@@ -100,16 +100,16 @@ class Ansmod extends Component {
                                         <p>Question By</p>
                                      </div>
                                      <div className="top2">
-                                        <b><p>Ankit Sharma</p></b>
+                                        <b><p>{this.props.question_by}</p></b>
                                      </div>
                                      <div className="top7">
-                                        <b><p>Physics</p></b>
+                                        <b><p>{this.props.subject}</p></b>
                                      </div>
                                      <div className="top2">
-                                        <b><p>The World Of Magnets</p></b>
+                                        <b><p>{this.props.chapter}</p></b>
                                      </div>
                                      <div className="top2">
-                                        <b><p>(North And South Pole)</p></b>
+                                        <b><p>({this.props.topic})</p></b>
                                      </div>
                                      <div className="top6">
                                         <b><p>10</p></b>
@@ -132,7 +132,7 @@ class Ansmod extends Component {
                   <div style={{ display:"flex"}}>
                      <div style={{ margin:"auto" }}>
                          <div>
-                           <p style={{width:900,paddingTop:0,fontSize:20}} > Ask Your Question Here Ask Your Question Here Ask Your Question Here Ask Your Question HereAsk Your Question HereAskAsk Your Question Here</p>
+                           <p style={{width:900,paddingTop:0,fontSize:20}} > {this.props.question}</p>
                          </div>
                          <div style={{position:"relative",float:"left",marginTop:10}}>
                          <Form.Item>
@@ -191,7 +191,7 @@ class Ansmod extends Component {
                         <Avatar key="2" style={{position:"relative",float:"left"}} src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" />
                         <Avatar key="3" style={{position:"relative",float:"left"}} src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" />
                         <Avatar key="4" style={{position:"relative",float:"left"}} src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" />
-                        <b><p style={{paddingTop:5,paddingLeft:14,position:"relative",float:"left"}}>+500 Marked A Doubt</p></b>
+                        <b><p style={{paddingTop:5,paddingLeft:14,position:"relative",float:"left"}}>{this.props.marked_doubt}</p></b>
                     </div>
                  </div>
 

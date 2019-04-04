@@ -41,7 +41,7 @@ body {
   height: 12%;
   position: relative;
   float: right;
-  background-color: #CAEBF2;
+  background: linear-gradient(to right, #FFE8E8, #CAEBF2);
 }
 .content{
   width: 100%;

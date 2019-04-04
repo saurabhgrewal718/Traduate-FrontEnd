@@ -4,6 +4,7 @@ import { Select } from 'antd';
 import {
    DatePicker, TimePicker
 } from 'antd';
+import {Link} from 'react-router-dom';
 
 const { MonthPicker, RangePicker } = DatePicker;
 
@@ -75,7 +76,7 @@ class Item extends Component {
                                     </Form.Item>
                                   </div>
                                   <div style={{position:"relative",float:"left"}}>
-                                     <i class="fas fa-birthday-cake" style={{fontSize:24,marginTop:7,marginRight:20}}></i>
+                                     <i className="fas fa-birthday-cake" style={{fontSize:24,marginTop:7,marginRight:20}}></i>
                                   </div>
                                </div>
                                <div style={{height:40}}></div>
@@ -127,9 +128,9 @@ class Item extends Component {
 
                             <div style={{display:"flex"}}><div style={{margin:"auto"}}>
                               <div >
-                                  <Button type="primary" htmlType="submit" style={{borderRadius:"25px",backgroundColor:"#343d46",color:"white",marginTop:40}} onClick={this.handleOk}>
+                                  <Link to="/home"><Button type="primary" htmlType="submit" style={{borderRadius:"25px",backgroundColor:"#343d46",color:"white",marginTop:40}} onClick={this.handleOk}>
                                      Submit
-                                  </Button>
+                                  </Button></Link>
                               </div>
                             </div></div>
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Item1 from './Item1'
 import Item2 from './Item2'
 
-class Preferences extends React.Component {
+class Preferences1 extends React.Component {
 
 
   render() {
@@ -12,10 +12,10 @@ class Preferences extends React.Component {
             <div>
               <div style={{height:750}}>
                 <div className="header" style={{height:"10%",paddingTop:10}}>
-                  <b style={{fontFamily:'Ultra',fontSize:34,paddingLeft:80}}>traduate</b>
+                   <b style={{fontFamily:'Ultra',fontSize:34,paddingLeft:80}}>traduate</b>
                 </div>
 
-                <Item2/>
+                <Item1/>
 
                 <div className="footer" style={{backgroundColor:"#CAEBF2",height:"12%"}}></div>
 
@@ -30,4 +30,4 @@ class Preferences extends React.Component {
 }
 
 
-export default Preferences;
+export default Preferences1;

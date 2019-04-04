@@ -19,7 +19,6 @@ class Card1 extends Component {
                 <Tabs tabBarExtraContent={<Askquestionmodal/>}>
                   <TabPane tab="Science" key="1"><Science/></TabPane>
                   <TabPane tab="Maths" key="2"><Maths/></TabPane>
-                  <TabPane tab="English" key="3"><English/></TabPane>
                 </Tabs>
               </Content>
             </Layout>

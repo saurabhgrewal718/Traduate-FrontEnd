@@ -6,6 +6,10 @@ import {
     getfromstorage,setInStorage,
   } from '../../../utils/Storage';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
+
+axios.defaults.baseURL = 'http://localhost:5000';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 const { Option } = Select;
 const AutoCompleteOption = AutoComplete.Option;
@@ -21,6 +25,18 @@ class RegistrationForm extends React.Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        axios.post('/register/check_email', {
+          "email": values.email
+        })
+         .then((res)=>{
+         if(res.status==200) {
+          console.log(res);
+
+         }
+         })
+         .catch((err)=>{
+           console.log(err);
+         });
       }
     });
   }
@@ -108,7 +124,7 @@ class RegistrationForm extends React.Component {
                     </Form.Item>
                     <Form.Item >
                       <div style={{display:"flex"}}><div style={{margin:"auto",marginTop:30}}>
-                         <Button type="primary" htmlType="submit" style={{borderRadius:"50px",borderColor:"black"}}>Sign Up</Button>
+                         <Link to="/setup/first"><Button type="primary" htmlType="submit" style={{borderRadius:"50px",borderColor:"black"}} >Sign Up</Button></Link>
                       </div></div>
                     </Form.Item>
                   </Form>

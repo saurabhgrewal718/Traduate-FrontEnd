@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Drawer, Avatar,Button,Progress } from 'antd';
 import Oneunans from './Oneunans'
 import { Tabs} from 'antd';
+import Doubtsun from './Doubtsun'
+import Communityun from './Communityun'
 
 const TabPane = Tabs.TabPane;
 
@@ -38,44 +40,8 @@ class Questionunans extends React.Component {
                  tabPosition="right"
                  style={{ height: "auto" }}
                >
-                 <TabPane tab={<span><i className="fas fa-atom"></i> Doubts</span>} key="1">
-
-                 <div className="scrollbar1" id="style-1">
-                    <div className="force-overflow">
-
-                       <div style={{width:"100%",height:"350px",backgroundColor:"white"}}>
-                           <div style={{display:"flex"}}>
-                              <div style={{margin:"auto"}}>
-
-                                  <Oneunans/>
-
-                             </div>
-                         </div>
-                       </div>
-
-                   </div>
-                </div>
-
-                 </TabPane>
-                 <TabPane tab={<span><i className="fas fa-flask"></i> Community</span>} key="2">
-
-                 <div className="scrollbar1" id="style-1">
-                    <div className="force-overflow">
-
-                       <div style={{width:"100%",height:"350px",backgroundColor:"white"}}>
-                           <div style={{display:"flex"}}>
-                              <div style={{margin:"auto"}}>
-
-                                  <Oneunans/>
-
-                             </div>
-                         </div>
-                       </div>
-
-                   </div>
-                </div>
-
-                 </TabPane>
+                 <TabPane tab={<span><i className="fas fa-atom"></i> Doubts</span>} key="1"><Doubtsun/></TabPane>
+                 <TabPane tab={<span><i className="fas fa-flask"></i> Community</span>} key="2"><Communityun/></TabPane>
                </Tabs>
 
 

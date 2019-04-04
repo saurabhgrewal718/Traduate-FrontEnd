@@ -147,9 +147,8 @@ class Askque extends Component {
                                       onBlur={handleBlur}
                                       filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
                                     >
-                                      <Option value="1">Physics</Option>
-                                      <Option value="2">Chemistry</Option>
-                                      <Option value="3">Mathematics</Option>
+                                      <Option value="Maths">Maths</Option>
+                                      <Option value="Science">Science</Option>
                                     </Select>
                                   )}
                                 </Form.Item>

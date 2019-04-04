@@ -14,12 +14,12 @@ class Head extends Component {
                 <li style={{paddingRight:15}}><Link to="/home"><b>Home</b></Link></li>
 {/*                <li style={{paddingRight:15}}><Link to="/profile"><b>Read bytes</b></Link></li> */}
                 <li style={{paddingRight:15}}><Link to="/message"><b>Message</b></Link></li>
-                <li ><Link to="/extra"><b><i className="fas fa-power-off" style={{color:"#fd0054"}}></i></b></Link></li>
+                <li><b><i className="fas fa-power-off" style={{color:"#fd0054"}}></i></b></li>
               </ul>
             </div>
 
             <ul className="navbar-left">
-              <div className="brand"><li><a href="#" id="cart"> Traduate </a></li></div>
+              <div className="brand"><b style={{fontFamily:'Ultra',letterSpacing: "0px",fontSize:24}}>traduate</b></div>
             </ul>
           </div>
         </nav>

@@ -11,8 +11,8 @@ class Signcontainer extends Component {
         <div>
           <div style={{height:750}}>
             <div className="header">
-                <div style={{position:"relative",float:"left",width:"50%"}}>
-                   <img src="https://cdn.dribbble.com/users/2667093/screenshots/6195327/gghh_1x.png" alt="Logo" style={{width:240, height:100,paddingTop:0,paddingLeft:80}} />
+                <div style={{position:"relative",float:"left",width:"50%",paddingTop:15}}>
+                   <b style={{fontFamily:'Ultra',fontSize:34,paddingLeft:80}}>traduate</b>
                 </div>
                 <div style={{position:"relative",float:"right",width:"50%"}}>
                    <h1><Signin/></h1>
