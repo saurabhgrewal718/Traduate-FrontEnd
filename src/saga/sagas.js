@@ -13,7 +13,7 @@ function fetchAnswer() {
     url: "http://localhost:5000/get_all_answer",
     headers: {
           'Content-Type': 'application/json',
-          'x-auth':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YzkxMjBhMTcyM2VlMTA0MjUyMmQ5YjMiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTUzMDE0OTQ1fQ._j6CGxc5O-1t1FzGNolfalXBoxqxvyI-49dfhxPy8TA"
+          'x-auth':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2E2NDhmNjE0YjJiYjcwNjAxMzE1Y2IiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTU0NDAxNTI2fQ.lzDnYxxNfOA97DkmJsYi5wyPPpB-PRXBFrsoT5wB8R0eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2E2NDhmNjE0YjJiYjcwNjAxMzE1Y2IiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTU0NDAxNTI2fQ.lzDnYxxNfOA97DkmJsYi5wyPPpB-PRXBFrsoT5wB8R0"
         }
   });
 }

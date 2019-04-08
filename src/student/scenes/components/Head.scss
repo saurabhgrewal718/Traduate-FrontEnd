@@ -26,6 +26,8 @@ nav {
   padding: 20px 0 30px 0;
   background: #CAEBF2;
   font-size: 16px;
+  height:30px;
+
 
   .navbar-left {
     float: left;
@@ -42,8 +44,10 @@ nav {
   font-family: 'Questrial', sans-serif;
   font-size: 24px;
   font-weight: 900;
-  letter-spacing: 3px;
+  letter-spacing: 0px;
   text-decoration: none;
+  padding-left: 10px;
+  border-radius:5rem;
 }
 
   ul {

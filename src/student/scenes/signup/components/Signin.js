@@ -1,25 +1,33 @@
 import React, { Component } from 'react';
 import {
-  Form, Icon, Input, Button,
+  Form, Icon, Input, Button,message
 } from 'antd';
+import './Jquery.css'
 import {
     getfromstorage,setInStorage,
   } from '../../../utils/Storage';
 import axios from 'axios';
+import { Spin } from 'antd';
+
 
 axios.defaults.baseURL = 'http://localhost:5000';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 
+
 class HorizontalLoginForm extends React.Component {
+  state={
+    loading:false
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
+        this.setState({loading:true});
         console.log('Received values of form: ', values);
         axios.post('/login', {
-         "username":values.username,
+         "email":values.email,
          "password":values.password,
        })
        .then((res)=>{
@@ -28,28 +36,47 @@ class HorizontalLoginForm extends React.Component {
          console.log(res);
          console.log("Headers: " +" "+ res.headers['x-auth']);
          setInStorage('x-auth', res.headers['x-auth']);
+         this.setState({loading:false});
+         (function(){
+             message.success("😍 Logged In Sucessfully ");
+            })();
+         this.props.como.history.push('/home');
 
        }
        })
        .catch((err)=>{
          console.log(err);
+         this.setState({loading:false});
+         (function(){
+           message.config({
+            top: 20,
+            duration: 5,
+          });
+           message.error("Ahh..SNAP..🤕 " + err);
+          })();
+
        });
       }
     });
   }
 
   render() {
+    if (this.state.loading) {
+      return   <div className="example">
+                <Spin size="large"/>
+              </div>
+    }
     const { getFieldDecorator } = this.props.form;
     return (
       <div style={{display:"flex"}}>
         <div style={{margin:"auto",paddingTop:25}}>
           <Form layout="inline" onSubmit={this.handleSubmit}>
             <Form.Item>
-              {getFieldDecorator('username', {
-                rules: [{ required: true, message: 'Please input your username!' }],
+              {getFieldDecorator('email', {
+                rules: [{ required: true, message: 'Please input your Email!' }],
               })(
                 <div style={{height:"auto",width:"auto",borderRadius:"50px",borderColor:"#7b7d7b"}}>
-                <Input style={{ borderRadius:"50px",borderColor:"#7b7d7b" }} placeholder="Username" />
+                <Input style={{ borderRadius:"50px",borderColor:"#7b7d7b" }} placeholder="Email" />
                 </div>
               )}
             </Form.Item>

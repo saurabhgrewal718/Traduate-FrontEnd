@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 class Head extends Component {
   render() {
     return (
-      <div>
+      <div style={{height:52}}>
 
         <nav>
           <div className="container">
@@ -19,7 +19,7 @@ class Head extends Component {
             </div>
 
             <ul className="navbar-left">
-              <div className="brand"><li><a href="#" id="cart"> Traduate </a></li></div>
+               <div className="brand"><p style={{fontFamily:'Ultra',letterSpacing: "0px",fontSize:24}}>traduate</p></div>
             </ul>
           </div>
         </nav>

@@ -11,19 +11,20 @@ class Teachersign extends Component {
         <div>
           <div style={{height:750}}>
             <div className="header">
-                <div style={{position:"relative",float:"left",width:"50%"}}>
-                   <img src="https://cdn.dribbble.com/users/2667093/screenshots/6195327/gghh_1x.png" alt="Logo" style={{width:240, height:100,paddingTop:0,paddingLeft:80}} />
+                <div style={{position:"relative",float:"left",width:"50%",paddingTop:15}}>
+                   <b style={{fontFamily:'Ultra',fontSize:34,paddingLeft:80}}>traduate</b>
+                   <b style={{position:"relative",float:"right",fontFamily:'Ultra',fontSize:34}}>teacher</b>
                 </div>
                 <div style={{position:"relative",float:"right",width:"50%"}}>
-                   <h1><Signin/></h1>
+                   <h1><Signin como={this.props}/></h1>
                 </div>
             </div>
             <div className="content">
                <div style={{position:"relative",float:"left",width:"50%"}}>
-                  <img src="https://cdn.dribbble.com/users/405145/screenshots/4152205/22_daydream_1_800x600.gif" alt="Learn with Traduate" />
+                  <img src="https://cdn.dribbble.com/users/998555/screenshots/2534708/teacher_animation.gif" alt="Learn with Traduate" />
                </div>
                <div style={{position:"relative",float:"right",width:"50%"}}>
-                  <h1><Signup/></h1>
+                  <h1><Signup como={this.props}/></h1>
                </div>
             </div>
             <div className="footer"></div>

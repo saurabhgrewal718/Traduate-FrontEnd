@@ -1,18 +1,32 @@
 import React, { Component } from 'react';
-import { Tabs,Input,Modal,Avatar,message, Button,Tooltip,Form } from 'antd';
+import { Tabs,Input,Modal,Avatar, Button,Tooltip,Form } from 'antd';
 import { Select } from 'antd';
 import {
    DatePicker, TimePicker
 } from 'antd';
 import {
-    getfromstorage,setInStorage,
-  } from '../../../utils/Storage';
-import axios from 'axios';
-import {Link} from 'react-router-dom';
+  Upload, message, Icon,
+} from 'antd';
+
+const props = {
+  name: 'file',
+  action: '//jsonplaceholder.typicode.com/posts/',
+  headers: {
+    authorization: 'authorization-text',
+  },
+  onChange(info) {
+    if (info.file.status !== 'uploading') {
+      console.log(info.file, info.fileList);
+    }
+    if (info.file.status === 'done') {
+      message.success(`${info.file.name} file uploaded successfully`);
+    } else if (info.file.status === 'error') {
+      message.error(`${info.file.name} file upload failed.`);
+    }
+  },
+};
 
 
-axios.defaults.baseURL = 'http://localhost:5000';
-axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 const { MonthPicker, RangePicker } = DatePicker;
 
@@ -32,55 +46,12 @@ function handleFocus() {
 
 
 class Item extends Component {
-
-componentWillMount(){
-console.log(this.props);
-}
-
-
-
   handleSubmit = (e) => {
-    let firstpage=getfromstorage('firstpage');
-    let secondpage=getfromstorage('secondpage');
-    console.log(typeof firstpage.email);
     e.preventDefault();
+
     this.props.form.validateFields((err, fieldsValue) => {
       if (!err) {
-        axios.post('/register', {
-        	"email":firstpage.email,
-        	"username":fieldsValue.username,
-        	"fullname":firstpage.fullname,
-        	"password":firstpage.password,
-        	"date_of_birth":fieldsValue.date_of_birth,
-        	"class":secondpage.class,
-        	"city":secondpage.city,
-        	"school":secondpage.school,
-        	"contact":fieldsValue.phone
-        })
-       .then((res)=>{
-       if(res.status==200) {
-         axios.defaults.headers.common['x-auth'] = res.headers['x-auth'];
-         console.log(res);
-         console.log("Headers: " +" "+ res.headers['x-auth']);
-         setInStorage('x-auth', res.headers['x-auth']);
-         this.props.compo.history.push('/home');
-
-       }
-       })
-       .catch((err)=>{
-         console.log(err);
-         (function(){
-           message.config({
-            top: 20,
-            duration: 5,
-          });
-           message.error("Ahh..SNAP..🤕 " + err);
-          })();
-
-       });
-
-
-
+        this.props.compo.history.push('/teacherhome');;
       }
 
       // Should format date value before submit.
@@ -88,7 +59,7 @@ console.log(this.props);
       const rangeTimeValue = fieldsValue['range-time-picker'];
       const values = {
         ...fieldsValue,
-        'date_of_birth': fieldsValue['date_of_birth'].format('DD-MM-YYYY'),
+        'date_of_birth': fieldsValue['date_of_birth'].format('YYYY-MM-DD'),
       };
       console.log('Received values of form: ', values);
     });
@@ -99,14 +70,13 @@ console.log(this.props);
     const config = {
       rules: [{ type: 'object', required: true, message: 'Please select time!' }],
     };
-
     return (
 
       <div>
 
             <div className="content">
                <div style={{position:"relative",float:"left",width:"50%",height:"580px"}}>
-                  <img src="https://cdn.dribbble.com/users/1848412/screenshots/4846657/branding_dribbble.gif" alt="Learn with Traduate" style={{height:"580px"}}/>
+                  <img src="https://cdn.dribbble.com/users/47448/screenshots/1702211/pencil-sun.gif" alt="Learn with Traduate" style={{height:"580px"}}/>
                </div>
                <div style={{position:"relative",float:"right",width:"50%",height:"580px"}}>
                   <div style={{paddingTop:40}}><div style={{display:"flex"}}><div style={{margin:"auto"}}><h1 style={{fontFamily:"Questrial"}}>Final Step!</h1></div></div></div>
@@ -119,7 +89,7 @@ console.log(this.props);
 
 
                                <div style={{marginTop:40}}>
-                                 <div style={{position:"relative",float:"right",zIndex:1}}>
+                                 <div >
                                    <Form.Item
                                     >
                                     {getFieldDecorator('date_of_birth', config)(
@@ -127,35 +97,20 @@ console.log(this.props);
                                     )}
                                     </Form.Item>
                                   </div>
-                                  <div style={{position:"relative",float:"left"}}>
-                                     <i className="fas fa-birthday-cake" style={{fontSize:24,marginTop:7,marginRight:20}}></i>
-                                  </div>
                                </div>
-                               <div style={{height:40}}></div>
                                <div style={{marginTop:40}}>
                                  <Form.Item
                                   >
                                     {getFieldDecorator('username', {
                                       rules: [
-                                        { required: true, message: '...be Unieque with username' },
+                                        { required: true, message: 'Upload your Class 12th Marksheet' },
                                       ],
                                     })(
-                                      <Select
-                                        showSearch
-                                        style={{ width: 244}}
-                                        placeholder="Select a Username"
-                                        optionFilterProp="children"
-                                        onChange={handleChange}
-                                        onFocus={handleFocus}
-                                        onBlur={handleBlur}
-                                        filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
-                                      >
-                                        <Option value="username1">Username 1</Option>
-                                        <Option value="username2">Username 2</Option>
-                                        <Option value="username3">Username 3</Option>
-                                        <Option value="username4">Username 4</Option>
-                                        <Option value="username5">Username 5</Option>
-                                      </Select>
+                                      <Upload {...props}>
+                                        <Button style={{width:200}}>
+                                          <Icon type="upload"/> Twelfth Marksheet
+                                        </Button>
+                                      </Upload>
                                     )}
                                   </Form.Item>
                                </div>
@@ -166,7 +121,7 @@ console.log(this.props);
                                  {getFieldDecorator('phone', {
                                    rules: [{ required: true, message: 'Please input your phone number!' }],
                                  })(
-                                   <Input placeholder="Phone number" style={{ width: '100%' }} />
+                                   <Input placeholder="Phone number" style={{ width:200 }} />
                                  )}
                                </Form.Item>
                               </div>
@@ -208,5 +163,5 @@ console.log(this.props);
   }
 }
 
-const Item2 = Form.create({ name: 'validate_other' })(Item);
-export default Item2;
+const Teachersign2 = Form.create({ name: 'validate_other' })(Item);
+export default Teachersign2;

@@ -4,8 +4,11 @@ import { Avatar,Skeleton,Button,Tooltip } from 'antd';
 import Answermodal from './Answermodal';
 import axios from 'axios';
 
+import {getfromstorage,setInStorage,} from '../../../../../utils/Storage';
+
 axios.defaults.baseURL = 'http://localhost:5000';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
+axios.defaults.headers.common['x-auth'] = getfromstorage('x-auth');
 
 
 class Maths extends Component {
@@ -16,11 +19,7 @@ class Maths extends Component {
 }
 
   async componentDidMount() {
-    await axios.get('/get_all_question',{
-    headers:{
-      'x-auth':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Yzk0YmFjYjk0ODU3OTM3ZDQ5NzgwOGEiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTUzMjU4NzI1fQ.DjleZHQYLPzZkJTElVJsqGpoHzWZpPtAHoPRxnMdD5c",
-    }
-  })
+    await axios.get('/get_all_question')
   .then(result=>{
     if(result.status==200){
       let questiondata='';

@@ -5,6 +5,7 @@ import {
 import {
     getfromstorage,setInStorage,
   } from '../../../utils/Storage';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 
 const { Option } = Select;
@@ -21,6 +22,7 @@ class RegistrationForm extends React.Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        this.props.como.history.push('./teacher/first');
       }
     });
   }
@@ -53,12 +55,12 @@ class RegistrationForm extends React.Component {
     return (
       <div>
           <div style={{display:"flex"}}>
-            <div style={{margin:"auto",marginTop:50}}>
-              <div><p style={{fontFamily:"Questrial"}}>Register to be Always curious</p></div>
+            <div style={{margin:"auto",marginTop:30}}>
+              <div><p style={{fontFamily:"Questrial"}}>Let's Make better Students</p></div>
             </div>
           </div>
           <div style={{display:"flex"}}>
-            <div style={{margin:"auto",marginTop:20}}>
+            <div style={{margin:"auto",marginTop:10}}>
                   <Form onSubmit={this.handleSubmit}>
                     <Form.Item
                     >
@@ -107,11 +109,13 @@ class RegistrationForm extends React.Component {
                       )}
                     </Form.Item>
                     <Form.Item >
-                      <div style={{display:"flex"}}><div style={{margin:"auto",marginTop:30}}>
+                      <div style={{display:"flex"}}><div style={{margin:"auto",marginTop:20}}>
                          <Button type="primary" htmlType="submit" style={{borderRadius:"50px",borderColor:"black"}}>Sign Up</Button>
                       </div></div>
                     </Form.Item>
                   </Form>
+
+                  <Link to='./sign'><p style={{fontSize:16}}>Not a Teacher? Go to StudentLogin</p></Link>
 
             </div>
           </div>

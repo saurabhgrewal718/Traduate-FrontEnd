@@ -8,9 +8,10 @@ import {
     getfromstorage,setInStorage,
   } from '../../../../../utils/Storage';
 
-axios.defaults.baseURL = 'http://localhost:5000';
-axios.defaults.headers.post['Content-Type'] = 'application/json';
-axios.defaults.headers.post['x-auth'] = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YzkxMjBhMTcyM2VlMTA0MjUyMmQ5YjMiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTUzMDE0OTQ1fQ._j6CGxc5O-1t1FzGNolfalXBoxqxvyI-49dfhxPy8TA';
+
+  axios.defaults.baseURL = 'http://localhost:5000';
+  axios.defaults.headers.post['Content-Type'] = 'application/json';
+  axios.defaults.headers.common['x-auth'] = getfromstorage('x-auth');
 
 const { Option } = Select;
 const RadioButton = Radio.Button;

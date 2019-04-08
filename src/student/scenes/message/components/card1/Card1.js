@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Layout } from 'antd';
 import { Tabs, Button } from 'antd';
 import Doubts from './components/Doubts';
+import Myquestion from './components/Myquestion';
+import Teachers from './components/Teachers';
 import { Badge } from 'antd';
 
 const TabPane = Tabs.TabPane;
@@ -15,9 +17,9 @@ class Card1 extends Component {
             <Layout className="layout">
               <Content style={{ padding: '0 20px' }}>
                 <Tabs tabBarExtraContent={operations}>
-                  <TabPane tab={<Badge dot><p style={{paddingRight:10}}>Doubts</p></Badge>} key="1"><Doubts/></TabPane>
-                  <TabPane tab="My Questions" key="2">My Questions</TabPane>
-                  <TabPane tab="Teachers" key="3">Teachers</TabPane>
+                  <TabPane tab="Teachers" key="1"><Teachers/></TabPane>
+                  <TabPane tab="My Questions" key="2"><Myquestion/></TabPane>
+                  <TabPane tab="Doubts" key="3"><Doubts/></TabPane>                  
                 </Tabs>
               </Content>
             </Layout>

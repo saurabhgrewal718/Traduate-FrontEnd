@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 import { Tabs,Input,Modal,Avatar, Button,Tooltip,Form } from 'antd';
 import { Select } from 'antd';
 import { Radio } from 'antd';
-import {Link} from 'react-router-dom';
-import Item2 from './Item2'
-import {
-    getfromstorage,setInStorage,
-  } from '../../../utils/Storage';
+import {Link} from 'react-router-dom'
 
 const { Option } = Select;
 const RadioButton = Radio.Button;
@@ -30,56 +26,35 @@ const { TextArea } = Input;
 
 
 class Item extends Component {
-  state = {
-    subject: '',
-    chapter: '',
-    topic:''
-  }
-
-
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
-
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
         console.log(this.props);
-        this.setState({subject:values.subject, chapter:values.chapter,topic:values.topic}, ()=>{
-        console.log(this.state);
-
-        setInStorage('secondpage', values);
-        this.props.compo.history.push('/setup/last');
-
-        });
+        
+        this.props.compo.history.push("./last");
 
       }
-
     });
-  }
-
-  componentDidUpdate(){
-    (()=>{
-      return <Item2 yo={this.state}/>
-
-    })();
   }
 
   render() {
     const { getFieldDecorator } = this.props.form;
-
     return (
 
       <div>
+
             <div className="content">
                <div style={{position:"relative",float:"left",width:"50%",height:"auto"}}>
-                  <img src="http://dribbble.s3.amazonaws.com/users/42716/screenshots/4151582/scribbles-800x600_4.gif" alt="Learn with Traduate" style={{height:580}}/>
+                  <img src="https://cdn.dribbble.com/users/998555/screenshots/2534709/bonus_animation.gif" alt="Learn with Traduate" style={{height:580}}/>
                </div>
 
                <div style={{position:"relative",float:"right",width:"50%",height:580}}>
                  <div style={{paddingTop:40}}><div style={{display:"flex"}}><div style={{margin:"auto"}}><h1 style={{fontFamily:"Questrial"}}>Let's know each other better !😃</h1></div></div></div>
 
                   <Form onSubmit={this.handleSubmit}>
+
                     <div style={{width:"100%",height:"auto"}}>
                         <div style={{ display:"flex"}}>
                            <div style={{ margin:"auto" }}>
@@ -90,24 +65,24 @@ class Item extends Component {
                                <div style={{marginTop:40}}>
                                  <Form.Item
                                   >
-                                    {getFieldDecorator('class', {
+                                    {getFieldDecorator('subject', {
                                       rules: [
-                                        { required: true, message: 'Ahhh!...Class is missing!' },
+                                        { required: true, message: 'Ahhh!...Subject is missing!' },
                                       ],
                                     })(
                                       <Select
                                         showSearch
                                         style={{ width: 200 }}
-                                        placeholder="My Class"
+                                        placeholder="Subject I Teach!"
                                         optionFilterProp="children"
                                         onChange={handleChange}
                                         onFocus={handleFocus}
                                         onBlur={handleBlur}
                                         filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
                                       >
-                                        <Option value="8">Eighth</Option>
-                                        <Option value="9">Nineth</Option>
-                                        <Option value="10">Tenth</Option>
+                                        <Option value="1">Physics</Option>
+                                        <Option value="2">Chemistry</Option>
+                                        <Option value="3">Mathematics</Option>
                                       </Select>
                                     )}
                                   </Form.Item>
@@ -115,24 +90,24 @@ class Item extends Component {
                                <div style={{marginTop:40}}>
                                  <Form.Item
                                   >
-                                    {getFieldDecorator('school', {
+                                    {getFieldDecorator('chapter', {
                                       rules: [
-                                        { required: true, message: '...School name missing!' },
+                                        { required: true, message: '...Which class you Love teaching!' },
                                       ],
                                     })(
                                       <Select
                                         showSearch
                                         style={{ width: 200}}
-                                        placeholder="My School"
+                                        placeholder="Class I Teach"
                                         optionFilterProp="children"
                                         onChange={handleChange}
                                         onFocus={handleFocus}
                                         onBlur={handleBlur}
                                         filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
                                       >
-                                        <Option value="KVS">KVS</Option>
-                                        <Option value="DAV">DAV</Option>
-                                        <Option value="DPS">DPS</Option>
+                                        <Option value="1">Nineth (9)</Option>
+                                        <Option value="2">Tenth (10)</Option>
+                                        <Option value="3">Both</Option>
                                       </Select>
                                     )}
                                   </Form.Item>
@@ -140,7 +115,7 @@ class Item extends Component {
                                <div style={{marginTop:40}}>
                                   <Form.Item
                                    >
-                                     {getFieldDecorator('city', {
+                                     {getFieldDecorator('topic', {
                                        rules: [
                                          { required: true, message: '...City missing!' },
                                        ],
@@ -148,16 +123,16 @@ class Item extends Component {
                                        <Select
                                          showSearch
                                          style={{ width: 200 }}
-                                         placeholder="My City"
+                                         placeholder="I Live in ...City"
                                          optionFilterProp="children"
                                          onChange={handleChange}
                                          onFocus={handleFocus}
                                          onBlur={handleBlur}
                                          filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
                                        >
-                                         <Option value="Delhi">Delhi</Option>
-                                         <Option value="Mumbai">Mumbai</Option>
-                                         <Option value="Vadodara">Vadodara</Option>
+                                         <Option value="1">Gravitation</Option>
+                                         <Option value="2">Fluid mechanics</Option>
+                                         <Option value="3">Newtons laws of motion</Option>
                                        </Select>
                                      )}
                                    </Form.Item>
@@ -174,9 +149,7 @@ class Item extends Component {
 
                             <div style={{display:"flex"}}><div style={{margin:"auto"}}>
                               <div >
-                                  <Button type="primary" htmlType="submit" style={{borderRadius:"25px",backgroundColor:"#343d46",color:"white",marginTop:30}} >
-                                     Next
-                                  </Button>
+                                <Button type="primary" htmlType="submit" style={{borderRadius:"25px",backgroundColor:"#343d46",color:"white",marginTop:30}}>Next</Button>
                               </div>
                             </div></div>
 
@@ -185,9 +158,6 @@ class Item extends Component {
                     </Form.Item>
 
                   </Form>
-
-                 <div style={{display:"none"}}></div>
-
 
                </div>
             </div>
@@ -202,6 +172,6 @@ class Item extends Component {
 }
 
 
-const Item1 = Form.create({ name: 'validate_other' })(Item);
+const Teachersign1 = Form.create({ name: 'validate_other' })(Item);
 
-export default Item1;
+export default Teachersign1;

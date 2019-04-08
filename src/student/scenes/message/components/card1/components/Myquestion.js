@@ -10,7 +10,7 @@ axios.defaults.baseURL = 'http://localhost:5000';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.headers.common['x-auth'] = getfromstorage('x-auth');
 
-class Doubts extends Component {
+class Myquestion extends Component {
   constructor(props) {
       super(props);
       const data = [];
@@ -18,7 +18,7 @@ class Doubts extends Component {
 }
 
   async componentDidMount() {
-    await axios.get('/get_all_answer/marked_doubt')
+    await axios.get('/get_all_answer/asked_community')
   .then(result=>{
     if(result.status==200){
       let questiondata='';
@@ -51,12 +51,13 @@ class Doubts extends Component {
                  <div className="force-overflow">
 
                  <div>
-                   { isNull ? <Empty/>
+                   { isNull ?
+                     <Empty/>
                      : ( isEmpty
                        ?
                        <div style={{display:"flex"}}><div style={{margin:"auto"}}>
                           <img style={{height:"200px",width:"300px"}} src="https://cdn.dribbble.com/users/1753953/screenshots/3818675/animasi-emptystate.gif" alt="Learn with Traduate" />
-                          <p style={{fontSize:18}}>You Have not Added any Questions Yet!</p>
+                          <p style={{fontSize:18}}>You Have not any Questions Yet!</p>
                        </div></div>
                        :
                        <div>
@@ -115,4 +116,4 @@ class Doubts extends Component {
   }
 }
 
-export default Doubts;
+export default Myquestion;

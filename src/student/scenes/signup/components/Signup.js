@@ -1,12 +1,15 @@
 import React from 'react';
 import {
-  Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete,
+  Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button,Spin, message,AutoComplete,
 } from 'antd';
+import './Jquery.css'
 import {
     getfromstorage,setInStorage,
   } from '../../../utils/Storage';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import Item1 from './Item1';
+
 
 axios.defaults.baseURL = 'http://localhost:5000';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -18,24 +21,41 @@ const AutoCompleteOption = AutoComplete.Option;
 class RegistrationForm extends React.Component {
   state = {
     confirmDirty: false,
+    loading:false
   };
+
+componentWillMount(){
+  console.log(this.props);
+}
 
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
+        this.setState({loading:true});
         console.log('Received values of form: ', values);
+        setInStorage('firstpage', values);
         axios.post('/register/check_email', {
           "email": values.email
         })
          .then((res)=>{
          if(res.status==200) {
           console.log(res);
+          this.setState({loading:false});
+          this.props.como.history.push('/setup/first');
 
          }
          })
          .catch((err)=>{
            console.log(err);
+           this.setState({loading:false});
+           (function(){
+             message.config({
+              top: 20,
+              duration: 5,
+            });
+             message.error("🤯 You Are Already A Member..! 😍 Try Signing In..!" );
+            })();
          });
       }
     });
@@ -65,16 +85,22 @@ class RegistrationForm extends React.Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
+    console.log(this.props.form.values);
+    if (this.state.loading) {
+      return   <div className="example1">
+                <Spin size="large"/>
+              </div>
+    }
 
     return (
       <div>
           <div style={{display:"flex"}}>
-            <div style={{margin:"auto",marginTop:50}}>
+            <div style={{margin:"auto",marginTop:30}}>
               <div><p style={{fontFamily:"Questrial"}}>Register to be Always curious</p></div>
             </div>
           </div>
           <div style={{display:"flex"}}>
-            <div style={{margin:"auto",marginTop:20}}>
+            <div style={{margin:"auto",marginTop:10}}>
                   <Form onSubmit={this.handleSubmit}>
                     <Form.Item
                     >
@@ -123,11 +149,13 @@ class RegistrationForm extends React.Component {
                       )}
                     </Form.Item>
                     <Form.Item >
-                      <div style={{display:"flex"}}><div style={{margin:"auto",marginTop:30}}>
-                         <Link to="/setup/first"><Button type="primary" htmlType="submit" style={{borderRadius:"50px",borderColor:"black"}} >Sign Up</Button></Link>
+                      <div style={{display:"flex"}}><div style={{margin:"auto",marginTop:20}}>
+                         <Button type="primary" htmlType="submit" style={{borderRadius:"50px",borderColor:"black"}} >Sign Up</Button>
                       </div></div>
                     </Form.Item>
                   </Form>
+
+                  <Link to='./teacher'><p style={{fontSize:16}}>Not a student? Go to TeacherLogin</p></Link>
 
             </div>
           </div>

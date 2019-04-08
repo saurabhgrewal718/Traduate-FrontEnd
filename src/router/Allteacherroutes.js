@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import Baserouter from './Baserouter';
-import Containerhome from '../scenes/containerHome/Containerhome';
+import Teacherrouter from './Teacherrouter';
+import Containerhome from '../teacher/scenes/containerHome/Containerhome';
 
 import {BrowserRouter,Route,Link,Redirect,withRouter} from "react-router-dom";
 
-class Allhomeroutes extends Component {
+class Allteacherroutes extends Component {
   render() {
     return (
       <div >
         <BrowserRouter >
           <Containerhome>
-             <Baserouter/>
+             <Teacherrouter/>
           </Containerhome>
         </BrowserRouter>
       </div>
@@ -18,4 +18,4 @@ class Allhomeroutes extends Component {
   }
 }
 
-export default Allhomeroutes;
+export default Allteacherroutes;

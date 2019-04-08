@@ -11,10 +11,9 @@ import {
     getfromstorage,setInStorage,
   } from '../../../../../utils/Storage';
 
-
-axios.defaults.baseURL = 'http://localhost:5000';
-axios.defaults.headers.post['Content-Type'] = 'application/json';
-axios.defaults.headers.post['x-auth'] = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YzkxMjBhMTcyM2VlMTA0MjUyMmQ5YjMiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTUzMDE0OTQ1fQ._j6CGxc5O-1t1FzGNolfalXBoxqxvyI-49dfhxPy8TA';
+  axios.defaults.baseURL = 'http://localhost:5000';
+  axios.defaults.headers.post['Content-Type'] = 'application/json';
+  axios.defaults.headers.common['x-auth'] = getfromstorage('x-auth');
 
 
 const Option = Select.Option;
@@ -22,10 +21,6 @@ const { TextArea } = Input;
 const props = {
   name: 'file',
   action: 'http://localhost:5000/post_answer_student',
-  headers: {
-    'content-type': 'multipart/form-data',
-    'x-auth':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YzkxMjBhMTcyM2VlMTA0MjUyMmQ5YjMiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTUzMDE0OTQ1fQ._j6CGxc5O-1t1FzGNolfalXBoxqxvyI-49dfhxPy8TA'
-  },
   onChange(info) {
     if (info.file.status !== 'uploading') {
       console.log(info.file, info.fileList);
@@ -43,17 +38,18 @@ class Ansmod extends Component {
   state = { visible: false,
   selectedFile:null }
 
-  handleSubmit = (e) => {
+  handleSubmit = (e, questionId) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        console.log(typeof questionId);
         axios.post('/post_answer_student', {
           "answer": values.answer,
-          "id": "5c94cbd4f334310679a9e40d"
+          "id":questionId
         })
          .then((res)=>{
-         if(res.status==201) {
+         if(res.status==202) {
           console.log(res);
 
          }
@@ -97,10 +93,7 @@ class Ansmod extends Component {
                                        <Avatar src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" />
                                      </div>
                                      <div className="top2">
-                                        <p>Question By</p>
-                                     </div>
-                                     <div className="top2">
-                                        <b><p>{this.props.question_by}</p></b>
+                                        <b><p>{this.props.fullname}</p></b>
                                      </div>
                                      <div className="top7">
                                         <b><p>{this.props.subject}</p></b>
@@ -126,13 +119,14 @@ class Ansmod extends Component {
               >
 
 
-              <Form onSubmit={this.handleSubmit} style={{padding:0}}>
+              <Form onSubmit={(event)=>this.handleSubmit(event,this.props.questionId)} style={{padding:0}}>
 
               <div style={{width:"100%",height:400}}>
                   <div style={{ display:"flex"}}>
                      <div style={{ margin:"auto" }}>
                          <div>
-                           <p style={{width:900,paddingTop:0,fontSize:20}} > {this.props.question}</p>
+                            <b><p style={{width:900,paddingTop:0,fontSize:20}} > {this.props.question} </p></b>
+                            <p style={{width:900,paddingTop:0,fontSize:20}} >{this.props.userId}</p>
                          </div>
                          <div style={{position:"relative",float:"left",marginTop:10}}>
                          <Form.Item>

@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import { Avatar,Button,message,Skeleton,Tooltip,Drawer } from 'antd';
+import { Avatar,Button,message,Skeleton,Tooltip,Drawer,Empty } from 'antd';
 import axios from 'axios';
 import Oneunans from './Oneunans'
+
+import {
+    getfromstorage,setInStorage,
+  } from '../../../../../utils/Storage';
 
 
 axios.defaults.baseURL = 'http://localhost:5000';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
+axios.defaults.headers.common['x-auth'] = getfromstorage('x-auth');
 
 
 class Communityun extends Component {
@@ -16,42 +21,51 @@ class Communityun extends Component {
       this.handleSubmit = this.handleSubmit.bind(this);
 }
 
-handleSubmit = (e) => {
+handleSubmit = (e,question,topic,subject,chapter) => {
   e.preventDefault();
-  this.props.form.validateFields((err, values) => {
-    if (!err) {
-      console.log('Received values of form: ', values);
+    console.log(chapter);
       axios.post('/post_question', {
-        "chapter": values.chapter,
-        "question": values.question,
-        "asked_to":values.radio,
-        "subject": values.subject,
-        "topic": values.topic
+        "chapter": chapter,
+        "question": question,
+        "asked_to": "teacher",
+        "subject": subject,
+        "topic": topic,
       })
        .then((res)=>{
        if(res.status==201) {
         console.log(res);
+        (function(){
+          message.config({
+           top: 20,
+           duration: 5,
+         });
+          message.success('🤩 Question sent to Teacher..! Will be answered within Two hours !');
+
+         })();
 
        }
        })
        .catch((err)=>{
          console.log(err);
+         (function(){
+           message.config({
+            top: 20,
+            duration: 5,
+          });
+           message.error("Ahh..SNAP..🤕 " + err);
+          })();
+
        });
-    }
-  });
 }
 
   async componentDidMount() {
-    await axios.get('/get_all_question/ask_community',{
-    headers:{
-      'x-auth':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Yzk0Yzk4ZmRiYjFlYzA2MzJjZjU0MzMiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTUzMjU0Nzk5fQ.SB9YNuFNMUfd69owntsDAZmxSrLrLCtlFOsSbRH4C5g",
-    }
-  })
+   await axios.get('/get_all_question/ask_community')
   .then(result=>{
+    console.log(result);
     if(result.status==200){
       let questiondata='';
       questiondata = result.data;
-      console.log(questiondata);
+      console.log(result);
       this.setState({data:questiondata});
       this.setState({loading: false });
     }
@@ -66,79 +80,97 @@ handleSubmit = (e) => {
   render() {
     let question=this.state.data.data;
     console.log(question);
+    const isNull = !question;
+    const isEmpty = !isNull && !question.length;
     if (this.state.loading) {
-      return <div><Skeleton avatar paragraph={{ rows: 4 }} active />
-                  <Skeleton avatar paragraph={{ rows: 4 }} active />
+      return <div>
+            <div style={{display:"flex"}}><div style={{margin:"auto"}}>
+            <div style={{width:800}}>
+                  <Skeleton paragraph={{ rows: 4 }} active />
+                  <Skeleton paragraph={{ rows: 4 }} active />
+            </div>
+            </div></div>
             </div>;
     }
 
     return (
 
-<div>
+      <div>
 
-    <div className="scrollbar1" id="style-1">
-       <div className="force-overflow">
+          <div className="scrollbar1" id="style-1">
+             <div className="force-overflow">
 
-       {question.map((items, idx) => {
-         return(
-           <div style={{width:"100%",height:"350px",backgroundColor:"white"}} key={idx}>
-               <div style={{display:"flex"}}>
-                  <div style={{margin:"auto"}}>
+             <div>
+               { isNull ? <Empty/>
+                 : ( isEmpty
+                   ?
+                   <div style={{display:"flex"}}><div style={{margin:"auto"}}>
+                      <img style={{height:"200px",width:"300px"}} src="https://cdn.dribbble.com/users/1753953/screenshots/3818675/animasi-emptystate.gif" alt="Learn with Traduate" />
+                      <p style={{fontSize:18}}>You Have not Added any Questions Yet!</p>
+                   </div></div>
+                   :
+                   <div>
+                     {question.map((items, idx) => {
+                       return(
+                         <div style={{width:"100%",height:"auto",backgroundColor:"white",marginBottom:20}} key={idx}>
+                             <div style={{display:"flex"}}>
+                                <div style={{margin:"auto"}}>
 
-                  <div style={{display:"flex"}}>
-                     <div style={{margin:"auto",paddingLeft:"20px",paddingRight:"20px",paddingBottom:"10px"}}>
+                                      <div style={{position:"relative"}}>
+                                         <div style={{position:"relative",float:"left",width:"800px",borderRadius:25,borderColor:"#DCDCDC",borderStyle:"solid",borderWidth:"0.5px" ,padding:10}}>
+                                             <div className="containertop">
 
-                         <div style={{height:"auto",postion:"relative",width:"100%"}}>
+                                                <div style={{display:"flex"}}>
+                                                   <div style={{margin:"auto"}}>
+                                                      <b><p style={{padding:5,paddingRight:20,position:"relative",float:"left",paddingBottom:10}}>{items.subject}</p></b>
+                                                      <b><p style={{padding:5,paddingRight:20,position:"relative",float:"left",paddingBottom:10}}>{items.chapter}</p></b>
+                                                      <b><p style={{padding:5,paddingRight:20,position:"relative",float:"left",paddingBottom:10}}>{items.topic}</p></b>
+                                                   </div>
+                                                </div>
 
-                           <div style={{position:"relative",float:"left",borderRadius:25,borderColor:"#DCDCDC",borderStyle:"solid",borderWidth:"0.5px" ,padding:10}}>
-                               <div className="containertop">
+                                                <div style={{display:"flex"}}>
+                                                   <div style={{margin:"auto"}}>
+                 {/*                                      <div style={{position:"relative",float:"right"}}>
+                                                           <Button style={{borderRadius:25}}><i style={{color:"#FD6A02"}} class="fas fa-fire"></i></Button>
+                                                       </div> */}
+                                                      <p style={{paddingLeft:8,position:"relative",float:"right",fontWeight:600,color:"#FF7F50"}}>{items.question}</p>
+                                                   </div>
+                                               </div>
 
-                                   <div style={{display:"flex"}}>
-                                      <div style={{margin:"auto"}}>
-    {/*                                      <div style={{position:"relative",float:"right"}}>
-                                              <Button style={{borderRadius:25}}><i style={{color:"#FD6A02"}} class="fas fa-fire"></i></Button>
-                                          </div> */}
-                                          <div style={{position:"relative"}}>
-                                              <Button style={{borderRadius:25}}><i style={{color:"#FC6600"}} className="fas fa-chalkboard-teacher"></i></Button>
-                                          </div>
-                                      </div>
-                                  </div>
+                                                <div style={{position:"relative",float:"left"}}>
+                                                   <p style={{paddingLeft:2,paddingTop:2,position:"relative",float:"left",fontWeight:600}}>500 Views</p>
+                                               </div>
 
-                                  <div style={{display:"flex"}}>
-                                     <div style={{margin:"auto"}}>
-                                        <b><p style={{padding:10,position:"relative",float:"left",marginBottom:0}}>{items.topic}</p></b>
-                                     </div>
-                                  </div>
+                                               <div style={{position:"relative",float:"right"}}>
+                                                   <Tooltip placement="right" title="Ask Teacher!">
+                                                       <div style={{position:"relative"}}>
+                                                           <Button disabled={this.state.disabled} onClick={(event)=>this.handleSubmit(event,items.question,items.chapter,items.subject,items.topic)} style={{borderRadius:25,marginRight:20}}><i style={{color:"#00E52D"}} className="fas fa-chalkboard-teacher"></i></Button>
+                                                       </div>
+                                                   </Tooltip>
+                                               </div>
 
-                                  <div>
-                                     <p style={{marginBottom:5,width:300}}>{items.question}</p>
-                                  </div>
-                                  <div style={{position:"relative",float:"left"}}>
-                                     <p style={{paddingLeft:2,paddingTop:2,position:"relative",float:"left",color:"#FF7F50",fontWeight:600}}>500 Views</p>
-                                 </div>
-
-                                 <div style={{position:"relative",float:"right"}}>
-                                     <p style={{paddingLeft:8,position:"relative",float:"right",fontWeight:600,color:"#FF7F50"}}>{items.marked_doubt}</p>
-                                 </div>
+                                             </div>
+                                         </div>
+                                       </div>
 
                                </div>
                            </div>
-
                          </div>
+                     )
+                   })}
 
-                     </div>
                    </div>
-
-                 </div>
+                 )
+               }
              </div>
-           </div>
-       )
-     })}
+
+
+
+
+            </div>
+         </div>
 
       </div>
-   </div>
-
-</div>
 
     );
   }

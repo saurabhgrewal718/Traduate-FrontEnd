@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Home.scss';
 import { Layout } from 'antd';
-import { Tabs, Button,Tooltip } from 'antd';
+import { Tabs, Button,Tooltip,message } from 'antd';
 import { Avatar } from 'antd';
 import Card1 from './components/card1/Card1'
 import Challengesdivider from './components/card/components/Challengesdivider';
@@ -12,7 +12,10 @@ import Card from './components/card/Card';
 const TabPane = Tabs.TabPane;
 const {Content} = Layout;
 
+
+
 class Home extends Component {
+
   render() {
     return (
       <div>

@@ -23,3 +23,14 @@ export function setInStorage(key,obj){
     console.error(err);
   }
 }
+
+export function removeFromStorage(key){
+  if(!key){
+    console.error('error: key is not avalable');
+  }
+  try{
+    localStorage.removeItem(key);
+  }catch(err){
+    console.error(err);
+  }
+}
