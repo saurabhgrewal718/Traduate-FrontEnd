@@ -6,8 +6,10 @@ import Head from '../student/scenes/components/Head';
 import Signcontainer from '../student/scenes/signup/Signcontainer'
 import {BrowserRouter,Switch,Route,Link,Redirect,withRouter} from "react-router-dom";
 import Home from '../student/scenes/home/Home';
+import Homesign from '../student/scenes/home/Homesign';
 import Profile from '../student/scenes/profile/Profile';
 import Message from '../student/scenes/message/Message';
+import Watchanswer from '../student/scenes/message/components/card1/components/Watchanswer';
 
 
 axios.defaults.baseURL = 'http://localhost:5000';
@@ -23,14 +25,13 @@ class Allhomeroutes extends Component {
           <BrowserRouter >
             <Switch>
               <Containerhome>
-                <Route exact path='/' component={Home}/>
                 <Route exact path='/home' component={Home}/>
                 <Route exact path='/profile' component={Profile}/>
                 <Route exact path='/message' component={Message}/>
-                <Route exact path='/message/answer/' component={Home}/>
-                <Route exact path='/sign' component={Signcontainer}/>
+                <Route exact path='/message/question/:id' component={Watchanswer}/>
+                <Route exact path='/sign' component={Homesign}/>
               </Containerhome>
-              <Route exact path='/sign' component={Signcontainer}/>
+              <Route exact path='/sign' component={Homesign}/>
             </Switch>
           </BrowserRouter>
         ):(

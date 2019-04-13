@@ -3,7 +3,7 @@ import { Layout } from 'antd';
 import { Tabs, Button } from 'antd';
 import Science from './components/Science';
 import English from './components/English';
-import Maths from './components/Maths';
+import Community from './components/Community';
 import Askquestionmodal from './components/Askquestionmodal';
 
 const TabPane = Tabs.TabPane;
@@ -16,10 +16,9 @@ class Card1 extends Component {
         <div>
             <Layout className="layout">
               <Content style={{ padding: '0 20px' }}>
-                <Tabs tabBarExtraContent={<Askquestionmodal/>}>
+                <Tabs>
                   <TabPane tab="Science" key="1"><Science/></TabPane>
-                  <TabPane tab="Maths" key="2"><Maths/></TabPane>
-                  <TabPane tab="English" key="3"><English/></TabPane>
+                  <TabPane tab="Help Community" key="2"><Community/></TabPane>
                 </Tabs>
               </Content>
             </Layout>

@@ -9,12 +9,12 @@ class Reports extends React.Component {
          labels:["1","2","3","4","5"],
          datasets:[
            {
-             label:"Time I Studied",
+             label:"Questions answered in a week",
              backgroundColor:"rgba(255,0,255,0.75)",
              data:[4,5,10,12,32,18,29]
            },
            {
-             label:"Time My Friends Studied",
+             label:"Questions asked!",
              backgroundColor:"rgba(0,255,0,0.75)",
              data:[29,15,10,12,32,18,29]
            }
@@ -40,7 +40,7 @@ class Reports extends React.Component {
   render(){
     return(
       <div>
-        
+
         <div style={{position:"relative",float:"left",height:550,width:600}}>
             <Line
               options={{

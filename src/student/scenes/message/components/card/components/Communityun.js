@@ -39,7 +39,7 @@ handleSubmit = (e,question,topic,subject,chapter) => {
            top: 20,
            duration: 5,
          });
-          message.success('🤩 Question sent to Teacher..! Will be answered within Two hours !');
+          message.success('🤩 Question sent to Teacher.! Will be answered within Two hours !');
 
          })();
 

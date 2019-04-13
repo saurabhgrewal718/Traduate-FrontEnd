@@ -8,6 +8,7 @@ import {
   } from '../../../utils/Storage';
 import axios from 'axios';
 import { Spin } from 'antd';
+import Card from '../../home/components/card/Card'
 
 
 axios.defaults.baseURL = 'http://localhost:5000';
@@ -17,7 +18,12 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 class HorizontalLoginForm extends React.Component {
   state={
-    loading:false
+    loading:false,
+    response:[]
+  }
+
+componentDidMount = () => {
+    console.log(this.state.response);
   }
 
   handleSubmit = (e) => {
@@ -33,14 +39,18 @@ class HorizontalLoginForm extends React.Component {
        .then((res)=>{
        if(res.status==200) {
          axios.defaults.headers.common['x-auth'] = res.headers['x-auth'];
-         console.log(res);
-         console.log("Headers: " +" "+ res.headers['x-auth']);
          setInStorage('x-auth', res.headers['x-auth']);
          this.setState({loading:false});
+         let questiondata='';
+         questiondata = res.data;
+         this.setState({response:questiondata});
          (function(){
-             message.success("😍 Logged In Sucessfully ");
+             message.success("😍 Logged In");
             })();
-         this.props.como.history.push('/home');
+         this.props.como.history.push({
+            pathname: '/home',
+            state: { response: res.data }
+          })
 
        }
        })
@@ -93,6 +103,7 @@ class HorizontalLoginForm extends React.Component {
               </Button>
             </Form.Item>
           </Form>
+
        </div>
      </div>
     );

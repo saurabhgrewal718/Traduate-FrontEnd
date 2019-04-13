@@ -22,6 +22,24 @@ body {
   color: $main-color;
 }
 
+.example2 {
+  float: right;
+  height:60px;
+  position: relative;
+  margin-right: 130px;
+  background: rgb(202,235,242);
+  border-radius: 4px;
+  padding: 10px 40px;
+
+}
+
+.spinhead{
+  position:relative;
+  width:100%;
+  background:linear-gradient(to right, #FFE8E8, #CAEBF2);
+  height:auto;
+}
+
 nav {
   padding: 20px 0 30px 0;
   background: #CAEBF2;

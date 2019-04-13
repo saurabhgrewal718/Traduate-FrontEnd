@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Tabs,Input,Modal,Avatar, Button,Tooltip,Form } from 'antd';
 import { Select } from 'antd';
 import './Science.css';
-import { Radio } from 'antd';
+import { Radio,message } from 'antd';
 import axios from 'axios';
 import {
     getfromstorage,setInStorage,
@@ -12,7 +12,7 @@ import {
   axios.defaults.headers.post['Content-Type'] = 'application/json';
   axios.defaults.headers.common['x-auth'] = getfromstorage('x-auth');
 
-  
+
 const { Option } = Select;
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
@@ -35,12 +35,13 @@ const { TextArea } = Input;
 
 
 class Askque extends Component {
-  state = { visible: false }
+  state = { visible: false , iconloading: false}
 
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
+        this.setState({ iconloading: true });
         console.log('Received values of form: ', values);
         axios.post('/post_question', {
           "chapter": values.chapter,
@@ -52,11 +53,28 @@ class Askque extends Component {
          .then((res)=>{
          if(res.status==201) {
           console.log(res);
+          this.setState({
+            visible: false,
+            iconloading: false
+          });
+          (function(){
+            message.config({
+             duration: 2,
+           });
+            message.success("Question Posted! ");
+           })();
 
          }
          })
          .catch((err)=>{
            console.log(err);
+           this.setState({ iconloading: false });
+           (function(){
+             message.config({
+              duration: 5,
+            });
+             message.error("Ohh..No 🤕 " + err);
+            })();
          });
       }
     });
@@ -72,9 +90,6 @@ class Askque extends Component {
 
   handleOk = (e) => {
     console.log(e);
-    this.setState({
-      visible: false,
-    });
 
   }
 
@@ -262,7 +277,7 @@ class Askque extends Component {
 
                       <div style={{width:"100%",paddingBottom:0,height:52}}>
                         <div style={{position:"relative",width:"25%",float:"right"}}>
-                            <Button type="primary" htmlType="submit" style={{borderRadius:"25px",backgroundColor:"#343d46",color:"white",marginLeft:20,position:"relative",float:"right"}} onClick={this.handleOk}>
+                            <Button type="primary" htmlType="submit" loading={this.state.iconloading} style={{borderRadius:"25px",backgroundColor:"#343d46",color:"white",marginLeft:20,position:"relative",float:"right"}} onClick={this.handleOk}>
                                Ask Question
                             </Button>
                             <Button key="back" onClick={this.handleCancel} style={{borderRadius:"25px",position:"relative",float:"right"}}>Cancel</Button>

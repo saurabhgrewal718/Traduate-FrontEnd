@@ -3,7 +3,6 @@ import { Tabs,Input,Modal,Avatar, Popconfirm, Icon,Button,message,Rate,Select } 
 import './Doubts.css';
 import Flipbook from './Flipbook';
 import Answerfile from './Answerfile'
-import Imagegallry from'./Imagegallry'
 import Reportanswer from './Reportanswer'
 
 const Option = Select.Option;
@@ -109,7 +108,7 @@ class Watchanswermodal extends Component {
                           <div style={{ display:"flex"}}>
                              <div style={{ margin:"auto" }}>
                                <div style={{marginBottom:"80px"}}>
-                                  <Imagegallry/>
+                                  yes
                                </div>
                                <div >
                                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/d360e756534229.59b23e4d35886.png" alt="Avatar" style={{width:"80px",height:"80px",borderRadius: "50%"}}/>

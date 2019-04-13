@@ -6,6 +6,7 @@ import Message from '../student/scenes/message/Message';
 import Signcontainer from '../student/scenes/signup/Signcontainer'
 import Signup from '../student/scenes/signup/components/Signup'
 import Preferences from '../student/scenes/signup/components/Preferences'
+import Watchanswer from '../student/scenes/message/components/card1/components/Watchanswer'
 import Preferences1 from '../student/scenes/signup/components/Preferences1'
 import Teachersign from '../teacher/scenes/signup/Teachersign'
 import Teachersignup1 from '../teacher/scenes/signup/components/Teachersignup1'
@@ -30,6 +31,7 @@ class Allroutes extends Component{
            <Route exact path='/setup/first' render={props=> <Preferences1 {...props}/>}/>
            <Route exact path='/setup/last' render={props=> <Preferences {...props}/>}/>
            <Route exact path='/home' render={props=> <Allhomeroutes {...props}/>}/>
+           <Route exact path='/sign' component={Signcontainer}/>
            <Route exact path='/teacher' render={props=> <Teachersign {...props}/>}/>
            <Route exact path='/teacher/first' render={props=> <Teachersignup1 {...props}/>}/>
            <Route exact path='/teacher/last' render={props=> <Teachersignup2 {...props}/>}/>

@@ -42,11 +42,7 @@ class Science extends Component {
 
                 <div className="bottom">
                    <div className="bottom1"><Answermodal/></div>
-                   <div className="bottom1">
-                       <Tooltip title="Too tuff ? Mark a doubt!">
-                         <span><Button>Mark Doubt</Button></span>
-                       </Tooltip>
-                   </div>
+
                    <div className="bottom2"><Avatar src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/9222b568654569.5b6446bfab4b2.jpg" style={{height:20,width:20}}/></div>
                    <div className="bottom2"><Avatar src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/9222b568654569.5b6446bfab4b2.jpg" style={{height:20,width:20}}/></div>
                    <div className="bottom2"><Avatar src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/9222b568654569.5b6446bfab4b2.jpg" style={{height:20,width:20}}/></div>
@@ -90,11 +86,7 @@ class Science extends Component {
 
                 <div className="bottom">
                    <div className="bottom1"><Answermodal/></div>
-                   <div className="bottom1">
-                       <Tooltip title="Too tuff ? Mark a doubt!">
-                         <span><Button>Mark Doubt</Button></span>
-                       </Tooltip>
-                   </div>
+
                    <div className="bottom2"><Avatar src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/9222b568654569.5b6446bfab4b2.jpg" style={{height:20,width:20}}/></div>
                    <div className="bottom2"><Avatar src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/9222b568654569.5b6446bfab4b2.jpg" style={{height:20,width:20}}/></div>
                    <div className="bottom2"><Avatar src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/9222b568654569.5b6446bfab4b2.jpg" style={{height:20,width:20}}/></div>
@@ -138,11 +130,7 @@ class Science extends Component {
 
                 <div className="bottom">
                    <div className="bottom1"><Answermodal/></div>
-                   <div className="bottom1">
-                       <Tooltip title="Too tuff ? Mark a doubt!">
-                         <span><Button>Mark Doubt</Button></span>
-                       </Tooltip>
-                   </div>
+                   
                    <div className="bottom2"><Avatar src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/9222b568654569.5b6446bfab4b2.jpg" style={{height:20,width:20}}/></div>
                    <div className="bottom2"><Avatar src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/9222b568654569.5b6446bfab4b2.jpg" style={{height:20,width:20}}/></div>
                    <div className="bottom2"><Avatar src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/9222b568654569.5b6446bfab4b2.jpg" style={{height:20,width:20}}/></div>

@@ -8,17 +8,20 @@ import Reportcontainer from './components/Reportcontainer';
 const {Content} = Layout;
 
 class Card extends Component {
+  componentDidMount(){
+   console.log(this.props);
+  }
   render() {
     return (
       <div>
 
             <div className="containertop">
                <div className="containertop1">
-                  <img src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" alt="Avatar" style={{width:"80px",borderRadius: "50%"}}/>
+                  <img src="yo" alt="Avatar" style={{width:"80px",borderRadius: "50%"}}/>
                </div>
                <div className="containertop2">
                   <div style={{position:"relative",width:"100%",paddingTop:10,paddingLeft:10}}>
-                      <b><p style={{marginBottom: 0,paddingTop:10}}>Ankit Sharma</p></b>
+                      <b><p style={{marginBottom: 0,paddingTop:10}}>ankit</p></b>
                   </div>
                   <div style={{position:"relative",width:"100%",paddingTop:2,paddingLeft:10}}>
                       <b><p style={{marginBottom: 0,color:"#FFA07A"}}>GENIUS</p></b>

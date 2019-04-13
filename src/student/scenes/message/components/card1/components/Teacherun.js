@@ -26,6 +26,7 @@ class Teacherun extends Component {
       console.log(questiondata);
       this.setState({data:questiondata});
       this.setState({loading: false });
+
     }
 
   })
@@ -38,7 +39,6 @@ class Teacherun extends Component {
     let question=this.state.data;
     const isNull = !question;
     const isEmpty = !isNull && !question.length;
-    console.log(question);
     if (this.state.loading) {
       return <div><Skeleton avatar paragraph={{ rows: 4 }} active />
                   <Skeleton avatar paragraph={{ rows: 4 }} active />
@@ -51,7 +51,14 @@ class Teacherun extends Component {
                  <div className="force-overflow">
                       <div>
                         { isNull ?
-                            <Empty />
+                          <Empty
+                            description={
+                              <span>
+                                No Questions Asked to Teacher !
+                              </span>
+                            }
+                          >
+                          </Empty>
                          : ( isEmpty
                             ?
                             <div style={{display:"flex"}}><div style={{margin:"auto"}}>

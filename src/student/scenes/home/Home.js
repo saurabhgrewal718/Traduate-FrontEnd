@@ -15,13 +15,16 @@ const {Content} = Layout;
 
 
 class Home extends Component {
+  componentDidMount(){
+    console.log(this.props.location);
+  }
 
   render() {
     return (
       <div>
         <div className="card">
           <div className="container0">
-              <Card/>
+              <Card rambo={this.props.location}/>
           </div>
         </div>
 

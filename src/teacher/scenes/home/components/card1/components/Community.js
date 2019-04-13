@@ -11,44 +11,15 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.headers.common['x-auth'] = getfromstorage('x-auth');
 
 
-class Maths extends Component {
-  constructor(props) {
-      super(props);
-      const data = [];
-      this.state = { data ,loading: true };
-}
-
-  async componentDidMount() {
-    await axios.get('/get_all_question')
-  .then(result=>{
-    if(result.status==200){
-      let questiondata='';
-      questiondata = result.data;
-      console.log(questiondata);
-      this.setState({data:questiondata});
-      this.setState({loading: false });
-    }
-
-  })
-  .catch(err=>{
-    console.log(err);
-  });
-}
-
+class Community extends Component {
   render() {
-    let question=this.state.data;
-    if (this.state.loading) {
-      return <div><Skeleton avatar paragraph={{ rows: 4 }} active /></div>;
-    }
     return (
         <div>
 
         <div className="scrollbar2" id="style-1">
            <div className="force-overflow">
 
-        {question.map((items, idx) => {
-          return (
-            <div className="cardquestion" key={idx} style={{marginTop:0,paddingTop:0,marginBottom:0,paddingTop:0}}>
+            <div className="cardquestion" style={{marginTop:0,paddingTop:0,marginBottom:0,paddingTop:0}}>
               <div className="containerquestion">
                 <div className="top">
                    <div className="top1">
@@ -76,16 +47,13 @@ class Maths extends Component {
                 <div style={{display:"flex"}}><div style={{margin:"auto"}}>
                 <div className="middle">
                   <div>
-                    <h3>{items.question}</h3>
+                    <h3>Hey its the question</h3>
                   </div>
                 </div>
                 </div></div>
 
                 <div className="bottom">
                    <div className="bottom1"><Answermodal/></div>
-                   <div className="bottom1">
-                        <Button>Mark Doubt</Button>
-                   </div>
                    <div className="bottom2"><Avatar src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/9222b568654569.5b6446bfab4b2.jpg" style={{height:20,width:20}}/></div>
                    <div className="bottom2"><Avatar src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/9222b568654569.5b6446bfab4b2.jpg" style={{height:20,width:20}}/></div>
                    <div className="bottom2"><Avatar src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/9222b568654569.5b6446bfab4b2.jpg" style={{height:20,width:20}}/></div>
@@ -98,9 +66,6 @@ class Maths extends Component {
             </div>
 
 
-          )
-        })}
-
 
           </div>
         </div>
@@ -111,4 +76,4 @@ class Maths extends Component {
   }
 }
 
-export default Maths;
+export default Community;

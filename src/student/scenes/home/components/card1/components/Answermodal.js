@@ -36,12 +36,15 @@ const props = {
 
 class Ansmod extends Component {
   state = { visible: false,
-  selectedFile:null }
+     selectedFile:null,
+     iconLoading: false
+   }
 
   handleSubmit = (e, questionId) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
+        this.setState({ iconloading: true });
         console.log('Received values of form: ', values);
         console.log(typeof questionId);
         axios.post('/post_answer_student', {
@@ -51,11 +54,28 @@ class Ansmod extends Component {
          .then((res)=>{
          if(res.status==202) {
           console.log(res);
+          this.setState({
+            visible: false,
+            iconloading: false
+          });
+          (function(){
+            message.config({
+             duration: 2,
+           });
+            message.success("Answer Posted !");
+           })();
 
          }
          })
          .catch((err)=>{
            console.log(err);
+           this.setState({ iconloading: false });
+           (function(){
+             message.config({
+              duration: 5,
+            });
+             message.error("Ohh..No 🤕 " + err);
+            })();
          });
 
       }
@@ -70,9 +90,6 @@ class Ansmod extends Component {
 
   handleOk = (e) => {
     console.log(e);
-    this.setState({
-      visible: false,
-    });
   }
 
   handleCancel = (e) => {
@@ -175,7 +192,7 @@ class Ansmod extends Component {
 
                   <div style={{width:"100%",paddingBottom:0,height:32,paddingTop:10}}>
                     <div style={{position:"relative",width:"50%",float:"right"}}>
-                        <Button type="primary" htmlType="submit" style={{borderRadius:"25px",backgroundColor:"#343d46",marginLeft:20,position:"relative",float:"right",color:"white"}} onClick={this.handleOk}>
+                        <Button type="primary" htmlType="submit" loading={this.state.iconloading} style={{borderRadius:"25px",backgroundColor:"#343d46",marginLeft:20,position:"relative",float:"right",color:"white"}} onClick={this.handleOk}>
                            Submit Answer
                         </Button>
                         <Button key="back" onClick={this.handleCancel} style={{borderRadius:"25px",position:"relative",float:"right"}}>Cancel</Button>

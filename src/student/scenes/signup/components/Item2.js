@@ -5,9 +5,10 @@ import {
    DatePicker, TimePicker
 } from 'antd';
 import {
-    getfromstorage,setInStorage,
+    getfromstorage,setInStorage,removeFromStorage
   } from '../../../utils/Storage';
 import axios from 'axios';
+import { Spin } from 'antd';
 import {Link} from 'react-router-dom';
 
 
@@ -33,11 +34,13 @@ function handleFocus() {
 
 class Item extends Component {
 
+  state={
+    loading:false,
+  }
+
 componentWillMount(){
 console.log(this.props);
 }
-
-
 
   handleSubmit = (e) => {
     let firstpage=getfromstorage('firstpage');
@@ -46,6 +49,7 @@ console.log(this.props);
     e.preventDefault();
     this.props.form.validateFields((err, fieldsValue) => {
       if (!err) {
+        this.setState({loading:true});
         axios.post('/register', {
         	"email":firstpage.email,
         	"username":fieldsValue.username,
@@ -63,18 +67,21 @@ console.log(this.props);
          console.log(res);
          console.log("Headers: " +" "+ res.headers['x-auth']);
          setInStorage('x-auth', res.headers['x-auth']);
+         removeFromStorage('firstpage');
+         removeFromStorage('secondpage');
+         this.setState({loading:false});
          this.props.compo.history.push('/home');
-
        }
        })
        .catch((err)=>{
          console.log(err);
+         this.setState({loading:false});
          (function(){
            message.config({
             top: 20,
             duration: 5,
           });
-           message.error("Ahh..SNAP..🤕 " + err);
+           message.error("Ahh..SNAP..🤕 " + err + " 🤐 Username or Phone Already Used");
           })();
 
        });
@@ -95,6 +102,15 @@ console.log(this.props);
   }
 
   render() {
+    if (this.state.loading) {
+      return   <div style={{    textAlign: "center",
+                                background: "rgba(0,0,0,0)",
+                                borderRadius: "4px",
+                                padding: "300px 40px",
+                            }}>
+                <Spin size="large"/>
+              </div>
+    }
     const { getFieldDecorator } = this.props.form;
     const config = {
       rules: [{ type: 'object', required: true, message: 'Please select time!' }],
@@ -182,9 +198,9 @@ console.log(this.props);
 
                             <div style={{display:"flex"}}><div style={{margin:"auto"}}>
                               <div >
-                                  <Button type="primary" htmlType="submit" style={{borderRadius:"25px",backgroundColor:"#343d46",color:"white",marginTop:40}} onClick={this.handleOk}>
-                                     Submit
-                                  </Button>
+                                <Button type="primary" htmlType="submit" style={{borderRadius:"25px",backgroundColor:"#343d46",color:"white",marginTop:40}} onClick={this.handleOk}>
+                                   Submit
+                                </Button>
                               </div>
                             </div></div>
 

@@ -6,6 +6,8 @@ import axios from 'axios';
 import {
     getfromstorage,setInStorage,removeFromStorage
   } from '../../utils/Storage';
+import Notification from './Notification'
+import { Spin } from 'antd';
 
 axios.defaults.baseURL = 'http://localhost:5000';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -20,8 +22,13 @@ function confirm() {
 }
 
 class Head extends Component {
+  state={
+    loading:false
+  }
+
 
   handleLogout = async event => {
+      this.setState({loading:true});
       await axios.get('/logout')
       .then(result=>{
        if(result.status==200){
@@ -29,15 +36,23 @@ class Head extends Component {
          this.props.history.push('/sign');
          removeFromStorage('x-auth');
          console.log(this.props);
-
+         this.setState({loading:false});
        }
      })
      .catch(err=>{
+       this.setState({loading:false});
        console.log(err);
      });
     }
 
   render() {
+    if (this.state.loading) {
+      return   <div class="spinhead">
+                <div className="example2" style={{paddingTop:10}}>
+                    <Spin size="large"/>
+                </div>
+               </div>
+    }
     console.log(this.props);
     return (
       <div style={{height:52}}>
@@ -49,13 +64,10 @@ class Head extends Component {
                 <li style={{paddingRight:15}}><Link to="/home"><b>Home</b></Link></li>
 {/*                <li style={{paddingRight:15}}><Link to="/profile"><b>Read bytes</b></Link></li> */}
                 <li style={{paddingRight:15}}><Link to="/message"><b>Answers</b></Link></li>
+{/*                <li style={{paddingRight:15}}><b><Notification/></b></li>*/}
                 <li>
                   <Button onClick={this.handleLogout} style={{backgroundColor:"rgb(0,0,0,0)"}}><b><i className="fas fa-power-off" style={{color:"#fd0054"}}></i></b></Button>
                 </li>
-
-
-
-
               </ul>
             </div>
 

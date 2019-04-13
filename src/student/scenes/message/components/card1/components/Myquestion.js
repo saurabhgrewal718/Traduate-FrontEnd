@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import Doubtquestion from './Doubtquestion';
 import {Tooltip,Avatar,Button,Progress,Skeleton,Empty} from 'antd'
 import Watchanswermodal from './Watchanswermodal'
+import Watchanswer from './Watchanswer'
 import axios from 'axios';
+import {Link} from 'react-router-dom'
 import {time_ago} from '../../../../../utils/getTimeFormat';
 import {getfromstorage,setInStorage,} from '../../../../../utils/Storage';
 
@@ -52,7 +54,14 @@ class Myquestion extends Component {
 
                  <div>
                    { isNull ?
-                     <Empty/>
+                     <Empty
+                       description={
+                         <span>
+                           No Answers From Community !
+                         </span>
+                       }
+                     >
+                     </Empty>
                      : ( isEmpty
                        ?
                        <div style={{display:"flex"}}><div style={{margin:"auto"}}>
@@ -82,16 +91,37 @@ class Myquestion extends Component {
                                          </div>
                                      </div>
 
-                                     <div style={{display:"flex"}}><div style={{margin:"auto"}}>
                                         <div className="middle">
                                            <h3>{items.question}</h3>
                                         </div>
-                                      </div></div>
 
                                       <div className="bottom">
                                          <div className="bottom2"><Avatar src={"http://localhost:5000/" + items.question_by.profileImage} /></div>
                                          <div className="bottom2"><p style={{paddingTop:5}}>Answered by <b>{items.question_by.fullname}</b></p></div>
-                                         <div className="bottom1"><Watchanswermodal/></div>
+                                         <div className="bottom1">
+                                           <Link
+                                             to={{pathname:`/message/question/${items._id}`,
+                                             state: {question:items.question,
+                                               answer:items.answer,
+                                               answered_by:items.answered_by,
+                                               asked_to:items.asked_to,
+                                               chapter:items.chapter,
+                                               class:items.class,
+                                               date_of_answer:items.date_of_answer,
+                                               date_of_question:items.date_of_question,
+                                               marked_doubt:items.marked_doubt,
+                                               question:items.question,
+                                               question_by:items.question_by,
+                                               reported:items.reported,
+                                               subject:items.subject,
+                                               topic:items.topic,
+                                               _id:items._id,
+                                             }
+
+                                           }}>
+                                             <Button>Watchanswer</Button>
+                                           </Link>
+                                         </div>
                                          <div className="bottom1"><Button>Say Cheers!</Button></div>
                                       </div>
                                     </div>

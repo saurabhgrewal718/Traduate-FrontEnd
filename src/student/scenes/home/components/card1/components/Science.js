@@ -15,25 +15,33 @@ class Science extends Component {
   constructor(props) {
       super(props);
       const data = [];
-      this.state = { data ,loading: true };
+      this.state = { data ,loading: true,iconloading: false };
       this.handleSubmit = this.handleSubmit.bind(this);
 }
 
 handleSubmit = (e, _id) => {
+      this.setState({ iconloading: true });
       axios.post('/post_question/markDoubt', {
         "id": _id,
       })
        .then((res)=>{
        if(res.status==200) {
         console.log(res);
+        this.setState({ iconloading: false });
+        (function(){
+            message.success('Added to Doubts');
+           })();
 
        }
        })
        .catch((err)=>{
          console.log(err);
+        this.setState({ iconloading: false });
+         (function(){
+           message.error("Ohh no..🤕 ! Cant add to Doubts !" + err);
+            })();
        });
-   message.loading('Action in progress..', 2.5)
-      .then(() => message.success('Marked Doubt', 2.5));
+
 
 }
 
@@ -43,7 +51,6 @@ handleSubmit = (e, _id) => {
     if(result.status==200){
       let questiondata='';
       questiondata = result.data;
-      console.log(questiondata);
       this.setState({data:questiondata});
       this.setState({loading: false });
     }
@@ -57,7 +64,6 @@ handleSubmit = (e, _id) => {
 
   render() {
     let question=this.state.data.data;
-    console.log(question);
     const isNull = !question;
     const isEmpty = !isNull && !question.length;
     if (this.state.loading) {
@@ -66,6 +72,7 @@ handleSubmit = (e, _id) => {
                   <Skeleton avatar paragraph={{ rows: 4 }} active />
             </div>;
     }
+
 
     return (
     <div>
@@ -78,10 +85,14 @@ handleSubmit = (e, _id) => {
          { isNull ? <Empty/>
            : ( isEmpty
              ?
-             <div style={{display:"flex"}}><div style={{margin:"auto"}}>
-                <img style={{height:"200px",width:"300px"}} src="https://cdn.dribbble.com/users/1753953/screenshots/3818675/animasi-emptystate.gif" alt="Learn with Traduate" />
-                <p style={{fontSize:18}}>No questions matching you Community Today!</p>
-             </div></div>
+             <Empty
+               description={
+                 <span>
+                   No Science Questions Matching You Today!!
+                 </span>
+               }
+             >
+             </Empty>
              :
              <div>
              {question.map((items, idx) => {
@@ -112,17 +123,15 @@ handleSubmit = (e, _id) => {
                       </div>
                   </div>
 
-                 <div style={{display:"flex"}}><div style={{margin:"auto"}}>
                    <div className="middle">
                       <h3>{items.question}</h3>
                    </div>
-                 </div></div>
 
                    <div className="bottom">
                       <div className="bottom1"><Answermodal image={items.question_by.profileImage} questionId={items._id} fullname={items.question_by.fullname} marked_doubt={items.marked_doubt} subject={items.subject} topic={items.topic} chapter={items.chapter} question_by={items.question_by} question={items.question}/></div>
                       <div className="bottom1">
                           <Tooltip title="Too tuff ? Mark a doubt!">
-                            <span><Button onClick={(event) =>this.handleSubmit(event,items._id)} >Mark Doubt</Button></span>
+                            <span><Button loading={this.state.iconloading} onClick={(event) =>this.handleSubmit(event,items._id)} >Mark Doubt</Button></span>
                           </Tooltip>
                       </div>
                    </div>

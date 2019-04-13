@@ -12,7 +12,8 @@ class Teacherrouter extends Component{
       <Switch>
          <Route path='/home' component={Home}/>
          <Route exact path='/profile' component={Profile}/>
-         <Route exact path='/answers' component={Message}/>
+         {/*<Route exact path='/answers' component={Message}/>
+         <Route exact path='/reports' component={Reports}/>*/}
       </Switch>
      </div>
    );

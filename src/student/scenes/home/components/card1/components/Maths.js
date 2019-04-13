@@ -3,7 +3,6 @@ import './Science.css';
 import { Avatar,message,Skeleton,Button,Tooltip,Empty } from 'antd';
 import Answermodal from './Answermodal';
 import axios from 'axios';
-import Markdoubt from './Markdoubt';
 import {time_ago} from '../../../../../utils/getTimeFormat';
 import {getfromstorage,setInStorage,} from '../../../../../utils/Storage';
 
@@ -16,25 +15,32 @@ class Maths extends Component {
   constructor(props) {
       super(props);
       const data = [];
-      this.state = { data ,loading: true };
+      this.state = { data ,loading: true,iconloading:false };
       this.handleSubmit = this.handleSubmit.bind(this);
 }
 
 handleSubmit = (e,_id) => {
+      this.setState({iconloading: true });
       axios.post('/post_question/markDoubt', {
         "id": _id,
       })
        .then((res)=>{
        if(res.status==200) {
+        this.setState({iconloading: false });
         console.log(res);
+        (function(){
+            message.success('Added to Doubts');
+           })();
 
        }
        })
        .catch((err)=>{
          console.log(err);
+         this.setState({iconloading: false });
+         (function(){
+           message.error("Ohh no..🤕 ! Cant add to Doubts !" + err);
+            })();
        });
-   message.loading('Action in progress..', 2.5)
-      .then(() => message.success('Marked Doubt', 2.5));
 
 }
 
@@ -78,7 +84,14 @@ handleSubmit = (e,_id) => {
              { isNull ? <Empty/>
                : ( isEmpty
                  ?
-                 <p>Sorry, the list is empty.</p>
+                 <Empty
+                   description={
+                     <span>
+                       No Questions Matching You Today!!
+                     </span>
+                   }
+                 >
+                 </Empty>
                  :
                  <div>
                  {question.map((items, idx) => {
@@ -108,18 +121,16 @@ handleSubmit = (e,_id) => {
                             </div>
                         </div>
 
-                         <div style={{display:"flex"}}><div style={{margin:"auto"}}>
                          <div className="middle">
                            <div>
                              <h3>{items.question}</h3>
                            </div>
                          </div>
-                         </div></div>
 
                          <div className="bottom">
                             <div className="bottom1"><Answermodal image={items.question_by.profileImage} marked_doubt={items.marked_doubt} subject={items.subject} topic={items.topic} chapter={items.chapter} questionId={items._id} fullname={items.question_by.fullname} question={items.question}/></div>
                             <div className="bottom1">
-                               <Button onClick={(event) =>this.handleSubmit(event,items._id)} >Mark Doubt</Button>
+                               <Button loading={this.state.iconloading} onClick={(event) =>this.handleSubmit(event,items._id)} >Mark Doubt</Button>
                             </div>
                          </div>
 
