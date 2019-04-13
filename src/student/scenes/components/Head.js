@@ -8,23 +8,89 @@ import {
   } from '../../utils/Storage';
 import Notification from './Notification'
 import { Spin } from 'antd';
+import { config } from "../../../firebaseConfig";
+import firebase from "firebase";
+import ReactNotification from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
+import { notification } from 'antd';
 
 axios.defaults.baseURL = 'http://localhost:5000';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.headers.common['x-auth'] = getfromstorage('x-auth');
 
-const text = 'Do you want to Signout?';
+firebase.initializeApp(config);
 
-function confirm() {
-  console.log(this.props);
-{/*  message.info('Clicked on Yes.'); */}
-
-}
 
 class Head extends Component {
-  state={
-    loading:false
-  }
+  constructor(props) {
+  super(props);
+  // this.addNotification.bind(this);
+  this.notificationDOMRef = React.createRef();
+}
+
+state={
+  loading:false
+}
+
+
+initializePusher = () => {
+  const messaging = firebase.messaging();
+  messaging
+    .requestPermission()
+    .then(() => {
+      console.log("Have Permission");
+      return messaging.getToken();
+    })
+    .then(token => {
+      console.log("FCM Token: ", token);
+      axios.post('/add_FCMToken', {
+        "id": token
+      })
+        .then((res) => {
+          if (res.status == 200) {
+            console.log(res);
+          }
+        })
+      // return new Promise((resolve, reject)=>{
+      //     if(token)
+      //         resolve(token)
+      //     reject();
+      // });
+      //you probably want to send your new found FCM token to the
+      //application server so that they can send any push
+      //notification to you.
+    })
+    .catch(error => {
+      if (error.code === "messaging/permission-blocked") {
+        console.log("Please Unblock Notification Request Manually");
+      } else {
+        console.log("Error Occurred", error);
+      }
+    })
+
+  messaging.onMessage(payload => {
+    console.log("Notification Received", payload.notification.title);
+    //this is the function that gets triggered when you receive a
+    //push notification while you’re on the page. So you can
+    //create a corresponding UI for you to have the push
+    //notification handled.
+    this.notificationDOMRef.current.addNotification({
+      title: payload.notification.title,
+      message: payload.notification.body,
+      type: "success",
+      insert: "top",
+      container: "bottom-left",
+      animationIn: ["animated", "fadeIn"],
+      animationOut: ["animated", "fadeOut"],
+      dismiss: { duration: 1000*60 },
+      dismissable: { click: true },
+      isMobile : true
+    });
+  });
+}
+componentDidMount() {
+  this.initializePusher();
+}
 
 
   handleLogout = async event => {
@@ -70,7 +136,7 @@ class Head extends Component {
                 </li>
               </ul>
             </div>
-
+        <ReactNotification ref={this.notificationDOMRef} />
             <ul className="navbar-left">
               <li className="brand">
                 <Link to="/home"><b style={{fontFamily:'Ultra',letterSpacing: "0px",fontSize:24}}>traduate</b></Link>

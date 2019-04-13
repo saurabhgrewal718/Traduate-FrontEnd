@@ -116,6 +116,8 @@ class Myquestion extends Component {
                                                subject:items.subject,
                                                topic:items.topic,
                                                _id:items._id,
+                                               attachments:items.attachments
+                                             
                                              }
 
                                            }}>

@@ -8,39 +8,24 @@ import {
 import { Tooltip } from 'antd';
 import axios from 'axios';
 import {
-    getfromstorage,setInStorage,
+    getfromstorage,setInStorage,removeFromStorage
   } from '../../../../../utils/Storage';
 
   axios.defaults.baseURL = 'http://localhost:5000';
   axios.defaults.headers.post['Content-Type'] = 'application/json';
   axios.defaults.headers.common['x-auth'] = getfromstorage('x-auth');
 
-
 const Option = Select.Option;
 const { TextArea } = Input;
-const props = {
-  name: 'file',
-  action: 'http://localhost:5000/post_answer_student',
-  onChange(info) {
-    if (info.file.status !== 'uploading') {
-      console.log(info.file, info.fileList);
-    }
-    if (info.file.status === 'done') {
-      message.success(`${info.file.name} file uploaded successfully`);
-    } else if (info.file.status === 'error') {
-      message.error(`${info.file.name} file upload failed.`);
-    }
-  },
-};
 
 
 class Ansmod extends Component {
-  state = { visible: false,
-     selectedFile:null,
-     iconLoading: false
-   }
+     state = { visible: false,
+        selectedFile:null,
+        iconLoading: false,
+    }
 
-  handleSubmit = (e, questionId) => {
+handleSubmit = (e, questionId) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
@@ -49,7 +34,8 @@ class Ansmod extends Component {
         console.log(typeof questionId);
         axios.post('/post_answer_student', {
           "answer": values.answer,
-          "id":questionId
+          "id":questionId,
+          "path":getfromstorage('path')!==undefined?getfromstorage('path'):''
         })
          .then((res)=>{
          if(res.status==202) {
@@ -162,7 +148,29 @@ class Ansmod extends Component {
                        <div style={{ margin:"auto" }}>
                          <div style={{position:"relative",float:"left"}}>
                             <Tooltip title="Upload images of Answer!">
-                              <Upload {...props}>
+                              <Upload {...{
+                                name: 'image',
+                                 action: 'http://localhost:5000/post_answer_student',
+                                 headers: {
+                                   'x-auth': getfromstorage('x-auth')
+                                 },
+                                 data: {
+                                  'id':this.props.questionId
+                                },
+                                 onChange(info) {
+                                   if (info.file.status !== 'uploading') {
+                                     console.log(info.file.response.path);
+                                     setInStorage('path',info.file.response.path );
+                                   }
+                                   if (info.file.status === 'done') {
+                                     message.success(`${info.file.name} file uploaded successfully`);
+                                   } else if (info.file.status === 'error') {
+                                     message.error(`${info.file.name} file upload failed.`);
+                                   }
+                                 }
+                              }
+
+                                  }>
                                  <span><i className="fas fa-cloud-upload-alt"  style={{fontSize:40,paddingLeft:25,color:"#CAEBF2"}}></i></span>
                               </Upload>
                             </Tooltip>
