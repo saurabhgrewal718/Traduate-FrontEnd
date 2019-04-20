@@ -29,8 +29,8 @@ class Imagegallry extends Component {
       <div>
           <Button onClick={this.toggleGallery} style={{height:"2px",width:"2px",paddingLeft:"0px"}}>
               <div >
-                  <img src="https://cdn.dribbble.com/users/614757/screenshots/1889202/dribbble_problem-solved.gif" alt="Avatar" style={{width:"80px",height:"80px",borderRadius: "50%"}}/>
-                  <b><p style={{paddingTop:10,paddingLeft:5}}>Answer File</p></b>
+                  <i className="fas fa-image" style={{fontSize:60,paddingLeft:25,color:"#CAEBF2"}}></i>
+                  <b><p style={{paddingTop:10,paddingLeft:20}}>Answer File</p></b>
               </div>
           </Button>
           <ReactBnbGallery

@@ -1,7 +1,8 @@
 import React from 'react';
 import {
-  Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete,
+  Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button,Spin, message,AutoComplete,
 } from 'antd';
+import './Jquery.css'
 import {
     getfromstorage,setInStorage,
   } from '../../../utils/Storage';
@@ -11,21 +12,64 @@ import axios from 'axios';
 const { Option } = Select;
 const AutoCompleteOption = AutoComplete.Option;
 
+axios.defaults.baseURL = 'http://localhost:5000';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+
 
 class RegistrationForm extends React.Component {
+
   state = {
     confirmDirty: false,
+    loading:false
   };
+
 
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
-        this.props.como.history.push('./teacher/first');
+
       }
     });
   }
+
+  componentWillMount(){
+    console.log(this.props);
+  }
+
+    handleSubmit = (e) => {
+      e.preventDefault();
+      this.props.form.validateFieldsAndScroll((err, values) => {
+        if (!err) {
+          this.setState({loading:true});
+          console.log('Received values of form: ', values);
+          setInStorage('firstpage', values);
+          axios.post('/teacher_register/check_email', {
+            "email": values.email
+          })
+           .then((res)=>{
+           if(res.status==200) {
+            console.log(res);
+            this.setState({loading:false});
+            this.props.como.history.push('./teacher/first');
+
+           }
+           })
+           .catch((err)=>{
+             console.log(err);
+             this.setState({loading:false});
+             (function(){
+               message.config({
+                top: 20,
+                duration: 5,
+              });
+               message.error("🤯 You Are Already A Member..! 😍 Try Signing In..!" );
+              })();
+           });
+        }
+      });
+    }
 
   handleConfirmBlur = (e) => {
     const value = e.target.value;
@@ -51,6 +95,12 @@ class RegistrationForm extends React.Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
+    console.log(this.props.form.values);
+    if (this.state.loading) {
+      return   <div className="example1">
+                <Spin size="large"/>
+              </div>
+    }
 
     return (
       <div>

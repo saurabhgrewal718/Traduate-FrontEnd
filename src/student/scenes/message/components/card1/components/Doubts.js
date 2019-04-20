@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Doubtquestion from './Doubtquestion';
 import {Tooltip,Avatar,Button,Progress,Skeleton,Empty} from 'antd'
-import Watchanswermodal from './Watchanswermodal'
 import Watchanswer from './Watchanswer'
 import Allhomeroutes from '../../../../../../router/Allhomeroutes'
 import axios from 'axios';

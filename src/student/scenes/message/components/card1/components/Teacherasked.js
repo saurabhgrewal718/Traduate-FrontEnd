@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Doubtquestion from './Doubtquestion';
 import {Tooltip,Avatar,Button,Progress,Skeleton,Empty} from 'antd'
-import Watchanswermodal from './Watchanswermodal'
 import axios from 'axios';
 import {Link} from 'react-router-dom'
 import {time_ago} from '../../../../../utils/getTimeFormat';

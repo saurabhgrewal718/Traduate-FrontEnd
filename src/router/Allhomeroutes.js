@@ -31,7 +31,6 @@ class Allhomeroutes extends Component {
                 <Route exact path='/message/question/:id' component={Watchanswer}/>
                 <Route exact path='/sign' component={Homesign}/>
               </Containerhome>
-              <Route exact path='/sign' component={Homesign}/>
             </Switch>
           </BrowserRouter>
         ):(

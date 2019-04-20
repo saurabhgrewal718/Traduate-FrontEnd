@@ -3,7 +3,6 @@ import { Layout } from 'antd';
 import { Tabs, Button,Avatar,Icon,Tooltip } from 'antd';
 import './Doubts.css';
 import { Popconfirm, message } from 'antd';
-import Watchanswermodal from './Watchanswermodal';
 import { connect } from "react-redux";
 
 const success = () => {
@@ -60,7 +59,7 @@ class Doubtquestion extends Component {
                               <div className="bottom">
                                  <div className="bottom2"><Avatar src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" /></div>
                                  <div className="bottom2"><p style={{paddingTop:5}}>Answered by <b>Rohit Roy</b></p></div>
-                                 <div className="bottom1"><Watchanswermodal/></div>
+                                 <div className="bottom1">hi</div>
                                  <div className="bottom1"><Button>Say Cheers!</Button></div>
                               </div>
                             </div>

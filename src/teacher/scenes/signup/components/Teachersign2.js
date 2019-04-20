@@ -1,32 +1,19 @@
 import React, { Component } from 'react';
-import { Tabs,Input,Modal,Avatar, Button,Tooltip,Form } from 'antd';
+import { Tabs,Input,Icon,Modal,Avatar,message, Button,Upload,Tooltip,Form } from 'antd';
 import { Select } from 'antd';
 import {
    DatePicker, TimePicker
 } from 'antd';
 import {
-  Upload, message, Icon,
-} from 'antd';
-
-const props = {
-  name: 'file',
-  action: '//jsonplaceholder.typicode.com/posts/',
-  headers: {
-    authorization: 'authorization-text',
-  },
-  onChange(info) {
-    if (info.file.status !== 'uploading') {
-      console.log(info.file, info.fileList);
-    }
-    if (info.file.status === 'done') {
-      message.success(`${info.file.name} file uploaded successfully`);
-    } else if (info.file.status === 'error') {
-      message.error(`${info.file.name} file upload failed.`);
-    }
-  },
-};
+    getfromstorage,setInStorage,removeFromStorage
+  } from '../../../utils/Storage';
+import axios from 'axios';
+import { Spin } from 'antd';
+import {Link} from 'react-router-dom';
 
 
+axios.defaults.baseURL = 'http://localhost:5000';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 const { MonthPicker, RangePicker } = DatePicker;
 
@@ -46,12 +33,56 @@ function handleFocus() {
 
 
 class Item extends Component {
-  handleSubmit = (e) => {
-    e.preventDefault();
 
+  state={
+    loading:false,
+  }
+
+
+  handleSubmit = (e) => {
+    let firstpage=getfromstorage('firstpage');
+    let secondpage=getfromstorage('secondpage');
+    console.log(firstpage.email);
+    console.log(secondpage.class);
+    e.preventDefault();
     this.props.form.validateFields((err, fieldsValue) => {
       if (!err) {
-        this.props.compo.history.push('/teacherhome');;
+        this.setState({loading:true});
+        axios.post('/teacher_register', {
+          "email":firstpage.email,
+          "path":getfromstorage('path')!==undefined?getfromstorage('path'):'',
+          "fullname":firstpage.fullname,
+          "password":firstpage.password,
+          "date_of_birth":fieldsValue.date_of_birth,
+          "class":secondpage.class,
+          "city":secondpage.city,
+          "school":secondpage.school,
+          "contact":fieldsValue.contact
+        })
+       .then((res)=>{
+       if(res.status==200) {
+         axios.defaults.headers.common['x-auth'] = res.headers['x-auth'];
+         console.log(res);
+         console.log("Headers: " +" "+ res.headers['x-auth']);
+         setInStorage('x-auth', res.headers['x-auth']);
+         removeFromStorage('firstpage');
+         removeFromStorage('secondpage');
+         this.setState({loading:false});
+         this.props.compo.history.push('/teacherhome');
+       }
+       })
+       .catch((err)=>{
+         console.log(err);
+         this.setState({loading:false});
+         (function(){
+           message.config({
+            top: 20,
+            duration: 5,
+          });
+           message.error("Ahh..SNAP..🤕 " + err );
+          })();
+
+      });
       }
 
       // Should format date value before submit.
@@ -65,11 +96,22 @@ class Item extends Component {
     });
   }
 
+
   render() {
+    if (this.state.loading) {
+      return   <div style={{    textAlign: "center",
+                                background: "rgba(0,0,0,0)",
+                                borderRadius: "4px",
+                                padding: "300px 40px",
+                            }}>
+                <Spin size="large"/>
+              </div>
+    }
     const { getFieldDecorator } = this.props.form;
     const config = {
       rules: [{ type: 'object', required: true, message: 'Please select time!' }],
     };
+
     return (
 
       <div>
@@ -101,12 +143,29 @@ class Item extends Component {
                                <div style={{marginTop:40}}>
                                  <Form.Item
                                   >
-                                    {getFieldDecorator('username', {
+                                    {getFieldDecorator('path', {
                                       rules: [
                                         { required: true, message: 'Upload your Class 12th Marksheet' },
                                       ],
                                     })(
-                                      <Upload {...props}>
+                                      <Upload {...{
+                                        name: 'marksheet',
+                                         action: 'http://localhost:5000/teacher_register',
+                                         onChange(info) {
+                                           if (info.file.status !== 'uploading') {
+                                             console.log(info.file.response.path);
+                                             setInStorage('path',info.file.response.path );
+                                           }
+                                           if (info.file.status === 'done') {
+                                             message.success(`${info.file.name} file uploaded successfully`);
+                                           } else if (info.file.status === 'error') {
+                                             message.error(`${info.file.name} file upload failed.`);
+                                           }
+                                         }
+                                      }
+
+                                          }
+                                        >
                                         <Button style={{width:200}}>
                                           <Icon type="upload"/> Twelfth Marksheet
                                         </Button>
@@ -118,7 +177,7 @@ class Item extends Component {
                                <div style={{marginTop:40}}>
                                <Form.Item
                                >
-                                 {getFieldDecorator('phone', {
+                                 {getFieldDecorator('contact', {
                                    rules: [{ required: true, message: 'Please input your phone number!' }],
                                  })(
                                    <Input placeholder="Phone number" style={{ width:200 }} />

@@ -69,12 +69,8 @@ class Watchanswer extends Component {
                                     <Images image={this.props.location.state.attachments}/>
                                  </div>
                                  <div >
-                                     <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/d360e756534229.59b23e4d35886.png" alt="Avatar" style={{width:"80px",height:"80px",borderRadius: "50%"}}/>
-                                     <b><p style={{paddingTop:10,paddingLeft:2}}>Community</p></b>
-                                 </div>
-                                 <div >
-                                     <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/54eb1256534229.59b2492202982.png" alt="Avatar" style={{width:"80px",height:"80px",borderRadius: "50%"}}/>
-                                     <b><p style={{paddingTop:10,paddingLeft:14}}>Teacher</p></b>
+                                     <i className="fas fa-video"  style={{fontSize:60,paddingLeft:30,color:"#CAEBF2"}}></i>
+                                     <b><p style={{paddingTop:10,paddingLeft:35}}>Videos</p></b>
                                  </div>
                                </div>
                             </div>
@@ -82,7 +78,7 @@ class Watchanswer extends Component {
                         <div style={{ display:"flex"}}>
                            <div style={{ margin:"auto" }}>
                                <div style={{position:"relative",float:"left"}}>
-                                 <div style={{width:1100,fontSize:20}}>
+                                 <div style={{width:1100,fontSize:30}}>
                                    {this.props.location.state.answer}
                                  </div>
                                </div>

@@ -1,221 +1,214 @@
-import React, { Component } from 'react';
-import Head from './student/scenes/components/Head';
-import Allhomeroutes from './student/router/Allhomeroutes';
-import Signcontainer from './student/scenes/signup/Signcontainer';
-import { connect } from "react-redux";
-import { Skeleton } from 'antd';
-
-
-class App extends Component {
-
-
-  render() {
-    const { fetching, question, onRequestQuestion, error } = this.props;
-    return (
-      <div >
-         <Allhomeroutes/>
-      </div>
-    );
-  }
-}
-
-
-export default App;
-
-
-
-
-
-import React, { Component } from 'react';
-import Head from './student/scenes/components/Head';
-import Allhomeroutes from './student/router/Allhomeroutes';
-import Signcontainer from './student/scenes/signup/Signcontainer';
-import { connect } from "react-redux";
-import { Skeleton } from 'antd';
-
-
-class App extends Component {
-
-componentDidMount(){
-  this.props.onRequestQuestion();
-}
-
-  render() {
-    const { fetching, question, onRequestQuestion, error } = this.props;
-    return (
-      <div >
-      <div>
-      {console.log(question)}
-      {question&&question.length>0&&question.map((object, i) => {
-         return <div key={i}>
-                    {[ object.question ,
-                       // remove the key
-                       <b key={i}> {object.question} </b> ,
-                       object.date_of_question
-                    ]}
-                </div>;
-
-       })}
-       </div>
-
-        {question ? (
-          <p className="App-intro">Keep clicking for new question</p>
-        ) : (
-          <p className="App-intro">Replace the React icon with a question!</p>
-        )}
-
-        {fetching ? (
-          <div>
-            <button disabled>Fetching...</button>
-            <Skeleton active />
-          </div>
-        ) : (
-          <button onClick={onRequestQuestion} >Request a question</button>
-        )}
-
-        {error && <p style={{ color: "red" }}>Uh oh - something went wrong!</p>}
-
-      </div>
-    );
-  }
-}
-
-
-const mapStateToProps = state => {
-  return {
-    fetching: state.fetching,
-    question: state.question,
-    error: state.error
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onRequestQuestion: () => dispatch({ type: "GET_QUESTION_REQUEST" })
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
-
-
-
-
 import React, { Component } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Redirect,
-  withRouter
-} from "react-router-dom";
+import PropTypes from "prop-types";
+import SpeechRecognition from "react-speech-recognition";
+import { Input } from 'antd';
+import { Modal, Button,Icon } from 'antd';
 
-////////////////////////////////////////////////////////////
-// 1. Click the public page
-// 2. Click the protected page
-// 3. Log in
-// 4. Click the back button, note the URL each time
+const propTypes = {
+  // Props injected by SpeechRecognition
+  transcript: PropTypes.string,
+  resetTranscript: PropTypes.func,
+  browserSupportsSpeechRecognition: PropTypes.bool,
+  startListening: PropTypes.func,
+  stopListening:PropTypes.func,
+  listening :  PropTypes.bool,
+  finalTranscript :PropTypes.string
 
-function AuthExample() {
-  return (
-    <Router>
-      <div>
-        <AuthButton />
-        <ul>
-          <li>
-            <Link to="/public">Public Page</Link>
-          </li>
-          <li>
-            <Link to="/protected">Protected Page</Link>
-          </li>
-        </ul>
-        <Route path="/public" component={Public} />
-        <Route path="/login" component={Login} />
-        <PrivateRoute path="/protected" component={Protected} />
-      </div>
-    </Router>
-  );
-}
-
-const fakeAuth = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true;
-    setTimeout(cb, 100); // fake async
-  },
-  signout(cb) {
-    this.isAuthenticated = false;
-    setTimeout(cb, 100);
-  }
 };
 
-const AuthButton = withRouter(
-  ({ history }) =>
-    fakeAuth.isAuthenticated ? (
-      <p>
-        Welcome!{" "}
-        <button
-          onClick={() => {
-            fakeAuth.signout(() => history.push("/"));
-          }}
-        >
-          Sign out
-        </button>
-      </p>
-    ) : (
-      <p>You are not logged in.</p>
-    )
-);
+const { TextArea } = Input;
 
-function PrivateRoute({ component: Component, ...rest }) {
-  return (
-    <Route
-      {...rest}
-      render={props =>
-        fakeAuth.isAuthenticated ? (
-          <Component {...props} />
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/login",
-              state: { from: props.location }
-            }}
-          />
-        )
-      }
-    />
-  );
-}
+class Dictaphone extends Component {
+  constructor(){
+    super();
+    this.state={
+      search:"yes here i am",visible: false,tog:false
+    };
+  }
 
-function Public() {
-  return <h3>Public</h3>;
-}
+  togg=()=> {
+    this.setState({
+      tog: !this.state.tog
+    })
+  }
 
-function Protected() {
-  return <h3>Protected</h3>;
-}
-
-class Login extends Component {
-  state = { redirectToReferrer: false };
-
-  login = () => {
-    fakeAuth.authenticate(() => {
-      this.setState({ redirectToReferrer: true });
+  showModal = () => {
+    this.setState({
+      visible: true,
     });
-  };
+  }
+
+  handleOk = (e) => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  }
+
+  handleCancel = (e) => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  }
+
+update(event){
+  this.setState({search:event.target.value});
+}
 
   render() {
-    let { from } = this.props.location.state || { from: { pathname: "/" } };
-    let { redirectToReferrer } = this.state;
+      var {transcript,
+      resetTranscript,
+      startListening,
+      stopListening,
+      finalTranscript,
+      browserSupportsSpeechRecognition} = this.props;
+      if (!browserSupportsSpeechRecognition) {
+        return null;
+      }
 
-    if (redirectToReferrer) return <Redirect to={from} />;
+      return (
+        <div>
+          <div>
+            <Button type="primary" onClick={this.showModal}>
+              Open Modal
+            </Button>
+            <Modal
+              title="Basic Modal"
+              visible={this.state.visible}
+              onOk={this.handleOk}
+              onCancel={this.handleCancel}
+            >
+              <Button style={{height:"auto",padding:0}} onClick={this.togg}>
+                <div>
+                  {this.state.tog
+                     ?
+                     <Button onClick={startListening} type="loading" style={{zIndex:10,padding:20}}><Icon style={{fontSize:40}} type="bulb" theme="filled" /></Button>
+                     :
+                     <Button onClick={stopListening} type="bulb" theme="filled" style={{zIndex:10,padding:20}}><Icon style={{fontSize:40}} type="loading" /></Button>
+                  }
+                </div>
+              </Button>
 
-    return (
-      <div>
-        <p>You must log in to view the page at {from.pathname}</p>
-        <button onClick={this.login}>Log in</button>
-      </div>
-    );
+              <p>{transcript}</p>
+              <input type="text" defaultValue={transcript} onChange={this.update.bind(this)} style={{width:800,paddingTop:10,position:"relative",float:"left",paddingBottom:10,fontSize:24}} />
+            </Modal>
+          </div>
+
+        </div>
+      );
   }
 }
 
-export default AuthExample;
+Dictaphone.propTypes = propTypes;
+
+const options = {
+  autoStart: false,
+  continuous:true
+}
+
+export default SpeechRecognition(options)(Dictaphone)
+
+
+{/*'use strict'
+import React, { Component } from 'react'
+
+//-----------------SPEECH RECOGNITION SETUP---------------------
+
+
+recognition.continous = true
+recognition.interimResults = true
+recognition.lang = 'en-US'
+
+//------------------------COMPONENT-----------------------------
+
+class Appcopy extends Component {
+
+  constructor() {
+    super()
+    this.state = {
+      listening: false
+    }
+
+    this.toggleListen = this.toggleListen.bind(this)
+    this.handleListen = this.handleListen.bind(this)
+  }
+
+  toggleListen() {
+    this.setState({
+      listening: !this.state.listening
+    }, this.handleListen)
+  }
+
+  handleListen() {
+
+    if (this.state.listening) {
+      recognition.start()
+      recognition.onend = () => recognition.start()
+
+      let finalTranscript = ''
+      recognition.onresult = event => {
+        let interimTranscript = ''
+
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+          const transcript = event.results[i][0].transcript;
+          if (event.results[i].isFinal) finalTranscript += transcript + ' ';
+          else interimTranscript += transcript;
+        }
+        document.getElementById('interim').innerHTML = interimTranscript
+        document.getElementById('final').innerHTML = finalTranscript
+    }
+
+      } else {
+      recognition.end()
+      }
+
+}
+render() {
+  return (
+    <div style={container}>
+      <button id='microphone-btn' style={button} onClick={this.toggleListen} />
+      <div id='interim' style={interim}></div>
+      <div id='final' style={final}></div>
+    </div>
+  )
+}
+}
+
+export default Appcopy;
+
+
+//-------------------------CSS------------------------------------
+
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    textAlign: 'center'
+  },
+  button: {
+    width: '60px',
+    height: '60px',
+    background: 'lightblue',
+    borderRadius: '50%',
+    margin: '6em 0 2em 0'
+  },
+  interim: {
+    color: 'gray',
+    border: '#ccc 1px solid',
+    padding: '1em',
+    margin: '1em',
+    width: '300px'
+  },
+  final: {
+    color: 'black',
+    border: '#ccc 1px solid',
+    padding: '1em',
+    margin: '1em',
+    width: '300px'
+  }
+}
+
+const { container, button, interim, final } = styles
+*/}

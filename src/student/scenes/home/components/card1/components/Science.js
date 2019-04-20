@@ -38,7 +38,7 @@ handleSubmit = (e, _id) => {
          console.log(err);
         this.setState({ iconloading: false });
          (function(){
-           message.error("Ohh no..🤕 ! Cant add to Doubts !" + err);
+           message.error("Ohh no..🤕 ! Can't be added to Doubts !" + err);
             })();
        });
 
@@ -65,6 +65,7 @@ handleSubmit = (e, _id) => {
   render() {
     let question=this.state.data.data;
     const isNull = !question;
+    console.log(question);
     const isEmpty = !isNull && !question.length;
     if (this.state.loading) {
       return <div><Skeleton avatar paragraph={{ rows: 4 }} active />
@@ -128,7 +129,7 @@ handleSubmit = (e, _id) => {
                    </div>
 
                    <div className="bottom">
-                      <div className="bottom1"><Answermodal image={items.question_by.profileImage} questionId={items._id} fullname={items.question_by.fullname} marked_doubt={items.marked_doubt} subject={items.subject} topic={items.topic} chapter={items.chapter} question_by={items.question_by} question={items.question}/></div>
+                      <div className="bottom1"><Answermodal subject={items.subject} question_by={items.question_by} question={items.question} chapter={items.chapter} topic={items.topic} marked_doubt={items.marked_doubt}/></div>
                       <div className="bottom1">
                           <Tooltip title="Too tuff ? Mark a doubt!">
                             <span><Button loading={this.state.iconloading} onClick={(event) =>this.handleSubmit(event,items._id)} >Mark Doubt</Button></span>

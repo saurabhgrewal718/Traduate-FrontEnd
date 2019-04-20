@@ -73,6 +73,7 @@ handleSubmit = (e,_id) => {
                   <Skeleton avatar paragraph={{ rows: 4 }} active />
             </div>;
     }
+
     return (
         <div>
 
@@ -128,7 +129,7 @@ handleSubmit = (e,_id) => {
                          </div>
 
                          <div className="bottom">
-                            <div className="bottom1"><Answermodal image={items.question_by.profileImage} marked_doubt={items.marked_doubt} subject={items.subject} topic={items.topic} chapter={items.chapter} questionId={items._id} fullname={items.question_by.fullname} question={items.question}/></div>
+                            <div className="bottom1"><Answermodal subject={items.subject} question_by={items.question_by} question={items.question} chapter={items.chapter} topic={items.topic} marked_doubt={items.marked_doubt} /></div>
                             <div className="bottom1">
                                <Button loading={this.state.iconloading} onClick={(event) =>this.handleSubmit(event,items._id)} >Mark Doubt</Button>
                             </div>

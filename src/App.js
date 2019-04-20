@@ -12,6 +12,7 @@ import Teachersignup2 from './teacher/scenes/signup/components/Teachersignup2'
 import Allroutes from './router/Allroutes';
 import { connect } from "react-redux";
 import { Skeleton } from 'antd';
+import Dictaphone from './Appcopy'
 
 
 class App extends Component {

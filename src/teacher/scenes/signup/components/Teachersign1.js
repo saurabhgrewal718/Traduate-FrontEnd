@@ -3,6 +3,10 @@ import { Tabs,Input,Modal,Avatar, Button,Tooltip,Form } from 'antd';
 import { Select } from 'antd';
 import { Radio } from 'antd';
 import {Link} from 'react-router-dom'
+import Teachersign2 from './Teachersign2'
+import {
+    getfromstorage,setInStorage,
+  } from '../../../utils/Storage';
 
 const { Option } = Select;
 const RadioButton = Radio.Button;
@@ -25,21 +29,24 @@ function handleFocus() {
 const { TextArea } = Input;
 
 
+
 class Item extends Component {
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
-        console.log(this.props);
-        
-        this.props.compo.history.push("./last");
 
+      handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(this.state);
+
+        this.props.form.validateFields((err, values) => {
+          if (!err) {
+            console.log('Received values of form: ', values);
+            setInStorage('secondpage', values);
+            this.props.compo.history.push('./last');
+          }
+        });
       }
-    });
-  }
 
-  render() {
+
+ render() {
     const { getFieldDecorator } = this.props.form;
     return (
 
@@ -80,9 +87,9 @@ class Item extends Component {
                                         onBlur={handleBlur}
                                         filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
                                       >
-                                        <Option value="1">Physics</Option>
-                                        <Option value="2">Chemistry</Option>
-                                        <Option value="3">Mathematics</Option>
+                                        <Option value="Physics">Physics</Option>
+                                        <Option value="Chemistry">Chemistry</Option>
+                                        <Option value="Mathematics">Mathematics</Option>
                                       </Select>
                                     )}
                                   </Form.Item>
@@ -90,7 +97,7 @@ class Item extends Component {
                                <div style={{marginTop:40}}>
                                  <Form.Item
                                   >
-                                    {getFieldDecorator('chapter', {
+                                    {getFieldDecorator('class', {
                                       rules: [
                                         { required: true, message: '...Which class you Love teaching!' },
                                       ],
@@ -105,9 +112,9 @@ class Item extends Component {
                                         onBlur={handleBlur}
                                         filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
                                       >
-                                        <Option value="1">Nineth (9)</Option>
-                                        <Option value="2">Tenth (10)</Option>
-                                        <Option value="3">Both</Option>
+                                        <Option value="Nineth">Nineth (9)</Option>
+                                        <Option value="Tenth">Tenth (10)</Option>
+                                        <Option value="Both">Both</Option>
                                       </Select>
                                     )}
                                   </Form.Item>
@@ -115,7 +122,7 @@ class Item extends Component {
                                <div style={{marginTop:40}}>
                                   <Form.Item
                                    >
-                                     {getFieldDecorator('topic', {
+                                     {getFieldDecorator('city', {
                                        rules: [
                                          { required: true, message: '...City missing!' },
                                        ],
@@ -130,9 +137,9 @@ class Item extends Component {
                                          onBlur={handleBlur}
                                          filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
                                        >
-                                         <Option value="1">Gravitation</Option>
-                                         <Option value="2">Fluid mechanics</Option>
-                                         <Option value="3">Newtons laws of motion</Option>
+                                         <Option value="Delhi">Delhi</Option>
+                                         <Option value="Rohtak">Rohtak</Option>
+                                         <Option value="Gurugram">Gurugram</Option>
                                        </Select>
                                      )}
                                    </Form.Item>

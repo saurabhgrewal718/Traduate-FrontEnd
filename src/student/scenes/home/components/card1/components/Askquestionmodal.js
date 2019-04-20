@@ -35,7 +35,7 @@ const { TextArea } = Input;
 
 
 class Askque extends Component {
-  state = { visible: false , iconloading: false}
+  state = { visible: false , iconloading: false,toggle:false}
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -80,6 +80,10 @@ class Askque extends Component {
     });
   }
 
+buttontoggle=()=>{
+  const newtoggle=!this.state.toggle;
+  this.setState({toggle:newtoggle})
+}
 
   showModal = () => {
     this.setState({
@@ -135,14 +139,23 @@ class Askque extends Component {
                   <div style={{width:"100%",height:400}}>
                       <div style={{ display:"flex"}}>
                          <div style={{ margin:"auto" }}>
-                             <div>
+                             <div >
                                <Form.Item>
                                  {getFieldDecorator('question', {
                                    rules: [{ required: true, message: "Hey! Question can't be empty :)" }],
                                  })(
-                                   <TextArea style={{width:900,paddingTop:10,paddingBottom:10,fontSize:24}} placeholder="Ask Your Question Here..." autosize={{ minRows: 2, maxRows: 3 }} />
+                                  <div style={{width:900,position:"relative"}}>
+                                     <TextArea style={{width:800,paddingTop:10,position:"relative",float:"left",paddingBottom:10,fontSize:24}} placeholder="Ask Your Question Here..." autosize={{ minRows: 2, maxRows: 3 }} />
+                                     <div style={{width:100,float:"right",position:"relative",height:93,paddingTop:25}}>
+                                        <Tooltip title="Speak Question" placement="right" >
+                                           <span><i onClick={this.toggle} className="fas fa-microphone-alt" style={{fontSize:40,paddingLeft:35,addingBottom:0}}></i></span>
+                                           <img style={{height:60,width:100,marginTop:"-16px"}} src="https://cdn.dribbble.com/users/82855/screenshots/4302618/cvs4.gif"/>
+                                        </Tooltip>
+                                     </div>
+                                  </div>
                                  )}
                                </Form.Item>
+
                              </div>
 
                              <div style={{position:"relative",float:"left",marginTop:30}}>

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Doubtquestion from './Doubtquestion';
 import {Tooltip,Avatar,Button,Progress,Skeleton,Empty} from 'antd'
-import Watchanswermodal from './Watchanswermodal'
 import Watchanswer from './Watchanswer'
 import axios from 'axios';
 import {Link} from 'react-router-dom'
@@ -117,7 +116,7 @@ class Myquestion extends Component {
                                                topic:items.topic,
                                                _id:items._id,
                                                attachments:items.attachments
-                                             
+
                                              }
 
                                            }}>

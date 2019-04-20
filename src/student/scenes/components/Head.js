@@ -41,9 +41,9 @@ initializePusher = () => {
       console.log("Have Permission");
       return messaging.getToken();
     })
-    .then(token => {
+    .then(async token => {
       console.log("FCM Token: ", token);
-      axios.post('/add_FCMToken', {
+      await axios.post('/add_FCMToken', {
         "id": token
       })
         .then((res) => {
@@ -63,6 +63,7 @@ initializePusher = () => {
     .catch(error => {
       if (error.code === "messaging/permission-blocked") {
         console.log("Please Unblock Notification Request Manually");
+        // alert box
       } else {
         console.log("Error Occurred", error);
       }
@@ -130,7 +131,7 @@ componentDidMount() {
                 <li style={{paddingRight:15}}><Link to="/home"><b>Home</b></Link></li>
 {/*                <li style={{paddingRight:15}}><Link to="/profile"><b>Read bytes</b></Link></li> */}
                 <li style={{paddingRight:15}}><Link to="/message"><b>Answers</b></Link></li>
-{/*                <li style={{paddingRight:15}}><b><Notification/></b></li>*/}
+                <li style={{paddingRight:15}}><b><Notification/></b></li>
                 <li>
                   <Button onClick={this.handleLogout} style={{backgroundColor:"rgb(0,0,0,0)"}}><b><i className="fas fa-power-off" style={{color:"#fd0054"}}></i></b></Button>
                 </li>
