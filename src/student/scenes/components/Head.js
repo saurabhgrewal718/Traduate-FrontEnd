@@ -15,7 +15,7 @@ import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import { notification } from 'antd';
 
-axios.defaults.baseURL = 'http://localhost:5000';
+axios.defaults.baseURL = 'http://www.traduate-backend.herokuapp.com';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.headers.common['x-auth'] = getfromstorage('x-auth');
 

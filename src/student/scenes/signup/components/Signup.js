@@ -11,7 +11,7 @@ import {Link} from 'react-router-dom';
 import Item1 from './Item1';
 
 
-axios.defaults.baseURL = 'https://traduate-backend.herokuapp.com/';
+axios.defaults.baseURL = 'http://traduate-backend.herokuapp.com';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 const { Option } = Select;
