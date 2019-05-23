@@ -1,0 +1,13 @@
+.workspace {
+  position:relative;
+  float:right;
+  height:610px;
+  width:100%;
+  border-radius: 6px;
+  background-color:white;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.workspacecontainer {
+  padding: 2px 16px;
+}

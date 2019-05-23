@@ -39,7 +39,10 @@ class Reportcontainer extends React.Component {
                 tabPosition="left"
                 style={{ height: "auto" }}
               >
-                <TabPane tab={<span><i className="far fa-chart-bar"></i> Reports</span>} key="1"><Reports/></TabPane>
+                <TabPane tab={<span>Reports</span>} key="1"><Reports/></TabPane>
+                <TabPane tab={<span>Qestions Asked</span>} key="2"><Reports/></TabPane>
+                <TabPane tab={<span>Answered Questions</span>} key="3"><Reports/></TabPane>
+                <TabPane tab={<span>Books Read</span>} key="4"><Reports/></TabPane>
 {/*                <TabPane tab={<span><i className="fas fa-flask"></i> Chemistry</span>} key="2">Content of tab 2</TabPane>
                 <TabPane tab={<span><i className="fas fa-sort-numeric-up"></i> Maths</span>} key="3">Content of tab 3</TabPane>
                 <TabPane tab={<span><i className="fas fa-closed-captioning"></i> English</span>} key="4">Content of tab 4</TabPane>

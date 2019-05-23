@@ -14,9 +14,9 @@ class Card1 extends Component {
   render() {
     return (
         <div>
-            <Layout className="layout">
-              <Content style={{ padding: '0 20px' }}>
-                <Tabs tabBarExtraContent={operations}>
+            <Layout className="layout" style={{backgroundColor:"white"}}>
+              <Content style={{ padding: '0 1px' }}>
+                <Tabs >
                   <TabPane tab="Teachers" key="1"><Teachers/></TabPane>
                   <TabPane tab="My Questions" key="2"><Myquestion/></TabPane>
                   <TabPane tab="Doubts" key="3"><Doubts/></TabPane>                  

@@ -16,7 +16,7 @@ class Teachersign extends Component {
                    <b style={{position:"relative",float:"right",fontFamily:'Ultra',fontSize:34}}>teacher</b>
                 </div>
                 <div style={{position:"relative",float:"right",width:"50%"}}>
-                   <h1><Signin como={this.props}/></h1>
+                   <h1 style={{paddingTop:0}}><Signin como={this.props}/></h1>
                 </div>
             </div>
             <div className="content">
@@ -24,7 +24,7 @@ class Teachersign extends Component {
                   <img src="https://cdn.dribbble.com/users/998555/screenshots/2534708/teacher_animation.gif" alt="Learn with Traduate" />
                </div>
                <div style={{position:"relative",float:"right",width:"50%"}}>
-                  <h1><Signup como={this.props}/></h1>
+                  <h1 style={{paddingTop:30}}><Signup como={this.props}/></h1>
                </div>
             </div>
             <div className="footer"></div>

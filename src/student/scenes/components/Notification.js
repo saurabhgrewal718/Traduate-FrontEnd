@@ -19,10 +19,11 @@ class Notification extends Component{
           content={<div>
                      <p>Content</p>
                      <p>Content</p>
+
                    </div>}
           title="Title"
           trigger="click">
-          <i className="fas fa-bolt" style={{marginRight:10,fontSize:20}}></i>
+          <i className="fas fa-bolt" style={{paddingRight:10,fontSize:20}}></i>
         </Popover>
       </Badge>
 

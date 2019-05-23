@@ -29,14 +29,16 @@ class Ansmod extends Component {
 
 handleSubmit = (e, questionId) => {
     e.preventDefault();
+    console.log(questionId);
     this.props.form.validateFields((err, values) => {
       if (!err) {
         this.setState({ iconloading: true });
         console.log('Received values of form: ', values);
-        console.log(typeof questionId);
+
         axios.post('/post_answer', {
           "answer": values.answer,
           "id":questionId,
+          "path":getfromstorage('path')!==undefined?getfromstorage('path'):''
         })
          .then((res)=>{
          if(res.status==202) {
@@ -153,7 +155,7 @@ handleSubmit = (e, questionId) => {
                                    <Tooltip title="Upload Image of Answer!  💌 ">
                                      <Upload {...{
                                        name: 'image',
-                                        action: 'http://localhost:5000/post_answer',
+                                        action: 'http://localhost:5000/post_answer/upload_image',
                                         headers: {
                                           'x-auth': getfromstorage('x-auth')
                                         },
@@ -162,7 +164,8 @@ handleSubmit = (e, questionId) => {
                                        },
                                         onChange(info) {
                                           if (info.file.status !== 'uploading') {
-                                            console.log(info.file);
+                                              console.log(info.file.response.path);
+                                              setInStorage('path',info.file.response.path );
 
                                           }
                                           if (info.file.status === 'done') {

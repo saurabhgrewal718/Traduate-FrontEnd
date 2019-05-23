@@ -5,6 +5,9 @@ import Oneunans from './Oneunans'
 import {
     getfromstorage,setInStorage,
   } from '../../../../../utils/Storage';
+import {
+    time_ago,
+  } from '../../../../../utils/getTimeFormat';
 
 
 axios.defaults.baseURL = 'http://localhost:5000';
@@ -22,8 +25,7 @@ class Doubtsun extends Component {
 
 handleSubmit = (e,_id) => {
   e.preventDefault();
-      axios.post('/post_question/send_to_teacher', {
-        "id": _id
+      axios.post('/post_question/send_to_teacher', {        
       })
        .then((res)=>{
        if(res.status==201) {
@@ -114,34 +116,48 @@ handleSubmit = (e,_id) => {
                                    <div style={{position:"relative",float:"left",width:"800px",borderRadius:25,borderColor:"#DCDCDC",borderStyle:"solid",borderWidth:"0.5px" ,padding:10}}>
                                        <div className="containertop">
 
-                                          <div style={{display:"flex"}}>
-                                             <div style={{margin:"auto"}}>
-                                                <b><p style={{padding:5,paddingRight:20,position:"relative",float:"left",paddingBottom:10}}>{items.subject}</p></b>
-                                                <b><p style={{padding:5,paddingRight:20,position:"relative",float:"left",paddingBottom:10}}>{items.chapter}</p></b>
-                                                <b><p style={{padding:5,paddingRight:20,position:"relative",float:"left",paddingBottom:10}}>{items.topic}</p></b>
-                                             </div>
+                                         <div className="containerquestion">
+                                           <div className="top">
+                                              <div className="top1">
+                                                <Avatar src={"http://localhost:5000/" + items.question_by.profileImage} />
+                                              </div>
+                                              <div className="top2">
+                                                 <p>{items.question_by.fullname}</p>
+                                              </div>
+                                              <div className="top2">
+                                                 <b><p style={{color:"#7CFC00"}}>{items.subject}</p></b>
+                                              </div>
+                                              <div className="top2">
+                                                 <p>{time_ago(items.date_of_question)} </p>
+                                              </div>
+                                              <div className="top2">
+                                                 <b><p style={{color:"#FFDAB9"}}>(Based on Topics you Read)</p></b>
+                                              </div>
+                        {/*                      <div className="top3">
+                                                  <Tooltip title="Not Covered Yet">
+                                                    <span><i className="fa fa-paper-plane"></i></span>
+                                                  </Tooltip>
+                                              </div> */}
                                           </div>
 
-                                          <div style={{display:"flex"}}>
-                                             <div style={{margin:"auto"}}>
-           {/*                                      <div style={{position:"relative",float:"right"}}>
-                                                     <Button style={{borderRadius:25}}><i style={{color:"#FD6A02"}} class="fas fa-fire"></i></Button>
-                                                 </div> */}
-                                                <p style={{paddingLeft:8,position:"relative",float:"right",fontWeight:600,color:"#FF7F50"}}>{items.question}</p>
-                                             </div>
-                                         </div>
+                                           <div className="middle">
+                                              <h3>{items.question}</h3>
+                                           </div>
+                                          </div>
 
+                                       <div style={{padding:25}}>
                                           <div style={{position:"relative",float:"left"}}>
                                              <p style={{paddingLeft:2,paddingTop:2,position:"relative",float:"left",fontWeight:600}}>500 Views</p>
                                          </div>
 
                                          <div style={{position:"relative",float:"right"}}>
-                                             <Tooltip placement="right" title="Ask Teacher!">
+                                             <Tooltip placement="right" title="Ask To Teacher!">
                                                  <div style={{position:"relative"}}>
-                                                     <Button onClick={(event)=>this.handleSubmit(event,items._id)} style={{borderRadius:25,marginRight:20}}><i style={{color:"#00E52D"}} className="fas fa-chalkboard-teacher"></i></Button>
+                                                     <Button onClick={(event)=>this.handleSubmit(event,items._id)} style={{borderRadius:25,borderColor:"#ff5733"}}><i style={{color:"#ff5733"}} className="fas fa-chalkboard-teacher"></i></Button>
                                                  </div>
                                              </Tooltip>
                                          </div>
+                                      </div>
 
                                        </div>
                                    </div>

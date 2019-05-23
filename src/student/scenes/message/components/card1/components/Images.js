@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Button} from 'antd';
+import {Button,Tooltip} from 'antd';
 import ReactBnbGallery from 'react-bnb-gallery'
 
 const photos = [{
@@ -28,10 +28,13 @@ class Imagegallry extends Component {
     return (
       <div>
           <Button onClick={this.toggleGallery} style={{height:"2px",width:"2px",paddingLeft:"0px"}}>
-              <div >
-                  <i className="fas fa-image" style={{fontSize:60,paddingLeft:25,color:"#CAEBF2"}}></i>
-                  <b><p style={{paddingTop:10,paddingLeft:20}}>Answer File</p></b>
-              </div>
+          <Tooltip title="📝 Image file Avalable">
+            <div >
+                <i className="fas fa-image" style={{fontSize:60,paddingLeft:25,color:"#CAEBF2"}}></i>
+                <b><p style={{paddingTop:10,paddingLeft:20}}>Answer File</p></b>
+            </div>
+         </Tooltip>
+
           </Button>
           <ReactBnbGallery
             show={this.state.galleryOpened}

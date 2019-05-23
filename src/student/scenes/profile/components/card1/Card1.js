@@ -3,6 +3,7 @@ import { Layout } from 'antd';
 import { Tabs, Button } from 'antd';
 import Topics from './components/Topics';
 import Activity from './components/Activity';
+import Trending from './components/Trending';
 
 const TabPane = Tabs.TabPane;
 const {Content} = Layout;
@@ -12,10 +13,11 @@ class Card1 extends Component {
   render() {
     return (
         <div>
-            <Layout className="layout">
+            <Layout >
               <Content style={{ padding: '0 20px' }}>
-                <Tabs tabBarExtraContent={operations}>
-                  <TabPane tab="Topics" key="2"><Activity/></TabPane>
+                <Tabs >
+                  <TabPane tab="Topics" key="1"><Activity/></TabPane>
+                  <TabPane tab="Hub" key="2"><Trending/></TabPane>
                 </Tabs>
               </Content>
             </Layout>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Layout } from 'antd';
-import './Profile.scss';
+import './Read.scss';
 import { Tabs, Progress,Button,Tooltip } from 'antd';
 import { Avatar,Upload,message } from 'antd';
 import Card1 from './components/card1/Card1'

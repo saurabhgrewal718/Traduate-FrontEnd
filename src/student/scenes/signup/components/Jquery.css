@@ -13,3 +13,16 @@
   padding: 160px 40px;
 
 }
+
+@media screen and (min-width: 340px) {
+
+.loginbutton{
+  display: block;
+}
+}
+@media screen and (min-width: 800px) {
+
+  .loginbutton{
+    display: inline-block;
+  }
+  }

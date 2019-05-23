@@ -10,6 +10,7 @@ axios.defaults.baseURL = 'http://localhost:5000';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.headers.common['x-auth'] = getfromstorage('x-auth');
 
+const isApiSucessful=response=>response.status===200;
 
 class Maths extends Component {
   constructor(props) {
@@ -44,21 +45,22 @@ handleSubmit = (e,_id) => {
 
 }
 
-  async componentDidMount() {
-    await axios.get('/get_all_question/Maths')
-  .then(result=>{
-    if(result.status==200){
+componentDidMount() {
+    this.getmathsquestion();
+}
+
+getmathsquestion=async()=>{
+  try{
+    const res= await axios.get('/get_all_question/Maths')
+    if(isApiSucessful(res)){
       let questiondata='';
-      questiondata = result.data;
-      console.log(questiondata);
+      questiondata = res.data;
       this.setState({data:questiondata});
       this.setState({loading: false });
-    }
-
-  })
-  .catch(err=>{
-    console.log(err);
-  });
+   }
+ }catch(err){
+     console.log(err);
+ }
 }
 
 
@@ -68,18 +70,17 @@ handleSubmit = (e,_id) => {
     const isNull = !question;
     const isEmpty = !isNull && !question.length;
     if (this.state.loading) {
-      return <div><Skeleton avatar paragraph={{ rows: 4 }} active />
+      return <div style={{marginTop:10}}><Skeleton avatar paragraph={{ rows: 4 }} active />
                   <Skeleton avatar paragraph={{ rows: 4 }} active />
                   <Skeleton avatar paragraph={{ rows: 4 }} active />
             </div>;
     }
 
     return (
-        <div>
+        <div >
 
-        <div className="scrollbar2" id="style-1">
-           <div className="force-overflow">
-
+        <div className="thescrollbar" id="scrollbarstyle" >
+              <div className="the-overflow">
 
            <div>
              { isNull ? <Empty/>
@@ -129,7 +130,7 @@ handleSubmit = (e,_id) => {
                          </div>
 
                          <div className="bottom">
-                            <div className="bottom1"><Answermodal subject={items.subject} question_by={items.question_by} question={items.question} chapter={items.chapter} topic={items.topic} marked_doubt={items.marked_doubt} /></div>
+                            <div className="bottom1"><Answermodal subject={items.subject} questionId={items._id} question_by={items.question_by} question={items.question} chapter={items.chapter} topic={items.topic} marked_doubt={items.marked_doubt} /></div>
                             <div className="bottom1">
                                <Button loading={this.state.iconloading} onClick={(event) =>this.handleSubmit(event,items._id)} >Mark Doubt</Button>
                             </div>

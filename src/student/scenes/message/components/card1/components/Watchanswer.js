@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tabs,Input,Modal,Avatar, Popconfirm,Tooltip, Layout,Icon,Button,message,Rate,Select } from 'antd';
+import { Tabs,Input,Modal,Avatar, Popconfirm,Tooltip, Layout,Icon,Button,message,Rate,Select, AutoComplete } from 'antd';
 import './Doubts.css';
 import Flipbook from './Flipbook';
 import Answerfile from './Answerfile'
@@ -25,39 +25,39 @@ class Watchanswer extends Component {
               <Content style={{ padding: '0 0px' }}>
                 <div style={{ borderRadius:25, height: "auto",width:"100%",overflow: "hidden" }}>
 
-                <div className="cardquestion" style={{height:"auto"}}>
-                  <div className="containerquestion">
+                <div className="cardquestion" >
+                  <div className="containerquestion" >
                     <div className="top">
                        <div className="top1">
-                         <Avatar src="https://cdn.dribbble.com/users/1753953/screenshots/3818675/animasi-emptystate.gif" />
+                         <img src="https://cdn.dribbble.com/users/1753953/screenshots/3818675/animasi-emptystate.gif" style={{height:40,width:40,borderRadius:"50%",border:"1px solid black"}}/>
                        </div>
                        <div className="top2">
-                          <p>{this.props.location.state.question_by.fullname}</p>
+                          <b style={{fontSize:18}}>{this.props.location.state.question_by.fullname}</b>
                        </div>
                        <div className="top2">
-                          <b><p style={{color:"#7CFC00"}}>{this.props.location.state.subject}</p></b>
+                          <b style={{color:"#7CFC00",fontSize:18}}>{this.props.location.state.subject}</b>
                        </div>
                        <div className="top2">
-                          <p>{this.props.location.state.chapter}</p>
+                          <b style={{fontSize:18}} >{this.props.location.state.chapter}</b>
                        </div>
                        <div className="top2">
-                          <p>{this.props.location.state.topic}</p>
+                          <b style={{fontSize:18}}>{this.props.location.state.topic}</b>
                        </div>
                        <div className="top2">
-                          <b><p style={{color:"#FFDAB9"}}>(Based on Topics you Read)</p></b>
+                          <b style={{color:"#FFDAB9",fontSize:18}}>(Based on Topics you Read)</b>
                        </div>
-                       <div className="top3">
-                           <Tooltip title="Not Covered Yet">
-                             <span><Button onClick={this.goback}><i className="fa fa-paper-plane"></i></Button></span>
-                           </Tooltip>
+
+                       <div className="top3" style={{marginTop:"-7px"}}>
+                          <span><Button style={{fontSize:20,fontFamily:"Questrial",borderRadius:"20px",width:"auto",padding:5,paddingLeft:15,paddingRight:15,height:"auto",backgroundColor:"#db2d43",color:"#fcf5ee"}} onClick={this.goback}><b >Go Back</b></Button></span>
                        </div>
                    </div>
+                   
+                   <hr style={{marginTop:10}}/>
 
-                  <div style={{display:"flex"}}><div style={{margin:"auto"}}>
-                    <div className="middle">
-                       <b style={{fontSize:30}}>{this.props.location.state.question}</b>
+                    <div className="middle" style={{backgroundColor:"white",borderRadius:"10px"}}>
+                       <b style={{fontSize:20}}>{this.props.location.state.question}</b>
                     </div>
-                  </div></div>
+                  
 
                     <div className="middle">
 
@@ -66,17 +66,45 @@ class Watchanswer extends Component {
                             <div style={{ display:"flex"}}>
                                <div style={{ margin:"auto" }}>
                                  <div style={{marginBottom:"80px"}}>
-                                    <Images image={this.props.location.state.attachments}/>
+
+                                     {this.props.location.state.attachments==undefined ? (
+
+                                            <Tooltip title="No Image file Avalable">
+                                                <div >
+                                                    <i className="fas fa-image" style={{fontSize:60,paddingLeft:25,color:"black"}}></i>
+                                                    <b><p style={{paddingTop:10,paddingLeft:20}}>Answer File</p></b>
+                                                </div>
+                                            </Tooltip>
+
+                                       ) : (
+                                         <Tooltip title="📝 Image file Avalable">
+                                           <Images image={this.props.location.state.attachments}/>
+                                        </Tooltip>
+                                     )}
+
                                  </div>
                                  <div >
+
+                                 {this.props.location.state.attachments==undefined ? (
+                                   <Tooltip title="No Video Avalable!">
+                                     <div >
+                                       <i className="fas fa-video"  style={{fontSize:60,paddingLeft:30,color:"black"}}></i>
+                                       <b><p style={{paddingTop:10,paddingLeft:35}}>Videos</p></b>
+                                     </div>
+                                   </Tooltip>
+                                   ) : (
+                                     <Tooltip title="🍿 Video Avalable!">
                                      <i className="fas fa-video"  style={{fontSize:60,paddingLeft:30,color:"#CAEBF2"}}></i>
                                      <b><p style={{paddingTop:10,paddingLeft:35}}>Videos</p></b>
+                                     </Tooltip>
+                                 )}
+
                                  </div>
                                </div>
                             </div>
                         </div>
                         <div style={{ display:"flex"}}>
-                           <div style={{ margin:"auto" }}>
+                           <div style={{ margin:"auto",backgroundColor:"white" }}>
                                <div style={{position:"relative",float:"left"}}>
                                  <div style={{width:1100,fontSize:30}}>
                                    {this.props.location.state.answer}

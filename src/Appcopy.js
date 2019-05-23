@@ -70,8 +70,8 @@ update(event){
       return (
         <div>
           <div>
-            <Button type="primary" onClick={this.showModal}>
-              Open Modal
+            <Button style={{height:"auto",width:"auto",marginLeft:35}} onClick={this.showModal}>
+               <i className="fas fa-microphone-alt" style={{fontSize:40,addingBottom:0}}></i>
             </Button>
             <Modal
               title="Basic Modal"

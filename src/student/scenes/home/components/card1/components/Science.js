@@ -11,6 +11,8 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.headers.common['x-auth'] = getfromstorage('x-auth');
 
 
+const isApiSucessful=response=>response.status===200;
+
 class Science extends Component {
   constructor(props) {
       super(props);
@@ -45,20 +47,22 @@ handleSubmit = (e, _id) => {
 
 }
 
-  async componentDidMount() {
-    await axios.get('/get_all_question/Science')
-  .then(result=>{
-    if(result.status==200){
+getsciencequestion=async()=>{
+  try{
+    const res= await axios.get('/get_all_question/Science');
+    if(isApiSucessful(res)){
       let questiondata='';
-      questiondata = result.data;
+      questiondata = res.data;
       this.setState({data:questiondata});
       this.setState({loading: false });
-    }
+   }
+ }catch(err){
+     console.log(err);
+ }
+}
 
-  })
-  .catch(err=>{
-    console.log(err);
-  });
+componentDidMount() {
+  this.getsciencequestion();
 }
 
 
@@ -68,7 +72,7 @@ handleSubmit = (e, _id) => {
     console.log(question);
     const isEmpty = !isNull && !question.length;
     if (this.state.loading) {
-      return <div><Skeleton avatar paragraph={{ rows: 4 }} active />
+      return <div style={{marginTop:10}}><Skeleton avatar paragraph={{ rows: 4 }} active />
                   <Skeleton avatar paragraph={{ rows: 4 }} active />
                   <Skeleton avatar paragraph={{ rows: 4 }} active />
             </div>;
@@ -78,8 +82,8 @@ handleSubmit = (e, _id) => {
     return (
     <div>
 
-    <div className="scrollbar2" id="style-1">
-       <div className="force-overflow">
+    <div className="thescrollbar" id="scrollbarstyle">
+       <div className="the-overflow">
 
 
        <div>
@@ -117,11 +121,11 @@ handleSubmit = (e, _id) => {
                       <div className="top2">
                          <b><p style={{color:"#FFDAB9"}}>(Based on Topics you Read)</p></b>
                       </div>
-                      <div className="top3">
+{/*                      <div className="top3">
                           <Tooltip title="Not Covered Yet">
                             <span><i className="fa fa-paper-plane"></i></span>
                           </Tooltip>
-                      </div>
+                      </div> */}
                   </div>
 
                    <div className="middle">
@@ -129,7 +133,7 @@ handleSubmit = (e, _id) => {
                    </div>
 
                    <div className="bottom">
-                      <div className="bottom1"><Answermodal subject={items.subject} question_by={items.question_by} question={items.question} chapter={items.chapter} topic={items.topic} marked_doubt={items.marked_doubt}/></div>
+                      <div className="bottom1"><Answermodal subject={items.subject} questionId={items._id} question_by={items.question_by} question={items.question} chapter={items.chapter} topic={items.topic} marked_doubt={items.marked_doubt}/></div>
                       <div className="bottom1">
                           <Tooltip title="Too tuff ? Mark a doubt!">
                             <span><Button loading={this.state.iconloading} onClick={(event) =>this.handleSubmit(event,items._id)} >Mark Doubt</Button></span>

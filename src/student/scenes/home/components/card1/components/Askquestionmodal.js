@@ -7,6 +7,7 @@ import axios from 'axios';
 import {
     getfromstorage,setInStorage,
   } from '../../../../../utils/Storage';
+  import Dictaphone from '../../../../../../Appcopy'
 
   axios.defaults.baseURL = 'http://localhost:5000';
   axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -17,6 +18,10 @@ const { Option } = Select;
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 
+const children = [];
+for (let i = 10; i < 36; i++) {
+  children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
+}
 
 function handleChange(value) {
   console.log(`selected ${value}`);
@@ -148,8 +153,7 @@ buttontoggle=()=>{
                                      <TextArea style={{width:800,paddingTop:10,position:"relative",float:"left",paddingBottom:10,fontSize:24}} placeholder="Ask Your Question Here..." autosize={{ minRows: 2, maxRows: 3 }} />
                                      <div style={{width:100,float:"right",position:"relative",height:93,paddingTop:25}}>
                                         <Tooltip title="Speak Question" placement="right" >
-                                           <span><i onClick={this.toggle} className="fas fa-microphone-alt" style={{fontSize:40,paddingLeft:35,addingBottom:0}}></i></span>
-                                           <img style={{height:60,width:100,marginTop:"-16px"}} src="https://cdn.dribbble.com/users/82855/screenshots/4302618/cvs4.gif"/>
+                                           <span><Dictaphone/></span>
                                         </Tooltip>
                                      </div>
                                   </div>
@@ -179,6 +183,7 @@ buttontoggle=()=>{
                                       <Option value="Maths">Maths</Option>
                                       <Option value="Science">Science</Option>
                                     </Select>
+
                                   )}
                                 </Form.Item>
                              </div>
@@ -223,12 +228,11 @@ buttontoggle=()=>{
                                        onChange={handleChange}
                                        onFocus={handleFocus}
                                        onBlur={handleBlur}
-                                       filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+                                       size="default"
                                      >
-                                       <Option value="Gravitation">Gravitation</Option>
-                                       <Option value="Fluid">Fluid mechanics</Option>
-                                       <Option value="Newtons">Newtons laws of motion</Option>
+                                       {children}
                                      </Select>
+
                                    )}
                                  </Form.Item>
                              </div>

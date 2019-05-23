@@ -29,6 +29,7 @@ class Ansmod extends Component {
 
 handleSubmit = (e, questionId) => {
     e.preventDefault();
+    console.log(questionId);
     this.props.form.validateFields((err, values) => {
       if (!err) {
         this.setState({ iconloading: true });
@@ -97,7 +98,7 @@ handleSubmit = (e, questionId) => {
                        style={{top:50}}
                        title={         <div className="dailylistitem1" style={{height:32,paddingTop:0}}>
                                             <div className="top1">
-                                              <Avatar src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" />
+                                              <Avatar src={"http://localhost:5000/" + this.props.question_by.profileImage} />
                                             </div>
                                              <div className="top2" >
                                                <b><p>{this.props.question_by.fullname}</p></b>
@@ -133,7 +134,7 @@ handleSubmit = (e, questionId) => {
                             <div style={{ margin:"auto" }}>
                                 <div style={{display:"flex"}}>
                                   <div style={{margin:"auto"}}>
-                                    <b><p style={{width:900,paddingTop:0,fontSize:20}} > {this.props.question} </p></b>
+                                    <b><p style={{width:900,paddingTop:0,fontSize:20}} > {this.props.question.substring(0,400)} </p></b>
                                   </div>
                                 </div>
                                 <div style={{position:"relative",float:"left",marginTop:10}}>
@@ -155,7 +156,7 @@ handleSubmit = (e, questionId) => {
                                    <Tooltip title="Upload images of Answer!">
                                      <Upload {...{
                                        name: 'image',
-                                        action: 'http://localhost:5000/post_answer_student',
+                                        action: 'http://localhost:5000/post_answer_student/upload_image',
                                         headers: {
                                           'x-auth': getfromstorage('x-auth')
                                         },

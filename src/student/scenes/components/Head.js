@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Head.scss';
+import {logo} from './logo.png'
 import {Link,Redirect,withRouter} from 'react-router-dom';
 import {Popconfirm, message, Button} from 'antd';
 import axios from 'axios';
@@ -122,16 +123,21 @@ componentDidMount() {
     }
     console.log(this.props);
     return (
-      <div style={{height:52}}>
+      <div className="heighthead">
 
         <nav style={{paddingBottom:40}}>
           <div className="container">
             <div className="container-right">
               <ul className="navbar-right">
-                <li style={{paddingRight:15}}><Link to="/home"><b>Home</b></Link></li>
-{/*                <li style={{paddingRight:15}}><Link to="/profile"><b>Read bytes</b></Link></li> */}
-                <li style={{paddingRight:15}}><Link to="/message"><b>Answers</b></Link></li>
-                <li style={{paddingRight:15}}><b><Notification/></b></li>
+                <li className="linkpadding"><Link to="/home"><b>Home</b></Link></li>
+                <li className="linkpadding1"><Link to="/message"><b>Answers</b></Link></li>
+                {/* <li style={{paddingRight:15}}><Link to="/readbytes"><b>Read bytes</b></Link></li> */}
+
+
+{/*  <li style={{paddingRight:15}}><Link to="/motionbooks"><b>Motionbooks</b></Link></li>
+     <li style={{paddingRight:15}}><Link to="/motionbook"><b>Motionbook</b></Link></li>
+*/}             
+                   {/* <li style={{paddingRight:15}}><b><Notification/></b></li> */}
                 <li>
                   <Button onClick={this.handleLogout} style={{backgroundColor:"rgb(0,0,0,0)"}}><b><i className="fas fa-power-off" style={{color:"#fd0054"}}></i></b></Button>
                 </li>
@@ -140,12 +146,20 @@ componentDidMount() {
         <ReactNotification ref={this.notificationDOMRef} />
             <ul className="navbar-left">
               <li className="brand">
-                <Link to="/home"><b style={{fontFamily:'Ultra',letterSpacing: "0px",fontSize:24}}>traduate</b></Link>
+                <Link to="/home"><b class="brandname">traduate</b></Link>
+             </li>
+            </ul>
+
+            <ul className="logo">
+              <li style={{float:"left",paddingLeft:0,marginLeft:"-35px"}}>
+                  <Link to="/home"><img src="https://i.pinimg.com/236x/1a/d1/ec/1ad1eccc766fc84030812b4e5fc5eb75.jpg" style={{height:35,width:40,borderRadius:"50%"}}/></Link>
              </li>
             </ul>
           </div>
         </nav>
 
+        
+        
      </div>
     );
   }

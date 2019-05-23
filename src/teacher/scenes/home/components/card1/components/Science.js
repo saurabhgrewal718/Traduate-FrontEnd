@@ -98,7 +98,7 @@ class Science extends Component {
                    </div>
 
                    <div className="bottom">
-                      <div className="bottom1"><Answermodal subject={items.subject} question={items.question} chapter={items.chapter} topic={items.topic} /></div>
+                      <div className="bottom1"><Answermodal subject={items.subject} questionId={items._id} question={items.question} chapter={items.chapter} topic={items.topic} /></div>
 
 {/*                      <div className="bottom2"><Avatar src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/9222b568654569.5b6446bfab4b2.jpg" style={{height:20,width:20}}/></div>
                       <div className="bottom2"><Avatar src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/9222b568654569.5b6446bfab4b2.jpg" style={{height:20,width:20}}/></div>

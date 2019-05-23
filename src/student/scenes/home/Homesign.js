@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Home.scss';
+import './Home.css';
 import { Spin } from 'antd';
 
 

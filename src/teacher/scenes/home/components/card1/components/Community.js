@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import './Science.css';
-import { Avatar,Skeleton,Button,Tooltip } from 'antd';
+import { Avatar,Empty,Skeleton,Button,Tooltip } from 'antd';
 import Answermodal from './Answermodal';
 import axios from 'axios';
 
 import {getfromstorage,setInStorage,} from '../../../../../utils/Storage';
+import {time_ago} from '../../../../../utils/getTimeFormat';
 
 axios.defaults.baseURL = 'http://localhost:5000';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -12,65 +13,128 @@ axios.defaults.headers.common['x-auth'] = getfromstorage('x-auth');
 
 
 class Community extends Component {
+
+  constructor(props) {
+      super(props);
+      const data = [];
+      this.state = { data ,loading: true,iconloading: false };
+}
+
+
+    async componentDidMount() {
+      await axios.get('teacher_get_all_question/help_community')
+    .then(result=>{
+      if(result.status==200){
+        let questiondata='';
+        questiondata = result.data;
+        console.log(questiondata);
+        this.setState({data:questiondata});
+        this.setState({loading: false });
+      }
+
+    })
+    .catch(err=>{
+      console.log(err);
+    });
+  }
+
   render() {
+    let question=this.state.data;
+    console.log(question);
+    const isNull = !question;
+    const isEmpty = !isNull && !question.length;
+    if (this.state.loading) {
+      return <div><Skeleton avatar paragraph={{ rows: 4 }} active />
+                  <Skeleton avatar paragraph={{ rows: 4 }} active />
+                  <Skeleton avatar paragraph={{ rows: 4 }} active />
+            </div>;
+    }
     return (
-        <div>
+      <div>
 
-        <div className="scrollbar2" id="style-1">
-           <div className="force-overflow">
+      <div className="scrollbar2" id="style-1">
+         <div className="force-overflow">
 
-            <div className="cardquestion" style={{marginTop:0,paddingTop:0,marginBottom:0,paddingTop:0}}>
-              <div className="containerquestion">
-                <div className="top">
-                   <div className="top1">
-                     <Avatar src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" />
+
+         <div>
+           { isNull ? <Empty/>
+             : ( isEmpty
+               ?
+               <Empty
+                 description={
+                   <span>
+                     No Science Questions Matching You Today!!
+                   </span>
+                 }
+               >
+               </Empty>
+               :
+               <div>
+               {question.map((items, idx) => {
+
+                 return(
+                 <div className="cardquestion" key={idx}>
+                   <div className="containerquestion">
+                     <div className="top">
+                        <div className="top1">
+                          <Avatar src={"http://localhost:5000/" + items.question_by.profileImage} />
+                        </div>
+                        <div className="top2">
+                           <p>{items.question_by.fullname}</p>
+                        </div>
+                        <div className="top2">
+                           <b><p style={{color:"#7CFC00"}}>{items.subject}</p></b>
+                        </div>
+                        <div className="top2">
+                           <p>{time_ago(items.date_of_question)} </p>
+                        </div>
+                        <div className="top2">
+                           <b><p style={{color:"#FFDAB9"}}>(Based on Topics you Read)</p></b>
+                        </div>
+      {/*                      <div className="top3">
+                            <Tooltip title="Not Covered Yet">
+                              <span><i className="fa fa-paper-plane"></i></span>
+                            </Tooltip>
+                        </div> */}
+                    </div>
+
+                     <div className="middle">
+                        <h3>{items.question}</h3>
+                     </div>
+
+                     <div className="bottom">
+                        <div className="bottom1"><Answermodal subject={items.subject} questionId={items._id} question_by={items.question_by} question={items.question} chapter={items.chapter} topic={items.topic} marked_doubt={items.marked_doubt}/></div>
+                        <div className="bottom2"><Avatar src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/9222b568654569.5b6446bfab4b2.jpg" style={{height:20,width:20}}/></div>
+                        <div className="bottom2"><Avatar src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/9222b568654569.5b6446bfab4b2.jpg" style={{height:20,width:20}}/></div>
+                        <div className="bottom2"><Avatar src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/9222b568654569.5b6446bfab4b2.jpg" style={{height:20,width:20}}/></div>
+                        <div className="bottom3">
+                           <p>+Marked Doubt</p>
+                        </div>
+                     </div>
+
+
                    </div>
-                   <div className="top2">
-                      <p>Ankit Sharma</p>
-                   </div>
-                   <div className="top2">
-                      <b><p style={{color:"#7CFC00"}}>Maths</p></b>
-                   </div>
-                   <div className="top2">
-                      <p>2 days ago </p>
-                   </div>
-                   <div className="top2">
-                      <b><p style={{color:"#FFDAB9"}}>(Based on Topics you Read)</p></b>
-                   </div>
-                   <div className="top3">
-                       <Tooltip title="Not Covered Yet">
-                         <span><i className="fa fa-paper-plane"></i></span>
-                       </Tooltip>
-                   </div>
+                 </div>
+
+               )
+               })}
+
                </div>
+             )
+           }
+         </div>
 
-                <div style={{display:"flex"}}><div style={{margin:"auto"}}>
-                <div className="middle">
-                  <div>
-                    <h3>Hey its the question</h3>
-                  </div>
-                </div>
-                </div></div>
 
-                <div className="bottom">
-                   <div className="bottom1"><Answermodal/></div>
-                   <div className="bottom2"><Avatar src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/9222b568654569.5b6446bfab4b2.jpg" style={{height:20,width:20}}/></div>
-                   <div className="bottom2"><Avatar src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/9222b568654569.5b6446bfab4b2.jpg" style={{height:20,width:20}}/></div>
-                   <div className="bottom2"><Avatar src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/9222b568654569.5b6446bfab4b2.jpg" style={{height:20,width:20}}/></div>
-                   <div className="bottom3">
-                      <p>+Marked Doubt</p>
-                   </div>
-                </div>
 
-              </div>
+
             </div>
-
-
+          </div>
 
           </div>
-        </div>
 
-      </div>
+
+
+
 
     );
   }

@@ -1,0 +1,123 @@
+@media screen and (min-width: 340px) {
+  .cardcontainer{
+    background-color:white;
+    width:auto;
+    height: 100%;
+  }
+  
+  .cardfirst {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 49%;
+    float: left;
+    height:200px;
+    margin-top:10px;
+    border-radius: 6px;
+    background-color: white;
+  }
+  .cardfirst:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  .container0 {
+    padding: 1px 2px;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .view{
+    display: none;
+  }
+  
+  .cardsceond {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 49%;
+    height:200px;
+    border-radius: 6px;
+    float: right;
+    background-color: white;
+    margin-top:10px;
+  }
+  .cardthird {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 100%;
+    height:1000px;
+    border-radius: 6px;
+    float: right;
+    background-color: white;
+    margin-top:10px;
+  }
+  
+  .cardsceond:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  .container2 {
+    padding: 2px 16px;
+  }
+  
+}
+
+@media screen and (min-width: 800px) {
+  .cardcontainer{
+    background-color:white;
+    width:auto;
+  }
+
+  .view{
+    display: block;
+  }
+  
+  .cardfirst {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 20%;
+    float: left;
+    height:200px;
+    margin-top:10px;
+    border-radius: 6px;
+    background-color: white;
+  }
+  .cardfirst:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  .container0 {
+    padding: 2px 20px;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  
+  .cardsceond {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 20%;
+    height:425px;
+    border-radius: 6px;
+    float: left;
+    background-color: white;
+    margin-top:10px;
+  }
+  .cardthird {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 79%;
+    height:auto;
+    border-radius: 6px;
+    float: right;
+    background-color: green;
+    margin-top:10px;
+  }
+  
+  .cardsceond:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  .container2 {
+    padding: 2px 16px;
+  }
+  
+}
+

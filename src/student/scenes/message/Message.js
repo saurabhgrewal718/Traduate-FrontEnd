@@ -14,23 +14,23 @@ class Message extends Component {
   render() {
     return (
       <div>
-        <div className="card">
-          <div className="container0">
+        <div className="cardme">
+          <div className="containermes">
              <Profile/>
           </div>
         </div>
 
-        <div className="card1">
-          <div className="container1">
+        <div className="card1mes">
+          <div className="container1mes">
              <Card1/>
           </div>
         </div>
 
-        <div className="card2">
+        {/* <div className="card2">
           <div className="container2">
               <Cheered/>
           </div>
-        </div>
+        </div> */}
 
      </div>
 

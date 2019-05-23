@@ -98,9 +98,11 @@ componentDidMount = () => {
               )}
             </Form.Item>
             <Form.Item>
+              <div className="loginbutton">
               <Button type="primary" htmlType="submit" style={{borderRadius:"25px",borderColor:'rgba(24,144,255,100)'}} className="login-form-button">
                 Log in
               </Button>
+              </div>
             </Form.Item>
           </Form>
 

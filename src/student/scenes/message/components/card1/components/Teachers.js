@@ -24,9 +24,8 @@ class Teachers extends Component {
           >
             <TabPane tab={<span><i className="fas fa-atom"></i>Answered</span>} key="1"><Teacherasked/></TabPane>
             <TabPane tab={<span>
-              <Badge dot>
                   <i className="fas fa-flask"></i>Processing
-              </Badge></span>} key="2"><Teacherun/></TabPane>
+              </span>} key="2"><Teacherun/></TabPane>
           </Tabs>
 
           </div>

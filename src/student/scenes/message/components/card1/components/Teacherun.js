@@ -87,15 +87,12 @@ class Teacherun extends Component {
                                               </div>
                                           </div>
 
-                                          <div style={{display:"flex"}}><div style={{margin:"auto"}}>
-                                             <div className="middle">
-                                                <h3>{items.question}</h3>
-                                             </div>
-                                           </div></div>
+                                           <div className="middle">
+                                              <h3>{items.question}</h3>
+                                           </div>
 
                                            <div className="bottom">
-                                              <div className="bottom2" style={{width:"auto",paddingLeft:40,paddingRight:40}}><p>Question processed!</p></div>
-                                              <div className="bottom1" style={{width:"75%",paddingRight:40}}>
+                                              <div className="bottom1" style={{width:"25%"}}>
                                                 <Progress percent={50} status="active" />
                                               </div>
                                            </div>
