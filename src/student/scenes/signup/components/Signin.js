@@ -10,8 +10,8 @@ import axios from 'axios';
 import { Spin } from 'antd';
 import Card from '../../home/components/card/Card'
 
-
-axios.defaults.baseURL = 'http://localhost:5000';
+// Header Import
+axios.defaults.baseURL = 'https://www.traduate-backend.herokuapp.com/';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 
