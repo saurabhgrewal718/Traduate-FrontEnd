@@ -11,7 +11,7 @@ import { Spin } from 'antd';
 import Card from '../../home/components/card/Card'
 
 // Header Import
-axios.defaults.baseURL = 'http://www.traduate-backend.herokuapp.com';
+// axios.defaults.baseURL = 'http://www.traduate-backend.herokuapp.com';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 
@@ -32,7 +32,7 @@ componentDidMount = () => {
       if (!err) {
         this.setState({loading:true});
         console.log('Received values of form: ', values);
-        axios.post('/login', {
+        axios.post('http://traduate-backend.herokuapp.com/login', {
          "email":values.email,
          "password":values.password,
        })
