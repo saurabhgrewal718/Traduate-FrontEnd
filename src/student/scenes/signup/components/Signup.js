@@ -11,7 +11,7 @@ import {Link} from 'react-router-dom';
 import Item1 from './Item1';
 
 
-axios.defaults.baseURL = 'http://localhost:5000';
+axios.defaults.baseURL = 'https://traduate-backend.herokuapp.com/';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 const { Option } = Select;
@@ -39,7 +39,7 @@ componentWillMount(){
           "email": values.email
         })
          .then((res)=>{
-         if(res.status==200) {
+         if(res.status===200) {
           console.log(res);
           this.setState({loading:false});
           this.props.como.history.push('/setup/first');

@@ -12,7 +12,7 @@ import { Spin } from 'antd';
 import {Link} from 'react-router-dom';
 
 
-axios.defaults.baseURL = 'http://localhost:5000';
+axios.defaults.baseURL = 'https://traduate-backend.herokuapp.com/';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 const { MonthPicker, RangePicker } = DatePicker;
