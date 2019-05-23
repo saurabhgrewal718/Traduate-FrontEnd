@@ -11,7 +11,7 @@ import { Spin } from 'antd';
 import Card from '../../home/components/card/Card'
 
 // Header Import
-axios.defaults.baseURL = 'https://www.traduate-backend.herokuapp.com/';
+axios.defaults.baseURL = 'http://www.traduate-backend.herokuapp.com';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 
