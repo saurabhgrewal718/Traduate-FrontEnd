@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/Traduate-Frontend/precache-manifest.e083fd98758ae1bbc2fbc42c88c57abd.js"
+  "/Traduate-FrontEnd/precache-manifest.8bfea2ca3f4b4cd32f3e51ae40cd6749.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/Traduate-Frontend/index.html", {
+workbox.routing.registerNavigationRoute("/Traduate-FrontEnd/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
