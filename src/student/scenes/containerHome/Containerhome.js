@@ -1,20 +1,26 @@
 import React, { Component } from 'react';
-import { Layout, Menu, Breadcrumb } from 'antd';
 import Head from '../components/Head';
 
-const { Header, Content, Footer } = Layout;
+import { Layout } from 'antd';
+
+const { Header, Footer, Sider, Content } = Layout;
+
 
 const Containerhome= (props) => {
   return(
+      <div>
       <Layout className="layout">
         <Head/>
-        <Content style={{ padding: '0 20px' }}>
-          <div style={{ padding: 10, }}>
+        <Content style={{ padding:0 }}>
+          <div style={{ padding:2 }}>
              <div>{props.children}</div>
           </div>
         </Content>
       </Layout>
+    </div>
 );
 }
 
 export default Containerhome;
+
+

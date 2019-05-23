@@ -143,4 +143,5 @@ class Watchanswermodal extends Component {
   }
 }
 
-export default Watchanswermodal;
+
+export default Watchanswermodal

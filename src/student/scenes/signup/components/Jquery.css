@@ -1,0 +1,28 @@
+.example {
+  text-align: center;
+  background: rgba(0,0,0,0);
+  border-radius: 4px;
+  padding: 20px 40px;
+
+}
+
+.example1 {
+  text-align: center;
+  background: rgba(0,0,0,0);
+  border-radius: 4px;
+  padding: 160px 40px;
+
+}
+
+@media screen and (min-width: 340px) {
+
+.loginbutton{
+  display: block;
+}
+}
+@media screen and (min-width: 800px) {
+
+  .loginbutton{
+    display: inline-block;
+  }
+  }

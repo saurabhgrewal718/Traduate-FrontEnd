@@ -1,59 +1,162 @@
 import React, { Component } from 'react';
 import './Science.css';
-import { Avatar,Button,Tooltip } from 'antd';
+import { Avatar,Button,message,Skeleton,Tooltip,Empty } from 'antd';
 import Answermodal from './Answermodal';
+import axios from 'axios';
+import {time_ago} from '../../../../../utils/getTimeFormat';
+import {getfromstorage,setInStorage,} from '../../../../../utils/Storage';
 
+axios.defaults.baseURL = 'http://localhost:5000';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+axios.defaults.headers.common['x-auth'] = getfromstorage('x-auth');
+
+
+const isApiSucessful=response=>response.status===200;
 
 class Science extends Component {
+  constructor(props) {
+      super(props);
+      const data = [];
+      this.state = { data ,loading: true,iconloading: false };
+      this.handleSubmit = this.handleSubmit.bind(this);
+}
+
+handleSubmit = (e, _id) => {
+      this.setState({ iconloading: true });
+      axios.post('/post_question/markDoubt', {
+        "id": _id,
+      })
+       .then((res)=>{
+       if(res.status==200) {
+        console.log(res);
+        this.setState({ iconloading: false });
+        (function(){
+            message.success('Added to Doubts');
+           })();
+
+       }
+       })
+       .catch((err)=>{
+         console.log(err);
+        this.setState({ iconloading: false });
+         (function(){
+           message.error("Ohh no..🤕 ! Can't be added to Doubts !" + err);
+            })();
+       });
+
+
+}
+
+getsciencequestion=async()=>{
+  try{
+    const res= await axios.get('/get_all_question/Science');
+    if(isApiSucessful(res)){
+      let questiondata='';
+      questiondata = res.data;
+      this.setState({data:questiondata});
+      this.setState({loading: false });
+   }
+ }catch(err){
+     console.log(err);
+ }
+}
+
+componentDidMount() {
+  this.getsciencequestion();
+}
+
+
   render() {
+    let question=this.state.data.data;
+    const isNull = !question;
+    console.log(question);
+    const isEmpty = !isNull && !question.length;
+    if (this.state.loading) {
+      return <div style={{marginTop:10}}><Skeleton avatar paragraph={{ rows: 4 }} active />
+                  <Skeleton avatar paragraph={{ rows: 4 }} active />
+                  <Skeleton avatar paragraph={{ rows: 4 }} active />
+            </div>;
+    }
+
+
     return (
-        <div>
-          <div className="cardquestion">
-            <div className="containerquestion">
-              <div className="top">
-                 <div className="top1">
-                   <Avatar src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" />
+    <div>
+
+    <div className="thescrollbar" id="scrollbarstyle">
+       <div className="the-overflow">
+
+
+       <div>
+         { isNull ? <Empty/>
+           : ( isEmpty
+             ?
+             <Empty
+               description={
+                 <span>
+                   No Science Questions Matching You Today!!
+                 </span>
+               }
+             >
+             </Empty>
+             :
+             <div>
+             {question.map((items, idx) => {
+
+               return(
+               <div className="cardquestion" key={idx}>
+                 <div className="containerquestion">
+                   <div className="top">
+                      <div className="top1">
+                        <Avatar src={"http://localhost:5000/" + items.question_by.profileImage} />
+                      </div>
+                      <div className="top2">
+                         <p>{items.question_by.fullname}</p>
+                      </div>
+                      <div className="top2">
+                         <b><p style={{color:"#7CFC00"}}>{items.subject}</p></b>
+                      </div>
+                      <div className="top2">
+                         <p>{time_ago(items.date_of_question)} </p>
+                      </div>
+                      <div className="top2">
+                         <b><p style={{color:"#FFDAB9"}}>(Based on Topics you Read)</p></b>
+                      </div>
+{/*                      <div className="top3">
+                          <Tooltip title="Not Covered Yet">
+                            <span><i className="fa fa-paper-plane"></i></span>
+                          </Tooltip>
+                      </div> */}
+                  </div>
+
+                   <div className="middle">
+                      <h3>{items.question}</h3>
+                   </div>
+
+                   <div className="bottom">
+                      <div className="bottom1"><Answermodal subject={items.subject} questionId={items._id} question_by={items.question_by} question={items.question} chapter={items.chapter} topic={items.topic} marked_doubt={items.marked_doubt}/></div>
+                      <div className="bottom1">
+                          <Tooltip title="Too tuff ? Mark a doubt!">
+                            <span><Button loading={this.state.iconloading} onClick={(event) =>this.handleSubmit(event,items._id)} >Mark Doubt</Button></span>
+                          </Tooltip>
+                      </div>
+                   </div>
+
                  </div>
-                 <div className="top2">
-                    <p>Ankit Sharma</p>
-                 </div>
-                 <div className="top2">
-                    <b><p style={{color:"#7CFC00"}}>Maths</p></b>
-                 </div>
-                 <div className="top2">
-                    <p>2 days ago </p>
-                 </div>
-                 <div className="top2">
-                    <b><p style={{color:"#FFDAB9"}}>(Based on Topics you Read)</p></b>
-                 </div>
-                 <div className="top3">
-                     <Tooltip title="Not Covered Yet">
-                       <span><i className="fa fa-paper-plane"></i></span>
-                     </Tooltip>
-                 </div>
+               </div>
+
+             )
+             })}
+
              </div>
+           )
+         }
+       </div>
 
-              <div className="middle">
-                 <h3>this is a question that is very much made to ask question and ask ing o=queston really sucks!</h3>
-              </div>
 
-              <div className="bottom">
-                 <div className="bottom1"><Answermodal/></div>
-                 <div className="bottom1">
-                     <Tooltip title="Too tuff ? Mark a doubt!">
-                       <span><Button>Mark Doubt</Button></span>
-                     </Tooltip>
-                 </div>
-                 <div className="bottom2"><Avatar src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/9222b568654569.5b6446bfab4b2.jpg" style={{height:20,width:20}}/></div>
-                 <div className="bottom2"><Avatar src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/9222b568654569.5b6446bfab4b2.jpg" style={{height:20,width:20}}/></div>
-                 <div className="bottom2"><Avatar src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/9222b568654569.5b6446bfab4b2.jpg" style={{height:20,width:20}}/></div>
-                 <div className="bottom3">
-                    <p>+Marked Doubt</p>
-                 </div>
-              </div>
 
-            </div>
+
           </div>
+        </div>
 
         </div>
 

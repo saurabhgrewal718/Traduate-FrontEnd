@@ -1,0 +1,90 @@
+
+.example2 {
+  background: rgba(202,235,242,0);
+  border-radius: 4px;
+  padding: 20px 40px;
+}
+
+.homesign {
+    min-height: 100vh;
+    min-width:100vh;
+    background: white;
+  }
+
+
+.containertop{
+  position:relative;
+  padding:5px;
+  width: auto;
+  height: 90px;
+}
+.containertop1{
+  position:relative;
+  float: left;
+  width:40%;
+}
+.containertop2{
+  position:relative;
+  float: right;
+  width:60%;
+  padding:15px;
+  padding-left: 0px;
+}
+.container21{
+  width:100%;
+  height:40px;
+  margin-top:10px;
+  padding:10px;
+}
+.container211{
+  position: relative;
+  float: left;
+  height:24px;
+}
+.container212{
+  position: relative;
+  float: right;
+}
+.container22{
+  width:100%;
+  height:250px;
+  padding:10px;
+  padding-bottom:20px;
+}
+.top2{
+  height: 32px;
+  padding-left: 14px;
+  padding-top:5px;
+  position: relative;
+  float: left;
+}
+.top3{
+  height: 32px;
+  padding-left: 14px;
+  padding-top:5px;
+  position: relative;
+  float: right;
+}
+.top1{
+  height: 32px;
+  position: relative;
+  float: left;
+}
+.dailylistitem{
+  height:46px;
+  padding:7px;
+}
+
+
+.containermiddle{
+  position:relative;
+  padding:5px;
+  width: 100%;
+  height: 90px;
+}
+.containerbottom{
+  position:relative;
+  padding:5px;
+  width: 100%;
+  height: 100px;
+}

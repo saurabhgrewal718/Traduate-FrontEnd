@@ -1,0 +1,24 @@
+
+@media screen and (min-width: 800px) {
+    .profiletog{
+        display:inline-block;
+    }
+    .profileheight{
+        margin-top:95px;
+        height:80px;
+    }
+}
+
+
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (min-width: 340px) {
+    .profiletog{
+        display: none;
+    }
+    .profileheight{
+        margin-top:0px;
+        height:0px;
+    }
+}
+  

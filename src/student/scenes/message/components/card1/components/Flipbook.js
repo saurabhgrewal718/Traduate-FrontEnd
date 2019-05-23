@@ -7,6 +7,7 @@ const { Content } = Layout;
 class Flipbook extends Component {
 
   render() {
+    console.log(this.props);
     return (
             <div>
 
@@ -17,18 +18,7 @@ class Flipbook extends Component {
                          <div className="force-overflow">
                            <div style={{display:"flex"}}>
                               <div style={{margin:"auto",paddingLeft:"20px",paddingRight:"20px"}}>
-                                 The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !
-                                 The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !
-                                 The answer goes here ! The nswer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !
-                                 The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !
-                                 The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !
-                                 The answer goes here ! The nswer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !
-                                 The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !
-                                 The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !
-                                 The answer goes here ! The nswer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !
-                                 The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !
-                                 The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !
-                                 The answer goes here ! The nswer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !The answer goes here !
+                                 <p style={{fontSize:30}}>{this.props.answer}</p>
                               </div>
                             </div>
                          </div>

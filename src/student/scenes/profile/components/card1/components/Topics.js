@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Layout } from 'antd';
 import { Tabs, Button,Avatar,Popconfirm } from 'antd';
 import './Topics.css';
-import Motionbookmodal from './Motionbookmodal'
+import Createreadbyte from './Createreadbyte'
 
 const TabPane = Tabs.TabPane;
 const operations = <Button>Ask Question</Button>;
@@ -15,14 +15,11 @@ class Topics extends Component {
       <div className="cardtopic">
         <div className="containertopic">
           <div className="top">
-             <div className="top2">
-                <b><p>English</p></b>
-             </div>
-             <div className="top4">
+             <div className="top4" style={{paddingLeft:0}}>
                 <b style={{color:"#FF7F50"}}><p>Chapter 23</p></b>
              </div>
              <div className="top3">
-                <Motionbookmodal/>
+                <Createreadbyte/>
              </div>
          </div>
 
@@ -54,7 +51,7 @@ class Topics extends Component {
                   <b style={{color:"#FF7F50"}}><p>Chapter 23</p></b>
                </div>
                <div className="top3">
-                  <Motionbookmodal/>
+                  <Createreadbyte/>
                </div>
            </div>
 
@@ -86,7 +83,7 @@ class Topics extends Component {
                   <b style={{color:"#FF7F50"}}><p>Chapter 23</p></b>
                </div>
                <div className="top3">
-                  <Motionbookmodal/>
+                  <Createreadbyte/>
                </div>
            </div>
 
@@ -118,7 +115,7 @@ class Topics extends Component {
                   <b style={{color:"#FF7F50"}}><p>Chapter 23</p></b>
                </div>
                <div className="top3">
-                  <Motionbookmodal/>
+                  <Createreadbyte/>
                </div>
            </div>
 

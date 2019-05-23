@@ -1,24 +1,28 @@
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+/* On screens that are 800px or less, set the background color to blue */
+@media screen and (min-width: 800px) {
+   
+.cardme {
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
   position:relative;
   float:left;
   transition: 0.3s;
   width: 20%;
-  height:215px;
+  height:auto;
   border-radius: 6px;
-  background-color: white;
+  background-color:green;
+  margin-bottom:20px; 
 }
 
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+.cardme:hover {
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
 }
 
-.container0 {
+.containermes {
   padding: 2px 16px;
   margin-left: 0px;
   margin-right: 0px;
 }
-.card1 {
+.card1mes {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   position:relative;
   float:right;
@@ -26,13 +30,14 @@
   height:640px;
   width: 79.5%;
   border-radius: 6px;
+  background-color: white;
 }
 
-.card1:hover {
+.card1mes:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-.container1 {
+.container1mes {
   padding: 2px 16px;
 }
 
@@ -42,7 +47,7 @@
   position:relative;
   float:left;
   transition: 0.3s;
-  width: 20%;
+  width: 100%;
   height:415px;
   border-radius: 6px;
   background-color: white;
@@ -136,4 +141,49 @@
   padding:5px;
   width: 100%;
   height: 100px;
+}
+
+}
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (min-width: 340px) {
+  .cardme {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    position:relative;
+    float:left;
+    transition: 0.3s;
+    width: 100%;
+    height:auto;
+    margin-top:12px;
+    border-radius: 6px;
+    background-color: white;
+  }
+  .cardme:hover {
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+  }
+  
+  .containermes {
+    padding: 1px 2px;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  .card1mes {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    position:relative;
+    float:right;
+    transition: 0.3s;
+    height:640px;
+    width: 100%;
+    border-radius: 6px;
+    background-color: white;
+  }
+  
+  .card1mes:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  .container1mes {
+    padding: 1px 2px;
+  }
+  
 }
